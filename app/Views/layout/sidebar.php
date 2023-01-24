@@ -30,7 +30,7 @@
                             <i class="bi bi-car-front-fill"></i>
                             <span>Kendaraan</span>
                         </a>
-                        <ul class="submenu active">
+                        <ul class="submenu">
                             <li class="submenu-item">
                                 <a href="/kendaraan/daftar_kendaraan">Daftar Kendaraan</a>
                             </li>
@@ -66,7 +66,7 @@
                             <i class="bi bi-pen-fill"></i>
                             <span>Laporan</span>
                         </a>
-                        <ul class="submenu active">
+                        <ul class="submenu">
                             <li class="submenu-item ">
                                 <a href="">Laporan Penggunaan</a>
                             </li>
@@ -104,7 +104,7 @@
         <div class="view-modal"></div>
     </div>
 
-    <div class="footer">
+    <div class="footer" display='block'>
         2017 &copy; Aplikasi Monitoring Operational Armada DESNET
     </div>
 </div>

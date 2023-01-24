@@ -202,79 +202,225 @@ $('#namalokasi_e').on('keypress', function(e){
 
 
 
-// //                                      //
-// // UNTUK MELAKUKAN TAMBAH DAN EDIT USER //
-// //                                      //
+//                                      //
+// UNTUK MELAKUKAN TAMBAH DAN EDIT USER //
+//                                      //
+
+//Fungsi ini digunakan untuk membersihkan form inputan pada modal
+function bersihkanUser() {
+    $('#username').val('');
+    $('#nama').val('');
+    $('#level').val('');
+    $('#driver').val('');
+    $('#password').val('');
+    $('#konfirpass').val('');
+    $('#id_user_e').val('');
+    $('#username_e').val('');
+    $('#nama_e').val('');
+    $('#level_e').val('');
+    $('#driver_e').val('');
+    $('#password_e').val('');
+    $('#konfirpass_e').val('');
+}
+
+//Digunakan untuk membersihkan form input jika kita mengclose modal 
+$('.tombol-tutup-user').on('click', function() {
+    if ($('sukses').is(":visible")) {
+        window.location.href = current_url() + "?" + $_SERVER['QUERY_STRING'];
+    }
+    $('.alert').hide();
+    bersihkanUser();
+});
+
+//Untuk melakukan proses TAMBAH USER, dan melanjutkan proses edit
+$('#tombol-simpan-add-user').on('click', function(){
+    let $username = $('#username').val();
+    let $nama = $('#nama').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
+    let $level = $('#level').val();
+    let $driver = $('#driver').val();
+    let $password = $('#password').val();
+    let $konfirpass = $('#konfirpass').val();
+    $.ajax({ //menggunakan request ajax
+        url: "/user/tambah_user", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+        type: "POST", //menggunakan method post
+        data:{ //digunakan untuk mengirimkan data ke controller
+            driver: $driver,
+            username: $username,
+            nama: $nama,
+            level: $level,
+            password: $password,
+            konfirpass: $konfirpass
+        },
+        success: function(hasil){ //hasil ajaxnya
+            var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
+            if ($obj.sukses == false) { //Jika penambahan data gagal
+                $('.sukses-user').hide(); //menghide alert dengan kelas sukses
+                $('.error-user').show(); //menampilkan alert dengan kelas error
+                $('.error-user').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
+            } else { //Jika penambahan data berhasil
+                $('.error-user').hide(); //menghide alert dengan kelas error
+                $('.sukses-user').show(); //menampilkan alert dengan kelas sukses
+                $('.sukses-user').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
+                bersihkanUser(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+            }
+        }
+    })
+});
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
+$('#formUser').on('keypress', function(e){
+    if (e.which === 13){
+        e.preventDefault();
+        $('#tombol-simpan-add-user').click();
+    }
+});
+
+//Untuk melakukan proses EDIT USER
+function edit_user($id) {
+    $.ajax({
+        url: "/user/edit_user/" + $id, //url ke controller driver fungsi edit_driver melalui routes dengan membawa id_driver yang akan diedit
+        type: "GET", //methodnya get karena cuman mengirim request, post jika sekalian mengirimkan data
+        success: function(hasil) { //hasil ajaxnya
+            var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
+            if ($obj.id_user != '') { //Jika id_drivernya tidak kosong (ada)
+                $('#id_user_e').val($obj.id_user);
+                $('#username_e').val($obj.username);
+                $('#nama_e').val($obj.nama);
+                $('#level_e').val($obj.level);
+                $('#driver_e').val($obj.id_driver);
+                $('#password_e').val($obj.password);
+                $('#konfirpass_e').val($obj.password);
+            }
+        }
+    });
+}
+//Untuk melakukan proses EDIT USER, dan melanjutkan proses edit
+$('#tombol-simpan-edit-user').on('click', function(){
+    let $id_user = $('#id_user_e').val()
+    let $username = $('#username_e').val();
+    let $nama = $('#nama_e').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
+    let $level = $('#level_e').val();
+    let $driver = $('#driver_e').val();
+    let $password = $('#password_e').val();
+    let $konfirpass = $('#konfirpass_e').val();
+    $.ajax({ //menggunakan request ajax
+        url: "/user/update_user", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+        type: "POST", //menggunakan method post
+        data:{ //digunakan untuk mengirimkan data ke controller
+            id_user: $id_user,
+            username: $username,
+            nama: $nama,
+            level: $level,
+            driver: $driver,
+            password: $password,
+            konfirpass: $konfirpass
+        },
+        success: function(hasil){ //hasil ajaxnya
+            var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
+            if ($obj.sukses == false) { //Jika penambahan data gagal
+                $('.sukses-user').hide(); //menghide alert dengan kelas sukses
+                $('.error-user').show(); //menampilkan alert dengan kelas error
+                $('.error-user').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
+            } else { //Jika penambahan data berhasil
+                $('.error-user').hide(); //menghide alert dengan kelas error
+                $('.sukses-user').show(); //menampilkan alert dengan kelas sukses
+                $('.sukses-user').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
+                bersihkanUser(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+            }
+        }
+    })
+});
+
+
+
+//                                           //
+// UNTUK MELAKUKAN TAMBAH DAN EDIT KENDARAAN //
+//                                           //
 
 // //Fungsi ini digunakan untuk membersihkan form inputan pada modal
-// function bersihkanUser() {
-//     $('#id_user').val('');
-//     $('#username').val('');
-//     $('#nama').val('');
-//     $('#level').val('');
-//     $('#password').val('');
-//     $('#konfirpass').val('');
+// function bersihkanKendaraan() {
+//     $('#jeniskendaraan').val('');
+//     $('#tipekendaraan').val('');
+//     $('#nopol').val('');
+//     $('#kmawal').val('');
+//     $('#gambar').val('');
 // }
 
 // //Digunakan untuk membersihkan form input jika kita mengclose modal 
-// $('.tombol-tutup-user').on('click', function() {
+// $('.tombol-tutup-kendaraan').on('click', function() {
 //     if ($('sukses').is(":visible")) {
 //         window.location.href = current_url() + "?" + $_SERVER['QUERY_STRING'];
 //     }
 //     $('.alert').hide();
-//     bersihkanUser();
+//     bersihkanKendaraan();
 // });
 
-// //Untuk melakukan proses EDIT USER
-// function edit_user($id) {
-//     $.ajax({
-//         url: "/user/edit_user/" + $id, //url ke controller driver fungsi edit_driver melalui routes dengan membawa id_driver yang akan diedit
-//         type: "GET", //methodnya get karena cuman mengirim request, post jika sekalian mengirimkan data
-//         success: function(hasil) { //hasil ajaxnya
-//             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
-//             if ($obj.id_user != '') { //Jika id_drivernya tidak kosong (ada)
-//                 $('#id_user').val($obj.id_user);
-//                 $('#username').val($obj.username);
-//                 $('#nama').val($obj.nama);
-//                 $('#level').val($obj.level);
-//                 $('#password').val($obj.password);
-//                 $('#konfirpass').val($obj.password);
-//             }
-//         }
-//     });
-// }
-
-// //Untuk melakukan proses TAMBAH USER, dan melanjutkan proses edit
-// $('#tombol-simpan-user').on('click', function(){
-//     let $id_user = $('#id_user').val();
-//     let $username = $('#username').val();
-//     let $nama = $('#nama').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
-//     let $level = $('#level').val();
-//     let $password = $('#password').val();
-//     let $konfirpass = $('#konfirpass').val();
+// //Untuk melakukan proses TAMBAH KENDARAAN
+// $('#tombol-simpan-add-kendaraan').on('click', function(){
+//     let $jeniskendaraan = $('#jeniskendaraan').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
+//     let $tipekendaraan = $('#tipekendaraan').val();
+//     let $nopol = $('#nopol').val();
+//     let $lokasi = $('#lokasi').val();
+//     let $kmawal = $('#kmawal').val();
+//     // let $gambar = document.getElementById('gambar').files[0]
+//     let $gambar = $('#gambar').val();
+//     // let $gambar = $('#gambar').prop('files')[0];
+//     // let $gambar = $('#gambar')[0].files[0];
+//     console.log($gambar);
 //     $.ajax({ //menggunakan request ajax
-//         url: "/user/tambah_user", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+//         url: "/kendaraan/tambah_kendaraan", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
 //         type: "POST", //menggunakan method post
 //         data:{ //digunakan untuk mengirimkan data ke controller
-//             id_user: $id_user,
-//             username: $username,
-//             nama: $nama,
-//             level: $level,
-//             password: $password,
-//             konfirpass: $konfirpass
+//             jeniskendaraan: $jeniskendaraan,
+//             tipekendaraan: $tipekendaraan,
+//             nopol: $nopol,
+//             lokasi: $lokasi,
+//             kmawal: $kmawal,
+//             gambar: $gambar
 //         },
 //         success: function(hasil){ //hasil ajaxnya
 //             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
 //             if ($obj.sukses == false) { //Jika penambahan data gagal
-//                 $('.sukses-user').hide(); //menghide alert dengan kelas sukses
-//                 $('.error-user').show(); //menampilkan alert dengan kelas error
-//                 $('.error-user').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
+//                 $('.sukses-kendaraan').hide(); //menghide alert dengan kelas sukses
+//                 $('.error-kendaraan').show(); //menampilkan alert dengan kelas error
+//                 $('.error-kendaraan').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
 //             } else { //Jika penambahan data berhasil
-//                 $('.error-user').hide(); //menghide alert dengan kelas error
-//                 $('.sukses-user').show(); //menampilkan alert dengan kelas sukses
-//                 $('.sukses-user').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
-//                 bersihkanUser(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+//                 $('.error-kendaraan').hide(); //menghide alert dengan kelas error
+//                 $('.sukses-kendaraan').show(); //menampilkan alert dengan kelas sukses
+//                 $('.sukses-kendaraan').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
+//                 bersihkanLokasi(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
 //             }
 //         }
 //     })
 // });
+
+// function previewImg() {
+//     const gambar = document.querySelector('#gambar');
+//     const imgPreview = document.querySelector('.img-preview');
+//     const fileGambar = new FileReader();
+//     fileGambar.readAsDataURL(gambar.files[0]);
+//     fileGambar.onload = function(e) {
+//         imgPreview.src = e.target.result;
+//     }
+// }
+
+
+
+// function previewImg() {
+//     const sampul = document.querySelector('#sampul');
+//     const sampulLabel = document.querySelector('.input-group-text');
+//     const imgPreview = document.querySelector('.img-preview');
+
+//     sampulLabel.textContent = sampul.files[0].name;
+
+//     const fileSampul = new FileReader();
+//     fileSampul.readAsDataURL(sampul.files[0]);
+
+//     fileSampul.onload = function(e) {
+//         imgPreview.src = e.target.result;
+//     }
+// }
+
+
+
+
+

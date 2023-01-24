@@ -37,6 +37,8 @@ $routes->get('/', 'Home::index');
 $routes->get('/user/daftar_user', 'User::daftar_user');
 $routes->post('/user/tambah_user', 'User::tambah_user');
 $routes->get('/user/edit_user/(:num)', 'User::edit_user/$1');
+$routes->post('/user/update_user', 'User::update_user');
+$routes->delete('/user/delete_user/(:num)', 'User::delete_user/$1');
 
 //Routes Driver
 //Untuk menampilkan daftar driver
@@ -58,6 +60,8 @@ $routes->delete('/lokasi/delete_lokasi/(:num)', 'Lokasi::delete_lokasi/$1');
 
 //Kendaraan
 $routes->get('/kendaraan/daftar_kendaraan', 'Kendaraan::daftar_kendaraan');
+$routes->post('/kendaraan/tambah_kendaraan/', 'Kendaraan::tambah_kendaraan');
+
 
 //Peminjaman
 $routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');

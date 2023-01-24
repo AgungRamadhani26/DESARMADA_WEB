@@ -108,7 +108,10 @@ class Driver extends BaseController
     //Fungsi delete_driver
     public function delete_driver($id_driver)
     {
+        $db = \Config\Database::connect();
+        $db->query("SET FOREIGN_KEY_CHECKS=0");
         $this->driverModel->delete($id_driver);
+        $db->query("SET FOREIGN_KEY_CHECKS=1");
         return redirect()->to('/driver/daftar_driver');
     }
 }

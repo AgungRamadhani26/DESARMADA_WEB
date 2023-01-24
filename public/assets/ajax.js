@@ -329,6 +329,13 @@ $('#tombol-simpan-edit-user').on('click', function(){
         }
     })
 });
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
+$('#formUser_e').on('keypress', function(e){
+    if (e.which === 13){
+        e.preventDefault();
+        $('#tombol-simpan-edit-user').click();
+    }
+});
 
 
 
@@ -336,89 +343,72 @@ $('#tombol-simpan-edit-user').on('click', function(){
 // UNTUK MELAKUKAN TAMBAH DAN EDIT KENDARAAN //
 //                                           //
 
-// //Fungsi ini digunakan untuk membersihkan form inputan pada modal
-// function bersihkanKendaraan() {
-//     $('#jeniskendaraan').val('');
-//     $('#tipekendaraan').val('');
-//     $('#nopol').val('');
-//     $('#kmawal').val('');
-//     $('#gambar').val('');
-// }
+//Fungsi ini digunakan untuk membersihkan form inputan pada modal
+function bersihkanKendaraan() {
+    $('#jeniskendaraan').val('');
+    $('#tipekendaraan').val('');
+    $('#nopol').val('');
+    $('#kmawal').val('');
+    $('#gambar').val('');
+}
 
-// //Digunakan untuk membersihkan form input jika kita mengclose modal 
-// $('.tombol-tutup-kendaraan').on('click', function() {
-//     if ($('sukses').is(":visible")) {
-//         window.location.href = current_url() + "?" + $_SERVER['QUERY_STRING'];
-//     }
-//     $('.alert').hide();
-//     bersihkanKendaraan();
-// });
+//Digunakan untuk membersihkan form input jika kita mengclose modal 
+$('.tombol-tutup-kendaraan').on('click', function() {
+    if ($('sukses').is(":visible")) {
+        window.location.href = current_url() + "?" + $_SERVER['QUERY_STRING'];
+    }
+    $('.alert').hide();
+    bersihkanKendaraan();
+});
 
-// //Untuk melakukan proses TAMBAH KENDARAAN
-// $('#tombol-simpan-add-kendaraan').on('click', function(){
-//     let $jeniskendaraan = $('#jeniskendaraan').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
-//     let $tipekendaraan = $('#tipekendaraan').val();
-//     let $nopol = $('#nopol').val();
-//     let $lokasi = $('#lokasi').val();
-//     let $kmawal = $('#kmawal').val();
-//     // let $gambar = document.getElementById('gambar').files[0]
-//     let $gambar = $('#gambar').val();
-//     // let $gambar = $('#gambar').prop('files')[0];
-//     // let $gambar = $('#gambar')[0].files[0];
-//     console.log($gambar);
-//     $.ajax({ //menggunakan request ajax
-//         url: "/kendaraan/tambah_kendaraan", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
-//         type: "POST", //menggunakan method post
-//         data:{ //digunakan untuk mengirimkan data ke controller
-//             jeniskendaraan: $jeniskendaraan,
-//             tipekendaraan: $tipekendaraan,
-//             nopol: $nopol,
-//             lokasi: $lokasi,
-//             kmawal: $kmawal,
-//             gambar: $gambar
-//         },
-//         success: function(hasil){ //hasil ajaxnya
-//             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
-//             if ($obj.sukses == false) { //Jika penambahan data gagal
-//                 $('.sukses-kendaraan').hide(); //menghide alert dengan kelas sukses
-//                 $('.error-kendaraan').show(); //menampilkan alert dengan kelas error
-//                 $('.error-kendaraan').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
-//             } else { //Jika penambahan data berhasil
-//                 $('.error-kendaraan').hide(); //menghide alert dengan kelas error
-//                 $('.sukses-kendaraan').show(); //menampilkan alert dengan kelas sukses
-//                 $('.sukses-kendaraan').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
-//                 bersihkanLokasi(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
-//             }
-//         }
-//     })
-// });
+//Untuk melakukan proses TAMBAH KENDARAAN
+$('#tombol-simpan-add-kendaraan').on('click', function(){
+    let $jeniskendaraan = $('#jeniskendaraan').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
+    let $tipekendaraan = $('#tipekendaraan').val();
+    let $nopol = $('#nopol').val();
+    let $lokasi = $('#lokasi').val();
+    let $kmawal = $('#kmawal').val();
+    // let $gambar = document.getElementById('gambar').files[0]
+    let $gambar = $('#gambar').val();
+    // let $gambar = $('#gambar').prop('files')[0];
+    // let $gambar = $('#gambar')[0].files[0];
+    console.log($gambar);
+    $.ajax({ //menggunakan request ajax
+        url: "/kendaraan/tambah_kendaraan", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+        type: "POST", //menggunakan method post
+        data:{ //digunakan untuk mengirimkan data ke controller
+            jeniskendaraan: $jeniskendaraan,
+            tipekendaraan: $tipekendaraan,
+            nopol: $nopol,
+            lokasi: $lokasi,
+            kmawal: $kmawal,
+            gambar: $gambar
+        },
+        success: function(hasil){ //hasil ajaxnya
+            var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
+            if ($obj.sukses == false) { //Jika penambahan data gagal
+                $('.sukses-kendaraan').hide(); //menghide alert dengan kelas sukses
+                $('.error-kendaraan').show(); //menampilkan alert dengan kelas error
+                $('.error-kendaraan').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
+            } else { //Jika penambahan data berhasil
+                $('.error-kendaraan').hide(); //menghide alert dengan kelas error
+                $('.sukses-kendaraan').show(); //menampilkan alert dengan kelas sukses
+                $('.sukses-kendaraan').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
+                bersihkanLokasi(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+            }
+        }
+    })
+});
 
-// function previewImg() {
-//     const gambar = document.querySelector('#gambar');
-//     const imgPreview = document.querySelector('.img-preview');
-//     const fileGambar = new FileReader();
-//     fileGambar.readAsDataURL(gambar.files[0]);
-//     fileGambar.onload = function(e) {
-//         imgPreview.src = e.target.result;
-//     }
-// }
-
-
-
-// function previewImg() {
-//     const sampul = document.querySelector('#sampul');
-//     const sampulLabel = document.querySelector('.input-group-text');
-//     const imgPreview = document.querySelector('.img-preview');
-
-//     sampulLabel.textContent = sampul.files[0].name;
-
-//     const fileSampul = new FileReader();
-//     fileSampul.readAsDataURL(sampul.files[0]);
-
-//     fileSampul.onload = function(e) {
-//         imgPreview.src = e.target.result;
-//     }
-// }
+function previewImg() {
+    const gambar = document.querySelector('#gambar');
+    const imgPreview = document.querySelector('.img-preview');
+    const fileGambar = new FileReader();
+    fileGambar.readAsDataURL(gambar.files[0]);
+    fileGambar.onload = function(e) {
+        imgPreview.src = e.target.result;
+    }
+}
 
 
 

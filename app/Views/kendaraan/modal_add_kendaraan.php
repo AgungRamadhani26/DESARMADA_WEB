@@ -62,7 +62,7 @@
                     <div class="row mb-3">
                         <label for="gambar">Gambar</label>
                         <div class="col-sm-3">
-                            <img src="/assets/img_kendaraan/kendaraanDefault.png" class="img-thumbnail img-preview">
+                            <img src="" class="img-thumbnail img-preview">
                         </div>
                         <div class="col-sm-9">
                             <div class="input-group">

@@ -63,14 +63,14 @@ class Kendaraan extends BaseController
                     'integer' => '{field} harus berupa angka'
                 ]
             ],
-            'gambar' => [
-                'rules' => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]', //uploaded digunakan utk upload file lihat dokumentasi ci4, cuman pada kali ini rule uploaded[sampul] dihapus karena boleh untuk tidak upload file
-                'errors' => [
-                    'max_size' => 'Ukuran gambar terlalu besar',
-                    'is_image' => 'Yang anda pilih bukan gambar',
-                    'mime_in' => 'Yang anda pilih bukan gambar'
-                ]
-            ]
+            // 'gambar' => [
+            //     'rules' => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]', //uploaded digunakan utk upload file lihat dokumentasi ci4, cuman pada kali ini rule uploaded[sampul] dihapus karena boleh untuk tidak upload file
+            //     'errors' => [
+            //         'max_size' => 'Ukuran gambar terlalu besar',
+            //         'is_image' => 'Yang anda pilih bukan gambar',
+            //         'mime_in' => 'Yang anda pilih bukan gambar'
+            //     ]
+            // ]
         ];
         $validasi->setRules($aturan);
         //jika valid

@@ -31,13 +31,17 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 //Root
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Login::index');
 
-//User
+//Routes User
+//Untuk menampilkan daftar user
 $routes->get('/user/daftar_user', 'User::daftar_user');
+//Untuk menambah user baru
 $routes->post('/user/tambah_user', 'User::tambah_user');
+//Untuk mengedit user
 $routes->get('/user/edit_user/(:num)', 'User::edit_user/$1');
 $routes->post('/user/update_user', 'User::update_user');
+//Untuk menghapus user
 $routes->delete('/user/delete_user/(:num)', 'User::delete_user/$1');
 
 //Routes Driver
@@ -52,15 +56,21 @@ $routes->post('/driver/update_driver', 'Driver::update_driver');
 $routes->delete('/driver/delete_driver/(:num)', 'Driver::delete_driver/$1');
 
 //Routes Lokasi
+//Untuk menampilkan daftar lokasi
 $routes->get('/lokasi/daftar_lokasi', 'Lokasi::daftar_lokasi');
+//Untuk menambah lokasi baru
 $routes->post('/lokasi/tambah_lokasi', 'Lokasi::tambah_lokasi');
+//Untuk mengedit lokasi
 $routes->get('/lokasi/edit_lokasi/(:num)', 'Lokasi::edit_lokasi/$1');
 $routes->post('/lokasi/update_lokasi', 'Lokasi::update_lokasi');
+//Untuk menghapus lokasi
 $routes->delete('/lokasi/delete_lokasi/(:num)', 'Lokasi::delete_lokasi/$1');
 
 //Kendaraan
+//Untuk menampilkan daftar Kendaraaan
 $routes->get('/kendaraan/daftar_kendaraan', 'Kendaraan::daftar_kendaraan');
-$routes->post('/kendaraan/tambah_kendaraan/', 'Kendaraan::tambah_kendaraan');
+//Untuk menambah kendaraan baru
+$routes->post('/kendaraan/tambah_kendaraan', 'Kendaraan::tambah_kendaraan');
 
 
 //Peminjaman

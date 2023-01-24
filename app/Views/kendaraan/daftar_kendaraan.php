@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-striped" id="table1">
+            <table class="table table-striped table-hover" id="table1">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -48,7 +48,7 @@
                                 <form action="/kendaraan/delete_kendaraan/<?= $k['id_kendaraan'] ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn badge bg-danger" onclick="return confirm('Apakah anda yakin ?');">Hapus</button>
+                                    <button type="button" class="btn badge bg-danger" onclick="return confirm('Apakah anda yakin ?');">Hapus</button>
                                 </form>
                             </td>
                         </tr>

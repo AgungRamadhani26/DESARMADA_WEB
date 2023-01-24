@@ -19,7 +19,7 @@
             <div class="sidebar-menu">
                 <ul class="menu" id="menu">
                     <li class="sidebar-item">
-                        <a href="/" class='sidebar-link'>
+                        <a href="/DashboardAdmin" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
@@ -90,21 +90,12 @@
 
     <!--Konten Utama-->
     <div id="main">
-        <header class="mb-3">
+        <div class="mb-3">
             <a href="#" class="burger-btn d-block d-xl-none">
                 <i class="bi bi-justify fs-3"></i>
             </a>
-        </header>
-
-        <div class="page-heading">
-            <h3>Profile Statistics</h3>
         </div>
         <!--Load konten yang ada-->
         <?= $this->renderSection('content'); ?>
-        <div class="view-modal"></div>
-    </div>
-
-    <div class="footer" display='block'>
-        2017 &copy; Aplikasi Monitoring Operational Armada DESNET
     </div>
 </div>

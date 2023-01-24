@@ -25,8 +25,21 @@
 </head>
 
 <body>
+    <header>
+        <?php $date = date('Y-m-d');
+        $datenow = date('d F Y', strtotime($date)); ?>
+        <div>Tanggal <?= $datenow; ?></div>
+        <div class="header-content">
+            <img src="/assets/img_login/logo.png" width="100" />
+        </div>
+    </header>
+
     <!--Load file sidebar-->
-    <?= $this->include('layout/sidebar'); ?>
+    <?= $this->include('layout/sidebar_admin'); ?>
+
+    <footer>
+        2023 &copy; Aplikasi Monitoring Operational Armada DESNET
+    </footer>
 
     <!--Load script bootstrap 5-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

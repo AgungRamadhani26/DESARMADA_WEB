@@ -14,8 +14,10 @@ footer{
     font-weight: 500;
     background-color: rgba(67,94,190,255);
     padding: 8px;
-    position: sticky;
+    position:fixed;
+    z-index: 999;
     bottom: 0;
+    width: 100%;
 }
 
 header{
@@ -32,4 +34,9 @@ header{
 .header-content{
     background-color: #f2f2e2;
     padding: 12px;
+}
+
+.TopSide{
+    position:fixed;
+    z-index: 9999;
 }

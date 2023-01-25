@@ -1,6 +1,6 @@
 <div id="app">
     <div id="sidebar" class="active">
-        <div class="sidebar-wrapper active">
+        <div class="sidebar-wrapper active TopSide">
             <div class="sidebar-header">
                 <div class="d-flex justify-content-between">
                     <a href="">
@@ -90,7 +90,7 @@
 
     <!--Konten Utama-->
     <div id="main">
-        <div class="mb-3">
+        <div>
             <a href="#" class="burger-btn d-block d-xl-none">
                 <i class="bi bi-justify fs-3"></i>
             </a>

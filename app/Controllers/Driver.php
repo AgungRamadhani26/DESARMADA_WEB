@@ -18,7 +18,8 @@ class Driver extends BaseController
     public function daftar_driver()
     {
         $data = [
-            'driver' => $this->driverModel->getDriver()
+            'driver' => $this->driverModel->getDriver(),
+            'url' => '/driver/daftar_driver'
         ];
         return view('driver/daftar_driver', $data);
     }

@@ -22,7 +22,8 @@ class User extends BaseController
     {
         $data = [
             'user' => $this->userModel->getUser(),
-            'driver' => $this->driverModel->getDriver()
+            'driver' => $this->driverModel->getDriver(),
+            'url' => '/user/daftar_user'
         ];
 
         return view('user/daftar_user', $data);

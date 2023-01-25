@@ -32,6 +32,7 @@ $routes->set404Override();
 
 //Root
 $routes->get('/', 'Login::index');
+$routes->get('/dashboardadmin', 'Login::index');
 
 //Routes User
 //Untuk menampilkan daftar user
@@ -75,6 +76,9 @@ $routes->post('/kendaraan/tambah_kendaraan', 'Kendaraan::tambah_kendaraan');
 
 //Peminjaman
 $routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');
+
+//Laporan
+$routes->get('/laporan/laporan_penggunaan', 'Laporan::laporan_penggunaan');
 
 /*
  * --------------------------------------------------------------------

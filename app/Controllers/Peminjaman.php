@@ -17,7 +17,9 @@ class Peminjaman extends BaseController
     public function history_Peminjaman()
     {
         $data = [
-            'history' => $this->peminjamanModel->getHistory()
+            'history' => $this->peminjamanModel->getHistory(),
+            'url' => '/peminjaman/history_peminjaman'
+
         ];
 
         return view('peminjaman/history_peminjaman', $data);

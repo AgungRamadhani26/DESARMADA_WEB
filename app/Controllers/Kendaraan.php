@@ -21,7 +21,8 @@ class Kendaraan extends BaseController
     {
         $data = [
             'kendaraan' => $this->kendaraanModel->getKendaraan(),
-            'lokasi' => $this->lokasiModel->getLokasi()
+            'lokasi' => $this->lokasiModel->getLokasi(),
+            'url' => '/kendaraan/daftar_kendaraan'
         ];
 
         return view('kendaraan/daftar_kendaraan', $data);
@@ -62,7 +63,7 @@ class Kendaraan extends BaseController
                     'required' => '{field} harus diisi',
                     'integer' => '{field} harus berupa angka'
                 ]
-            ],
+            ]
             // 'gambar' => [
             //     'rules' => 'max_size[gambar,1024]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]', //uploaded digunakan utk upload file lihat dokumentasi ci4, cuman pada kali ini rule uploaded[sampul] dihapus karena boleh untuk tidak upload file
             //     'errors' => [
@@ -83,14 +84,14 @@ class Kendaraan extends BaseController
             $kmawal = $this->request->getPost('kmawal');
             $gambar = $this->request->getFile('gambar');
             // Apakah ada gambar yang diupload, jika tidak maka sampul menggunakan gambar default
-            if ($gambar->getError() == 4) { //error 4 artinya request filenya tidak ada
-                $namaGambar = 'kendaraanDefault.png';
-            } else {
-                //generate nama sampul random
-                $namaGambar = $gambar->getRandomName();
-                //pindahkan file ke folder img, nama file adalah hasil generate nama sampul random
-                $gambar->move('assets/img_kendaraan', $namaGambar);
-            }
+            // if ($gambar->getError() == 4) { //error 4 artinya request filenya tidak ada
+            //     $namaGambar = 'kendaraanDefault.png';
+            // } else {
+            //generate nama sampul random
+            $namaGambar = $gambar->getRandomName();
+            //pindahkan file ke folder img, nama file adalah hasil generate nama sampul random
+            $gambar->move('assets/img_kendaraan', $namaGambar);
+            // }
             //proses memasukkan data ke database
             $data = [
                 'jenis_kendaraan' => $jeniskendaraan,

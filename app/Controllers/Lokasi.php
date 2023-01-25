@@ -17,7 +17,8 @@ class Lokasi extends BaseController
     public function daftar_lokasi()
     {
         $data = [
-            'lokasi' => $this->lokasiModel->getLokasi()
+            'lokasi' => $this->lokasiModel->getLokasi(),
+            'url' => '/lokasi/daftar_lokasi'
         ];
         return view('lokasi/daftar_lokasi', $data);
     }

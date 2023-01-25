@@ -6,6 +6,9 @@ class Login extends BaseController
 {
     public function index()
     {
-        return view('DashboardAdmin');
+        $data = [
+            'url' => 'dashboardadmin'
+        ];
+        return view('DashboardAdmin',  $data);
     }
 }

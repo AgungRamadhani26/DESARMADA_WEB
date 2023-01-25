@@ -18,65 +18,49 @@
             <!--Menu-menu yang ada di sidebar-->
             <div class="sidebar-menu">
                 <ul class="menu" id="menu">
-                    <li class="sidebar-item">
-                        <a href="/DashboardAdmin" class='sidebar-link'>
+                    <li class="sidebar-item <?= $url == 'dashboardadmin' ? 'active' : '' ?>">
+                        <a href="/dashboardadmin" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item has-sub">
-                        <a href="" class='sidebar-link'>
+                    <li class="sidebar-item <?= $url == '/kendaraan/daftar_kendaraan' ? 'active' : '' ?>">
+                        <a href="/kendaraan/daftar_kendaraan" class='sidebar-link'>
                             <i class="bi bi-car-front-fill"></i>
                             <span>Kendaraan</span>
                         </a>
-                        <ul class="submenu">
-                            <li class="submenu-item">
-                                <a href="/kendaraan/daftar_kendaraan">Daftar Kendaraan</a>
-                            </li>
-                            <li class="submenu-item ">
-                                <a href="">Servis Kendaraan</a>
-                            </li>
-                        </ul>
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item <?= $url == '/peminjaman/history_peminjaman' ? 'active' : '' ?>">
                         <a href="/peminjaman/history_peminjaman" class='sidebar-link'>
                             <i class="bi bi-clock-fill"></i>
                             <span>History Peminjaman</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item <?= $url == '/lokasi/daftar_lokasi' ? 'active' : '' ?>">
                         <a href="/lokasi/daftar_lokasi" class='sidebar-link'>
                             <i class="bi bi-map-fill"></i>
                             <span>Lokasi</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item">
+                    <li class="sidebar-item <?= $url == '/driver/daftar_driver' ? 'active' : '' ?>">
                         <a href="/driver/daftar_driver" class='sidebar-link'>
                             <i class="bi bi-hexagon-fill"></i>
                             <span>Driver</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item has-sub">
-                        <a href="" class='sidebar-link'>
+                    <li class="sidebar-item <?= $url == '/laporan/laporan_penggunaan' ? 'active' : '' ?>">
+                        <a href="/laporan/laporan_penggunaan" class='sidebar-link'>
                             <i class="bi bi-pen-fill"></i>
-                            <span>Laporan</span>
+                            <span>Laporan Penggunaan</span>
                         </a>
-                        <ul class="submenu">
-                            <li class="submenu-item ">
-                                <a href="">Laporan Penggunaan</a>
-                            </li>
-                            <li class="submenu-item ">
-                                <a href="">Laporan Servis</a>
-                            </li>
-                        </ul>
                     </li>
 
-                    <li class="sidebar-item active">
+                    <li class="sidebar-item <?= $url == '/user/daftar_user' ? 'active' : '' ?>">
                         <a href="/user/daftar_user" class='sidebar-link'>
                             <i class="bi bi-people-fill"></i>
                             <span>User</span>

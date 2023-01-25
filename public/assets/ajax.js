@@ -369,8 +369,8 @@ $('#tombol-simpan-add-kendaraan').on('click', function(){
     let $lokasi = $('#lokasi').val();
     let $kmawal = $('#kmawal').val();
     // let $gambar = document.getElementById('gambar').files[0]
-    let $gambar = $('#gambar').val();
-    // let $gambar = $('#gambar').prop('files')[0];
+    // let $gambar = $('#gambar').val();
+    let $gambar = $('#gambar').prop('files')[0];
     // let $gambar = $('#gambar')[0].files[0];
     console.log($gambar);
     $.ajax({ //menggunakan request ajax
@@ -409,8 +409,5 @@ function previewImg() {
         imgPreview.src = e.target.result;
     }
 }
-
-
-
 
 

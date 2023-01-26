@@ -2,7 +2,7 @@
 <div class="modal fade" id="modaltambah_kendaraan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="" method="POST" enctype="multipart/form-data" id="formKendaraan">
                 <div class="modal-header">
                     <h5 class="modal-title">Tambah Kendaraan</h5>
                     <button type="button" class="btn-close tombol-tutup-kendaraan" data-bs-dismiss="modal" aria-label="Close"></button>

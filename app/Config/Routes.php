@@ -72,7 +72,11 @@ $routes->delete('/lokasi/delete_lokasi/(:num)', 'Lokasi::delete_lokasi/$1');
 $routes->get('/kendaraan/daftar_kendaraan', 'Kendaraan::daftar_kendaraan');
 //Untuk menambah kendaraan baru
 $routes->post('/kendaraan/tambah_kendaraan', 'Kendaraan::tambah_kendaraan');
-
+//Untuk mengedit kendaraan
+$routes->get('/kendaraan/edit_kendaraan/(:num)', 'Kendaraan::edit_kendaraan/$1');
+$routes->post('/kendaraan/update_kendaraan', 'Kendaraan::update_kendaraan');
+//Untuk menghapus kendaraan
+$routes->delete('/kendaraan/delete_kendaraan/(:num)', 'Kendaraan::delete_kendaraan/$1');
 
 //Peminjaman
 $routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');

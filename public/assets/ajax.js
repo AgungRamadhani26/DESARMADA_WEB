@@ -347,9 +347,18 @@ $('#formUser_e').on('keypress', function(e){
 function bersihkanKendaraan() {
     $('#jeniskendaraan').val('');
     $('#tipekendaraan').val('');
+    $('#lokasi').val('');
     $('#nopol').val('');
     $('#kmawal').val('');
     $('#gambar').val('');
+    $('#id_kendaraan_e').val('');
+    $('#gambarlama_e').val('');
+    $('#jeniskendaraan_e').val('');
+    $('#tipekendaraan_e').val('');
+    $('#lokasi_e').val('');
+    $('#nopol_e').val('');
+    $('#kmawal_e').val('');
+    $('#gambar_e').val('');
 }
 
 //Digunakan untuk membersihkan form input jika kita mengclose modal 
@@ -368,22 +377,21 @@ $('#tombol-simpan-add-kendaraan').on('click', function(){
     let $nopol = $('#nopol').val();
     let $lokasi = $('#lokasi').val();
     let $kmawal = $('#kmawal').val();
-    // let $gambar = document.getElementById('gambar').files[0]
-    // let $gambar = $('#gambar').val();
-    let $gambar = $('#gambar').prop('files')[0];
-    // let $gambar = $('#gambar')[0].files[0];
-    console.log($gambar);
+    let $gambar = $('#gambar')[0].files[0];
+
+    var fd = new FormData();
+    fd.append("jeniskendaraan", $jeniskendaraan);
+    fd.append("tipekendaraan", $tipekendaraan);
+    fd.append("nopol", $nopol);
+    fd.append("lokasi", $lokasi);
+    fd.append("kmawal", $kmawal);
+    fd.append("gambar", $gambar);
     $.ajax({ //menggunakan request ajax
         url: "/kendaraan/tambah_kendaraan", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
         type: "POST", //menggunakan method post
-        data:{ //digunakan untuk mengirimkan data ke controller
-            jeniskendaraan: $jeniskendaraan,
-            tipekendaraan: $tipekendaraan,
-            nopol: $nopol,
-            lokasi: $lokasi,
-            kmawal: $kmawal,
-            gambar: $gambar
-        },
+        data: fd,
+        processData: false,
+        contentType: false,
         success: function(hasil){ //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
             if ($obj.sukses == false) { //Jika penambahan data gagal
@@ -394,15 +402,101 @@ $('#tombol-simpan-add-kendaraan').on('click', function(){
                 $('.error-kendaraan').hide(); //menghide alert dengan kelas error
                 $('.sukses-kendaraan').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-kendaraan').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
-                bersihkanLokasi(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+                bersihkanKendaraan(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
             }
         }
     })
+})
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
+$('#formKendaraan').on('keypress', function(e){
+    if (e.which === 13){
+        e.preventDefault();
+        $('#tombol-simpan-add-kendaraan').click();
+    }
+});
+
+//Untuk melakukan proses EDIT KENDARAAN
+function edit_kendaraan($id) {
+    $.ajax({
+        url: "/kendaraan/edit_kendaraan/" + $id, //url ke controller driver fungsi edit_driver melalui routes dengan membawa id_driver yang akan diedit
+        type: "GET", //methodnya get karena cuman mengirim request, post jika sekalian mengirimkan data
+        success: function(hasil) { //hasil ajaxnya
+            var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
+            if ($obj.id_user != '') { //Jika id_drivernya tidak kosong (ada)
+                $('#id_kendaraan_e').val($obj.id_kendaraan);
+                $('#gambarlama_e').val($obj.gambar)
+                $('#jeniskendaraan_e').val($obj.jenis_kendaraan);
+                $('#tipekendaraan_e').val($obj.tipe_kendaraan);
+                $('#lokasi_e').val($obj.id_departemen);
+                $('#nopol_e').val($obj.nomor_polisi);
+                $('#kmawal_e').val($obj.km);
+                $('img#img-preview_e').attr('src', '/assets/img_kendaraan/'+$obj.gambar);
+            }
+        }
+    });
+}
+//Untuk melakukan proses EDIT KENDARAAN
+$('#tombol-simpan-edit-kendaraan').on('click', function(){
+    let $id_kendaraan = $('#id_kendaraan_e').val();
+    let $gambarlama = $('#gambarlama_e').val()
+    let $jeniskendaraan = $('#jeniskendaraan_e').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
+    let $tipekendaraan = $('#tipekendaraan_e').val();
+    let $nopol = $('#nopol_e').val();
+    let $lokasi = $('#lokasi_e').val();
+    let $kmawal = $('#kmawal_e').val();
+    let $gambar = $('#gambar_e')[0].files[0];
+
+    var fd = new FormData();
+    fd.append("id_kendaraan", $id_kendaraan);
+    fd.append("gambarlama", $gambarlama);
+    fd.append("jeniskendaraan", $jeniskendaraan);
+    fd.append("tipekendaraan", $tipekendaraan);
+    fd.append("nopol", $nopol);
+    fd.append("lokasi", $lokasi);
+    fd.append("kmawal", $kmawal);
+    fd.append("gambar", $gambar);
+    $.ajax({ //menggunakan request ajax
+        url: "/kendaraan/update_kendaraan", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+        type: "POST", //menggunakan method post
+        data: fd,
+        processData: false,
+        contentType: false,
+        success: function(hasil){ //hasil ajaxnya
+            var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
+            if ($obj.sukses == false) { //Jika penambahan data gagal
+                $('.sukses-kendaraan').hide(); //menghide alert dengan kelas sukses
+                $('.error-kendaraan').show(); //menampilkan alert dengan kelas error
+                $('.error-kendaraan').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
+            } else { //Jika penambahan data berhasil
+                $('.error-kendaraan').hide(); //menghide alert dengan kelas error
+                $('.sukses-kendaraan').show(); //menampilkan alert dengan kelas sukses
+                $('.sukses-kendaraan').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
+                bersihkanKendaraan(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+            }
+        }
+    })
+})
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
+$('#formKendaraan_e').on('keypress', function(e){
+    if (e.which === 13){
+        e.preventDefault();
+        $('#tombol-simpan-edit-kendaraan').click();
+    }
 });
 
 function previewImg() {
     const gambar = document.querySelector('#gambar');
     const imgPreview = document.querySelector('.img-preview');
+    const fileGambar = new FileReader();
+    fileGambar.readAsDataURL(gambar.files[0]);
+    fileGambar.onload = function(e) {
+        imgPreview.src = e.target.result;
+    }
+}
+
+function previewImg_e() {
+    const gambar = document.querySelector('#gambar_e');
+    const imgPreview = document.querySelector('.img-preview_e');
     const fileGambar = new FileReader();
     fileGambar.readAsDataURL(gambar.files[0]);
     fileGambar.onload = function(e) {

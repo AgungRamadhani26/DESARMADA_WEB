@@ -44,11 +44,11 @@
                                 </span>
                             </td>
                             <td>
-                                <button type="button" class="btn badge bg-warning" data-bs-toggle="modal" data-bs-target="#modaledit_kendaraan" onclick="edit_lokasi(<?php echo $k['id_kendaraan'] ?>)">Edit</button>
+                                <button type="button" class="btn badge bg-warning" data-bs-toggle="modal" data-bs-target="#modaledit_kendaraan" onclick="edit_kendaraan(<?php echo $k['id_kendaraan'] ?>)">Edit</button>
                                 <form action="/kendaraan/delete_kendaraan/<?= $k['id_kendaraan'] ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="button" class="btn badge bg-danger" onclick="return confirm('Apakah anda yakin ?');">Hapus</button>
+                                    <button type="submit" class="btn badge bg-danger" onclick="return confirm('Apakah anda yakin ?');">Hapus</button>
                                 </form>
                             </td>
                         </tr>

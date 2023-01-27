@@ -7,6 +7,7 @@ use CodeIgniter\Model;
 class PeminjamanModel extends Model
 {
     protected $table = 'peminjaman'; //artinya model ini menggunakan tabel peminjaman dari database
+    protected $primaryKey = 'id_peminjaman'; //primary keynya
     protected $useTimestamps = true; //menggunakan timestaps agar ketika input masuk ke database waktu yang tercatat adalah waltu saat itu, dan ketika melakukan edit waktu yang tercatat adalah waktu edit
     protected $useSoftDeletes = true; //menggunakan soft deletes milik CI4, caranya dengan menambahkan kolom pada tabel yang bernama deleted_at
     protected $allowedFields = [
@@ -18,6 +19,7 @@ class PeminjamanModel extends Model
         'total_km'
     ]; //berguna untuk mengijinkan kolom mana saja yg dapat kita isi secara manual melalui aplikasi yang kita buat
 
+    //Fungsi buatan yang berguna untuk mendapatkan data peminjaman
     public function getHistory($id_peminjaman = false)
     {
         if ($id_peminjaman == false) {

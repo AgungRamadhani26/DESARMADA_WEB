@@ -6,6 +6,7 @@ use CodeIgniter\I18n\Time; //biar bisa gunain fungsi time
 
 use CodeIgniter\Database\Seeder;
 
+//Merupakan seeder User
 class UserSeeder extends Seeder
 {
     public function run()

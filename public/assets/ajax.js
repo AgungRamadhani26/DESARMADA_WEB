@@ -2,21 +2,24 @@
 // UNTUK MELAKUKAN TAMBAH DAN EDIT DRIVER //
 //                                        //
 
-//Fungsi ini digunakan untuk membersihkan form inputan pada modal
+//Fungsi ini digunakan untuk membersihkan form inputan pada modal add maupun edit
 function bersihkanDriver() {
     $('#nama').val('');
     $('#id_driver_e').val('');
     $('#nama_e').val('');
 }
 
+
 //Digunakan untuk membersihkan form input jika kita mengclose modal 
 $('.tombol-tutup').on('click', function() {
+    //agar tetap pada halaman
     if ($('sukses').is(":visible")) {
         window.location.href = current_url() + "?" + $_SERVER['QUERY_STRING'];
     }
     $('.alert').hide();
     bersihkanDriver();
 });
+
 
 //Untuk melakukan proses TAMBAH DRIVER
 $('#tombol-simpan-add-driver').on('click', function() {
@@ -43,17 +46,18 @@ $('#tombol-simpan-add-driver').on('click', function() {
     });
 });
 //Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
-$('#nama').on('keypress', function(e){
+$('#formDriver').on('keypress', function(e){
     if (e.which === 13){
         e.preventDefault();
         $('#tombol-simpan-add-driver').click();
     }
 });
 
+
 //Untuk melakukan proses EDIT DRIVER
 function edit_driver($id) {
     $.ajax({
-        url: "/driver/edit_driver/" + $id, //url ke controller driver fungsi edit_driver melalui routes dengan membawa id_driver yang akan diedit
+        url: "/driver/edit_driver/" + $id, //url ke controller driver menjalankan fungsi edit_driver melalui routes dengan membawa id_driver yang akan diedit
         type: "GET", //methodnya get karena cuman mengirim request, post jika sekalian mengirimkan data
         success: function(hasil) { //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
@@ -66,10 +70,10 @@ function edit_driver($id) {
 }
 //Untuk melanjutkan proses EDIT DRIVER
 $('#tombol-simpan-edit-driver').on('click', function() {
-    let $id_driver = $('#id_driver_e').val(); //mengambil id_driver dari modal kalau id_drivernya kosong maka artinya akan menambah adata baru kalau id_drivernya ada artinya edit data
+    let $id_driver = $('#id_driver_e').val(); //mengambil id_driver dari modal kalau id_drivernya kosong maka artinya akan menambah data baru kalau id_drivernya ada artinya edit data
     let $nama = $('#nama_e').val(); //mengambil inputan berdasarkan id=nama pada form modal
     $.ajax({ //menggunakan request ajax
-        url: "/driver/update_driver", //url ke controller driver menjalankan fungsi tambah_driver melalui routes
+        url: "/driver/update_driver", //url ke controller driver menjalankan fungsi update_driver melalui routes
         type: "POST", //menggunakan method post
         data: { //digunakan untuk mengirimkan data ke controller
             id_driver: $id_driver,
@@ -91,12 +95,13 @@ $('#tombol-simpan-edit-driver').on('click', function() {
     });
 });
 //Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal edit driver (sama dengan menekan save)
-$('#nama_e').on('keypress', function(e){
+$('#formDriver_e').on('keypress', function(e){
     if (e.which === 13){
         e.preventDefault();
         $('#tombol-simpan-edit-driver').click();
     }
 });
+
 
 
 

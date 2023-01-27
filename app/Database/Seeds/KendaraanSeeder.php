@@ -6,6 +6,7 @@ use CodeIgniter\I18n\Time; //biar bisa gunain fungsi time
 
 use CodeIgniter\Database\Seeder;
 
+//Merupakan seeder Kendaraan
 class KendaraanSeeder extends Seeder
 {
     public function run()
@@ -13,37 +14,37 @@ class KendaraanSeeder extends Seeder
         $data = [
             [
                 'id_departemen'  => 1,
-                'jenis_kendaraan'   => 'Motor',
-                'nomor_polisi'   => 'T123',
-                'tipe_kendaraan'      => 'Supra',
+                'jenis_kendaraan'   => 'motor',
+                'nomor_polisi'   => 'BS123RE',
+                'tipe_kendaraan'      => 'Beat Merah',
                 'km'       => 13,
                 'total_saldo_tol' => '100000',
                 'pinjam' => 0,
-                'gambar' => 'Supra.jpg',
+                'gambar' => 'BeatMerah.jpg',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],
             [
                 'id_departemen'  => 2,
-                'jenis_kendaraan'   => 'Mobil',
-                'nomor_polisi'   => 'T124',
-                'tipe_kendaraan'      => 'Kijang',
+                'jenis_kendaraan'   => 'mobil',
+                'nomor_polisi'   => 'BK123AB',
+                'tipe_kendaraan'      => 'Avanza Hitam',
                 'km'       => 10,
                 'total_saldo_tol' => '200000',
                 'pinjam' => 1,
-                'gambar' => 'Kijang.jpg',
+                'gambar' => 'AvanzaHitam.jpg',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],
             [
                 'id_departemen'  => 3,
-                'jenis_kendaraan'   => 'Mobil',
-                'nomor_polisi'   => 'T125',
-                'tipe_kendaraan'      => 'Land Cruiser',
+                'jenis_kendaraan'   => 'mobil',
+                'nomor_polisi'   => 'BW132AZ',
+                'tipe_kendaraan'      => 'Brio Putih',
                 'km'       => 10,
                 'total_saldo_tol' => '200000',
                 'pinjam' => 2,
-                'gambar' => 'Kijang.jpg',
+                'gambar' => 'BrioPutih.jpg',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],

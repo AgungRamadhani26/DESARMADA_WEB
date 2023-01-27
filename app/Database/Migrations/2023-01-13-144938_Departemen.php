@@ -4,6 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
+//Merupakan migrasi database tabel Departemen
 class Departemen extends Migration
 {
     public function up()

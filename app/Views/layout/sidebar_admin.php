@@ -3,13 +3,14 @@
         <div class="sidebar-wrapper active TopSide">
             <div class="sidebar-header">
                 <div class="d-flex justify-content-between">
-                    <a href="">
-                        <div>
-                            <i class="bi bi-person-circle"></i>
-                            Profile
-                        </div>
-                    </a>
-
+                    <ul>
+                        <a href="">
+                            <center>
+                                <i class="bi bi-person-circle"></i>
+                                <h3>Profile</h3>
+                            </center>
+                        </a>
+                    </ul>
                     <div class="toggler">
                         <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                     </div>
@@ -25,17 +26,17 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-item <?= $url == '/kendaraan/daftar_kendaraan' ? 'active' : '' ?>">
-                        <a href="/kendaraan/daftar_kendaraan" class='sidebar-link'>
-                            <i class="bi bi-car-front-fill"></i>
-                            <span>Kendaraan</span>
-                        </a>
-                    </li>
-
                     <li class="sidebar-item <?= $url == '/peminjaman/history_peminjaman' ? 'active' : '' ?>">
                         <a href="/peminjaman/history_peminjaman" class='sidebar-link'>
                             <i class="bi bi-clock-fill"></i>
                             <span>History Peminjaman</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item <?= $url == '/laporan/laporan_penggunaan' ? 'active' : '' ?>">
+                        <a href="/laporan/laporan_penggunaan" class='sidebar-link'>
+                            <i class="bi bi-pen-fill"></i>
+                            <span>Laporan Penggunaan</span>
                         </a>
                     </li>
 
@@ -46,17 +47,17 @@
                         </a>
                     </li>
 
+                    <li class="sidebar-item <?= $url == '/kendaraan/daftar_kendaraan' ? 'active' : '' ?>">
+                        <a href="/kendaraan/daftar_kendaraan" class='sidebar-link'>
+                            <i class="bi bi-car-front-fill"></i>
+                            <span>Kendaraan</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item <?= $url == '/driver/daftar_driver' ? 'active' : '' ?>">
                         <a href="/driver/daftar_driver" class='sidebar-link'>
                             <i class="bi bi-hexagon-fill"></i>
                             <span>Driver</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-item <?= $url == '/laporan/laporan_penggunaan' ? 'active' : '' ?>">
-                        <a href="/laporan/laporan_penggunaan" class='sidebar-link'>
-                            <i class="bi bi-pen-fill"></i>
-                            <span>Laporan Penggunaan</span>
                         </a>
                     </li>
 

@@ -2,7 +2,7 @@
 <div class="modal fade" id="modaltambah_driver" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" method="POST" id="">
+            <form action="" method="POST" id="formDriver">
                 <div class="modal-header">
                     <h5 class="modal-title">Tambah Driver</h5>
                     <button type="button" class="btn-close tombol-tutup" data-bs-dismiss="modal" aria-label="Close"></button>

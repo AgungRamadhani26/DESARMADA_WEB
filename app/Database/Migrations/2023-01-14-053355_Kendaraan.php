@@ -4,6 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
+//Merupakan migrasi database tabel Kendaraan
 class Kendaraan extends Migration
 {
     public function up()

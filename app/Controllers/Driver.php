@@ -14,6 +14,7 @@ class Driver extends BaseController
     }
 
 
+
     //Fungsi daftar driver
     public function daftar_driver()
     {
@@ -23,6 +24,7 @@ class Driver extends BaseController
         ];
         return view('driver/daftar_driver', $data);
     }
+
 
 
     //Fungsi tambah_driver
@@ -48,23 +50,28 @@ class Driver extends BaseController
                 'nama' => $nama
             ];
             $this->driverModel->save($data);
+            //output ke layar
             $hasil = [
                 'sukses' => "Berhasil menambahkan data",
                 'error' => false
             ];
         } else { //jika tidak valid
+            //output ke layar
             $hasil = [
                 'sukses' => false,
                 'error' => $validasi->listErrors()
             ];
         }
+        //mengirimkan output $hasil ke ajax
         return json_encode($hasil);
     }
+
 
 
     //Fungsi edit_driver
     public function edit_driver($id_driver)
     {
+        //mengirimkan output $hasil ke ajax
         return json_encode($this->driverModel->find($id_driver));
     }
     //Fungsi update_driver untuk melanjutkan proses edit
@@ -92,27 +99,31 @@ class Driver extends BaseController
                 'nama' => $nama
             ];
             $this->driverModel->save($data);
+            //output ke layar
             $hasil = [
                 'sukses' => "Berhasil mengedit data",
                 'error' => false
             ];
         } else { //jika tidak valid
+            //output ke layar
             $hasil = [
                 'sukses' => false,
                 'error' => $validasi->listErrors()
             ];
         }
+        //mengirimkan output $hasil ke ajax
         return json_encode($hasil);
     }
+
 
 
     //Fungsi delete_driver
     public function delete_driver($id_driver)
     {
         $db = \Config\Database::connect();
-        $db->query("SET FOREIGN_KEY_CHECKS=0");
+        $db->query("SET FOREIGN_KEY_CHECKS=0"); //biar menghiraukan foreign key ke tabel lain, dibuat kode ini karena pada driver tidak ada kolom untuk soft deletes
         $this->driverModel->delete($id_driver);
-        $db->query("SET FOREIGN_KEY_CHECKS=1");
+        $db->query("SET FOREIGN_KEY_CHECKS=1"); //sehabis dihapus kembalikan ke awal
         return redirect()->to('/driver/daftar_driver');
     }
 }

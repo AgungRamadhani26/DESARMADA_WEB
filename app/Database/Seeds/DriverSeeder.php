@@ -4,6 +4,7 @@ namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
 
+//Merupakan seeder Driver
 class DriverSeeder extends Seeder
 {
     public function run()

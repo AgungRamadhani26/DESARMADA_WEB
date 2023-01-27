@@ -25,18 +25,20 @@
 </head>
 
 <body>
+    <!--Header Tampilan-->
     <header>
         <?php $date = date('Y-m-d');
         $datenow = date('d F Y', strtotime($date)); ?>
         <div>Tanggal <?= $datenow; ?></div>
         <div class="header-content">
-            <img src="/assets/img_login/logo.png" width="100" />
+            <img src="/assets/images/img_tampilan/logo.png" width="100" />
         </div>
     </header>
 
     <!--Load file sidebar-->
     <?= $this->include('layout/sidebar_admin'); ?>
 
+    <!--Footer Tampilan-->
     <footer>
         2023 &copy; Aplikasi Monitoring Operational Armada DESNET
     </footer>
@@ -52,8 +54,8 @@
     <!--Load Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <!--Script untuk menjalankan datatable-->
+    <!--Simple Datatable-->
     <script>
-        // Simple Datatable
         let table1 = document.querySelector('#table1');
         let dataTable = new simpleDatatables.DataTable(table1);
     </script>

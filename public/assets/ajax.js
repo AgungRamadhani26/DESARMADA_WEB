@@ -89,7 +89,7 @@ $('#tombol-simpan-edit-driver').on('click', function() {
                 $('.error').hide(); //menghide alert dengan kelas error
                 $('.sukses').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
-                bersihkanDriver(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+                bersihkanDriver(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
             }
         }
     });
@@ -116,14 +116,16 @@ function bersihkanLokasi() {
     $('#namalokasi_e').val('');
 }
 
+
 //Digunakan untuk membersihkan form input jika kita mengclose modal 
 $('.tombol-tutup-lokasi').on('click', function() {
-    if ($('sukses').is(":visible")) {
+    if ($('sukses-lokasi').is(":visible")) {
         window.location.href = current_url() + "?" + $_SERVER['QUERY_STRING'];
     }
     $('.alert').hide();
     bersihkanLokasi();
 });
+
 
 //Untuk melakukan proses TAMBAH LOKASI
 $('#tombol-simpan-add-lokasi').on('click', function(){
@@ -149,22 +151,23 @@ $('#tombol-simpan-add-lokasi').on('click', function(){
         }
     })
 });
-//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
-$('#namalokasi').on('keypress', function(e){
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add lokasi (sama dengan menekan save)
+$('#formLokasi').on('keypress', function(e){
     if (e.which === 13){
         e.preventDefault();
         $('#tombol-simpan-add-lokasi').click();
     }
 });
 
+
 //Untuk melakukan proses EDIT LOKASI
 function edit_lokasi($id) {
     $.ajax({
-        url: "/lokasi/edit_lokasi/" + $id, //url ke controller driver fungsi edit_driver melalui routes dengan membawa id_driver yang akan diedit
+        url: "/lokasi/edit_lokasi/" + $id, //url ke controller lokasi menjalankan fungsi edit_lokasi melalui routes dengan membawa id_lokasi yang akan diedit
         type: "GET", //methodnya get karena cuman mengirim request, post jika sekalian mengirimkan data
         success: function(hasil) { //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
-            if ($obj.id_departemen != '') { //Jika id_drivernya tidak kosong (ada)
+            if ($obj.id_departemen != '') { //Jika id_departemen tidak kosong (ada)
                 $('#id_lokasi_e').val($obj.id_departemen); //menampilkan value yang akan diedit pada modal
                 $('#namalokasi_e').val($obj.nama_departemen); //menampilkan value yang akan diedit pada modal
             }
@@ -174,9 +177,9 @@ function edit_lokasi($id) {
 //Untuk melanjutkan proses EDIT LOKASI
 $('#tombol-simpan-edit-lokasi').on('click', function(){
     let $id_lokasi = $('#id_lokasi_e').val();
-    let $namalokasi = $('#namalokasi_e').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
+    let $namalokasi = $('#namalokasi_e').val(); //mengambil inputan berdasarkan id=namalokasi_e pada form modal
     $.ajax({ //menggunakan request ajax
-        url: "/lokasi/update_lokasi", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+        url: "/lokasi/update_lokasi", //url ke controller lokasi menjalankan fungsi update_lokasi melalui routes
         type: "POST", //menggunakan method post
         data:{ //digunakan untuk mengirimkan data ke controller
             id_lokasi: $id_lokasi,
@@ -192,13 +195,13 @@ $('#tombol-simpan-edit-lokasi').on('click', function(){
                 $('.error-lokasi').hide(); //menghide alert dengan kelas error
                 $('.sukses-lokasi').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-lokasi').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
-                bersihkanLokasi(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+                bersihkanLokasi(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
             }
         }
     })
 });
-//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
-$('#namalokasi_e').on('keypress', function(e){
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal edit lokasi (sama dengan menekan save)
+$('#formLokasi_e').on('keypress', function(e){
     if (e.which === 13){
         e.preventDefault();
         $('#tombol-simpan-edit-lokasi').click();
@@ -230,7 +233,7 @@ function bersihkanUser() {
 
 //Digunakan untuk membersihkan form input jika kita mengclose modal 
 $('.tombol-tutup-user').on('click', function() {
-    if ($('sukses').is(":visible")) {
+    if ($('sukses-user').is(":visible")) {
         window.location.href = current_url() + "?" + $_SERVER['QUERY_STRING'];
     }
     $('.alert').hide();
@@ -325,7 +328,7 @@ $('#tombol-simpan-edit-user').on('click', function(){
                 $('.error-user').hide(); //menghide alert dengan kelas error
                 $('.sukses-user').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-user').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
-                bersihkanUser(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+                bersihkanUser(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
             }
         }
     })

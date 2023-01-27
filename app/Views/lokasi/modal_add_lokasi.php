@@ -1,8 +1,8 @@
-<!-- Modal untuk menambah lokasi baru-->
+<!-- Modal untuk menambah lokasi baru -->
 <div class="modal fade" id="modaltambah_lokasi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="" method="POST">
+            <form action="" method="POST" id="formLokasi">
                 <div class="modal-header">
                     <h5 class="modal-title">Tambah Lokasi</h5>
                     <button type="button" class="btn-close tombol-tutup-lokasi" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -19,7 +19,6 @@
                         <label for="namalokasi">Nama Lokasi</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" name="namalokasi" id="namalokasi">
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,8 @@ class Lokasi extends BaseController
         $this->lokasiModel = new LokasiModel();
     }
 
+
+
     //Fungsi daftar_lokasi
     public function daftar_lokasi()
     {
@@ -22,6 +24,8 @@ class Lokasi extends BaseController
         ];
         return view('lokasi/daftar_lokasi', $data);
     }
+
+
 
     //Fungsi tambah_lokasi
     public function tambah_lokasi()
@@ -58,6 +62,8 @@ class Lokasi extends BaseController
         }
         return json_encode($hasil);
     }
+
+
 
     //Fungsi edit_lokasi
     public function edit_lokasi($id_lokasi)
@@ -102,7 +108,9 @@ class Lokasi extends BaseController
         return json_encode($hasil);
     }
 
-    //Fungsi delete_driver
+
+
+    //Fungsi delete_lokasi
     public function delete_lokasi($id_lokasi)
     {
         $this->lokasiModel->delete($id_lokasi);

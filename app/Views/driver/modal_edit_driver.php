@@ -20,7 +20,6 @@
                         <label for="nama">Nama</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" name="nama_e" id="nama_e">
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                 </div>

@@ -207,6 +207,7 @@ $('#namalokasi_e').on('keypress', function(e){
 
 
 
+
 //                                      //
 // UNTUK MELAKUKAN TAMBAH DAN EDIT USER //
 //                                      //
@@ -224,9 +225,8 @@ function bersihkanUser() {
     $('#nama_e').val('');
     $('#level_e').val('');
     $('#driver_e').val('');
-    $('#password_e').val('');
-    $('#konfirpass_e').val('');
 }
+
 
 //Digunakan untuk membersihkan form input jika kita mengclose modal 
 $('.tombol-tutup-user').on('click', function() {
@@ -237,7 +237,8 @@ $('.tombol-tutup-user').on('click', function() {
     bersihkanUser();
 });
 
-//Untuk melakukan proses TAMBAH USER, dan melanjutkan proses edit
+
+//Untuk melakukan proses TAMBAH USER
 $('#tombol-simpan-add-user').on('click', function(){
     let $username = $('#username').val();
     let $nama = $('#nama').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
@@ -246,7 +247,7 @@ $('#tombol-simpan-add-user').on('click', function(){
     let $password = $('#password').val();
     let $konfirpass = $('#konfirpass').val();
     $.ajax({ //menggunakan request ajax
-        url: "/user/tambah_user", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+        url: "/user/tambah_user", //url ke controller user menjalankan fungsi tambah_user melalui routes
         type: "POST", //menggunakan method post
         data:{ //digunakan untuk mengirimkan data ke controller
             driver: $driver,
@@ -271,7 +272,7 @@ $('#tombol-simpan-add-user').on('click', function(){
         }
     })
 });
-//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add user (sama dengan menekan save)
 $('#formUser').on('keypress', function(e){
     if (e.which === 13){
         e.preventDefault();
@@ -279,21 +280,20 @@ $('#formUser').on('keypress', function(e){
     }
 });
 
+
 //Untuk melakukan proses EDIT USER
 function edit_user($id) {
     $.ajax({
-        url: "/user/edit_user/" + $id, //url ke controller driver fungsi edit_driver melalui routes dengan membawa id_driver yang akan diedit
+        url: "/user/edit_user/" + $id, //url ke controller user menjalankan fungsi edit_user melalui routes dengan membawa id_user yang akan diedit
         type: "GET", //methodnya get karena cuman mengirim request, post jika sekalian mengirimkan data
         success: function(hasil) { //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
-            if ($obj.id_user != '') { //Jika id_drivernya tidak kosong (ada)
+            if ($obj.id_user != '') { //Jika id_user tidak kosong (ada)
                 $('#id_user_e').val($obj.id_user);
                 $('#username_e').val($obj.username);
                 $('#nama_e').val($obj.nama);
                 $('#level_e').val($obj.level);
                 $('#driver_e').val($obj.id_driver);
-                $('#password_e').val($obj.password);
-                $('#konfirpass_e').val($obj.password);
             }
         }
     });
@@ -302,13 +302,11 @@ function edit_user($id) {
 $('#tombol-simpan-edit-user').on('click', function(){
     let $id_user = $('#id_user_e').val()
     let $username = $('#username_e').val();
-    let $nama = $('#nama_e').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
+    let $nama = $('#nama_e').val(); //mengambil inputan berdasarkan id=nama_e pada form modal
     let $level = $('#level_e').val();
     let $driver = $('#driver_e').val();
-    let $password = $('#password_e').val();
-    let $konfirpass = $('#konfirpass_e').val();
     $.ajax({ //menggunakan request ajax
-        url: "/user/update_user", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+        url: "/user/update_user", //url ke controller user menjalankan fungsi update_user melalui routes
         type: "POST", //menggunakan method post
         data:{ //digunakan untuk mengirimkan data ke controller
             id_user: $id_user,
@@ -316,8 +314,6 @@ $('#tombol-simpan-edit-user').on('click', function(){
             nama: $nama,
             level: $level,
             driver: $driver,
-            password: $password,
-            konfirpass: $konfirpass
         },
         success: function(hasil){ //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
@@ -334,13 +330,14 @@ $('#tombol-simpan-edit-user').on('click', function(){
         }
     })
 });
-//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal edit user (sama dengan menekan save)
 $('#formUser_e').on('keypress', function(e){
     if (e.which === 13){
         e.preventDefault();
         $('#tombol-simpan-edit-user').click();
     }
 });
+
 
 
 

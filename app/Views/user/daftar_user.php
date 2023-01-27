@@ -55,6 +55,7 @@
 
 <!--include Modal untuk menambah user baru-->
 <?= $this->include('/user/modal_add_user'); ?>
+<!--include Modal untuk mengedit user-->
 <?= $this->include('/user/modal_edit_user'); ?>
 
 <?= $this->endSection(); ?>

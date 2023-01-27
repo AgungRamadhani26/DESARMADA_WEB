@@ -17,6 +17,7 @@ class User extends BaseController
     }
 
 
+
     //Fungsi daftar_user
     public function daftar_user()
     {
@@ -30,7 +31,8 @@ class User extends BaseController
     }
 
 
-    //Fungsi tambah_driver
+
+    //Fungsi tambah_user
     public function tambah_user()
     {
         $validasi = \Config\Services::validation();
@@ -93,7 +95,7 @@ class User extends BaseController
                     'nama' => $nama,
                     'level' => $level,
                     'id_driver' => $driver,
-                    'password' => $password, //melakukan enskripsi password dengan md5
+                    'password' => md5($password) //melakukan enskripsi password dengan md5
                 ];
                 $this->userModel->save($datauser);
                 $hasil = [
@@ -101,7 +103,7 @@ class User extends BaseController
                     'error' => false
                 ];
             } else { //jika password tidak sama dengan konfirpass
-                $hasil = [ //jika data dari ajax id_drivernya tidak kosong maka artinya mengedit data
+                $hasil = [
                     'sukses' => false,
                     'error' => "Password harus sama dengan konfirmasi password"
                 ];
@@ -116,6 +118,7 @@ class User extends BaseController
     }
 
 
+
     //Fungsi edit_user
     public function edit_user($id_user)
     {
@@ -127,7 +130,7 @@ class User extends BaseController
         $validasi = \Config\Services::validation();
         // cek username, karena username harus unik
         $userLama = $this->userModel->getUser($this->request->getPost('id_user')); //dari input yang bertipe hidden
-        if ($userLama['id_user'] == $this->request->getPost('id_user')) {
+        if ($userLama['username'] == $this->request->getPost('username')) {
             $rule_username = 'required|valid_email';
         } else {
             $rule_username = 'required|valid_email|is_unique[user.username]';
@@ -160,18 +163,6 @@ class User extends BaseController
                     'required' => '{field} harus diisi'
                 ]
             ],
-            'password' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ],
-            'konfirpass' => [
-                'rules' => 'required',
-                'errors' => [
-                    'required' => '{field} harus diisi'
-                ]
-            ]
         ];
         $validasi->setRules($aturan);
         //jika valid
@@ -182,30 +173,19 @@ class User extends BaseController
             $nama = $this->request->getPost('nama');
             $level = $this->request->getPost('level');
             $driver = $this->request->getPost('driver');
-            $password = $this->request->getPost('password');
-            $konfirpass = $this->request->getPost('konfirpass');
             //proses memasukkan data ke database
-            if ($password == $konfirpass) {
-                //menambah user
-                $datauser = [
-                    'id_user' => $id_user,
-                    'username' => $username,
-                    'nama' => $nama,
-                    'level' => $level,
-                    'id_driver' => $driver,
-                    'password' => $password, //melakukan enskripsi password dengan md5
-                ];
-                $this->userModel->save($datauser);
-                $hasil = [
-                    'sukses' => "Berhasil mengedit data",
-                    'error' => false
-                ];
-            } else { //jika password tidak sama dengan konfirpass
-                $hasil = [ //jika data dari ajax id_drivernya tidak kosong maka artinya mengedit data
-                    'sukses' => false,
-                    'error' => "Password harus sama dengan konfirmasi password"
-                ];
-            }
+            $datauser = [
+                'id_user' => $id_user,
+                'username' => $username,
+                'nama' => $nama,
+                'level' => $level,
+                'id_driver' => $driver,
+            ];
+            $this->userModel->save($datauser);
+            $hasil = [
+                'sukses' => "Berhasil mengedit data",
+                'error' => false
+            ];
         } else { //jika tidak valid
             $hasil = [
                 'sukses' => false,
@@ -215,6 +195,9 @@ class User extends BaseController
         return json_encode($hasil);
     }
 
+
+
+    //Fungsi delete_user
     public function delete_user($id_user)
     {
         $this->userModel->delete($id_user);

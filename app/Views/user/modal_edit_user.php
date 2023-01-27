@@ -1,4 +1,4 @@
-<!-- Modal untuk menambah user baru-->
+<!-- Modal untuk mengedit user-->
 <div class="modal fade" id="modaledit_user" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -20,14 +20,12 @@
                         <label for="username">Username</label>
                         <div class="col-sm-12">
                             <input type="email" class="form-control" name="username" id="username_e">
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="nama">Nama</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" name="nama" id="nama_e">
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -38,7 +36,6 @@
                                 <option value="1">Administrator</option>
                                 <option value="2">Karyawan</option>
                             </select>
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -50,21 +47,6 @@
                                     <option value="<?= $d['id_driver'] ?>"><?= $d['nama'] ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="password">Password</label>
-                        <div class="col-sm-12">
-                            <input type="password" class="form-control" name="password" id="password_e">
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label for="konfirpass">Konfirmasi Password</label>
-                        <div class="col-sm-12">
-                            <input type="password" class="form-control" name="konfirpass" id="konfirpass_e">
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                 </div>

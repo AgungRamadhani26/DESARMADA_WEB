@@ -32,7 +32,11 @@ $routes->set404Override();
 
 //Root
 $routes->get('/', 'Login::index');
-$routes->get('/dashboardadmin', 'Login::index');
+
+//Routes dashboard admin
+$routes->get('/dashboard_admin/mobil', 'Dashboard::daftar_mobil'); //menampilkan dashboard dan daftar mobil
+$routes->get('/dashboard_admin/motor', 'Dashboard::daftar_motor');
+
 
 //Routes User
 //Untuk menampilkan daftar user

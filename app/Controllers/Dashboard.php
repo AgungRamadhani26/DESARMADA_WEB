@@ -21,4 +21,20 @@ class Dashboard extends BaseController
         ];
         return view('dashboard_admin/motor',  $data);
     }
+
+    public function mobil_keluar()
+    {
+        $data = [
+            'url' => '/dashboard_admin/mobil'
+        ];
+        return view('dashboard_admin/mobil_keluar',  $data);
+    }
+
+    public function motor_keluar()
+    {
+        $data = [
+            'url' => '/dashboard_admin/mobil'
+        ];
+        return view('dashboard_admin/motor_keluar',  $data);
+    }
 }

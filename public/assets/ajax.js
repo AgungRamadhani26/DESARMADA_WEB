@@ -366,25 +366,27 @@ function bersihkanKendaraan() {
     $('#gambar_e').val('');
 }
 
+
 //Digunakan untuk membersihkan form input jika kita mengclose modal 
 $('.tombol-tutup-kendaraan').on('click', function() {
-    if ($('sukses').is(":visible")) {
+    if ($('sukses-kendaraan').is(":visible")) {
         window.location.href = current_url() + "?" + $_SERVER['QUERY_STRING'];
     }
     $('.alert').hide();
     bersihkanKendaraan();
 });
 
+
 //Untuk melakukan proses TAMBAH KENDARAAN
 $('#tombol-simpan-add-kendaraan').on('click', function(){
-    let $jeniskendaraan = $('#jeniskendaraan').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
+    let $jeniskendaraan = $('#jeniskendaraan').val();
     let $tipekendaraan = $('#tipekendaraan').val();
     let $nopol = $('#nopol').val();
     let $lokasi = $('#lokasi').val();
     let $kmawal = $('#kmawal').val();
     let $gambar = $('#gambar')[0].files[0];
 
-    var fd = new FormData();
+    var fd = new FormData(); //menggunakan form data agar bisa mengirim data image
     fd.append("jeniskendaraan", $jeniskendaraan);
     fd.append("tipekendaraan", $tipekendaraan);
     fd.append("nopol", $nopol);
@@ -392,10 +394,10 @@ $('#tombol-simpan-add-kendaraan').on('click', function(){
     fd.append("kmawal", $kmawal);
     fd.append("gambar", $gambar);
     $.ajax({ //menggunakan request ajax
-        url: "/kendaraan/tambah_kendaraan", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+        url: "/kendaraan/tambah_kendaraan", //url ke controller kendaraan menjalankan fungsi tambah_kendaraan melalui routes
         type: "POST", //menggunakan method post
         data: fd,
-        processData: false,
+        processData: false, //process data dan content type diset false agar dapat mengirim data gambar ataupun file
         contentType: false,
         success: function(hasil){ //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
@@ -412,7 +414,7 @@ $('#tombol-simpan-add-kendaraan').on('click', function(){
         }
     })
 })
-//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add kendaraan (sama dengan menekan save)
 $('#formKendaraan').on('keypress', function(e){
     if (e.which === 13){
         e.preventDefault();
@@ -420,14 +422,15 @@ $('#formKendaraan').on('keypress', function(e){
     }
 });
 
+
 //Untuk melakukan proses EDIT KENDARAAN
 function edit_kendaraan($id) {
     $.ajax({
-        url: "/kendaraan/edit_kendaraan/" + $id, //url ke controller driver fungsi edit_driver melalui routes dengan membawa id_driver yang akan diedit
+        url: "/kendaraan/edit_kendaraan/" + $id, //url ke controller kendaraan fungsi edit_kendaraan melalui routes dengan membawa id_kendaraan yang akan diedit
         type: "GET", //methodnya get karena cuman mengirim request, post jika sekalian mengirimkan data
         success: function(hasil) { //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
-            if ($obj.id_user != '') { //Jika id_drivernya tidak kosong (ada)
+            if ($obj.id_kendaraan != '') { //Jika id_kendaraaan tidak kosong (ada)
                 $('#id_kendaraan_e').val($obj.id_kendaraan);
                 $('#gambarlama_e').val($obj.gambar)
                 $('#jeniskendaraan_e').val($obj.jenis_kendaraan);
@@ -444,7 +447,7 @@ function edit_kendaraan($id) {
 $('#tombol-simpan-edit-kendaraan').on('click', function(){
     let $id_kendaraan = $('#id_kendaraan_e').val();
     let $gambarlama = $('#gambarlama_e').val()
-    let $jeniskendaraan = $('#jeniskendaraan_e').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
+    let $jeniskendaraan = $('#jeniskendaraan_e').val();
     let $tipekendaraan = $('#tipekendaraan_e').val();
     let $nopol = $('#nopol_e').val();
     let $lokasi = $('#lokasi_e').val();
@@ -461,7 +464,7 @@ $('#tombol-simpan-edit-kendaraan').on('click', function(){
     fd.append("kmawal", $kmawal);
     fd.append("gambar", $gambar);
     $.ajax({ //menggunakan request ajax
-        url: "/kendaraan/update_kendaraan", //url ke controller lokasi menjalankan fungsi tambah_lokasi melalui routes
+        url: "/kendaraan/update_kendaraan", //url ke controller kendaraan menjalankan fungsi update_kendaraan melalui routes
         type: "POST", //menggunakan method post
         data: fd,
         processData: false,
@@ -476,12 +479,12 @@ $('#tombol-simpan-edit-kendaraan').on('click', function(){
                 $('.error-kendaraan').hide(); //menghide alert dengan kelas error
                 $('.sukses-kendaraan').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-kendaraan').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
-                bersihkanKendaraan(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+                bersihkanKendaraan(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
             }
         }
     })
 })
-//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal add driver (sama dengan menekan save)
+//Untuk mentrigger ketika menekan enter maka akan sama dengan submit form modal edit kendaraan (sama dengan menekan save)
 $('#formKendaraan_e').on('keypress', function(e){
     if (e.which === 13){
         e.preventDefault();
@@ -489,6 +492,8 @@ $('#formKendaraan_e').on('keypress', function(e){
     }
 });
 
+
+//Fungsi ini digunakan untuk menampilkan gambar pada form modal add kendaraan
 function previewImg() {
     const gambar = document.querySelector('#gambar');
     const imgPreview = document.querySelector('.img-preview');
@@ -499,6 +504,8 @@ function previewImg() {
     }
 }
 
+
+//Fungsi ini digunakan untuk menampilkan gambar pada form modal edit kendaraan, jika mengupload gambar baru
 function previewImg_e() {
     const gambar = document.querySelector('#gambar_e');
     const imgPreview = document.querySelector('.img-preview_e');

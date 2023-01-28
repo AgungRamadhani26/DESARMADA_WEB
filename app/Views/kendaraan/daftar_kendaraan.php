@@ -33,7 +33,7 @@
                     <?php foreach ($kendaraan as $k) : ?>
                         <tr>
                             <td><?= $i++ ?></td>
-                            <td><?= $k['gambar']; ?></td>
+                            <td><img src="/assets/img_kendaraan/<?= $k['gambar']; ?>" alt="" class="gambar"></td>
                             <td><?= $k['jenis_kendaraan'] ?></td>
                             <td><?= $k['tipe_kendaraan'] ?></td>
                             <td><?= $k['id_departemen'] ?></td>

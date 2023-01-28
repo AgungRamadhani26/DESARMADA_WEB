@@ -23,21 +23,18 @@
                                 <option value="mobil">Mobil</option>
                                 <option value="motor">Motor</option>
                             </select>
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="tipekendaraan">Tipe Kendaraan</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="tipekendaraan">
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="nopol">Nomor Polisi</label>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="nopol">
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -49,14 +46,12 @@
                                     <option value="<?= $l['id_departemen'] ?>"><?= $l['nama_departemen'] ?></option>
                                 <?php endforeach; ?>
                             </select>
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="kmawal">KM Awal</label>
                         <div class="col-sm-12">
                             <input type="number" class="form-control" id="kmawal">
-                            <!--menggunakan ternary operator dimana jika terdapat error pada validasi maka akan menerapkan class is-invalid dari bootstrap jika tidak ada error maka tidak menerapkan kelas tersebut-->
                         </div>
                     </div>
                     <div class="row mb-3">

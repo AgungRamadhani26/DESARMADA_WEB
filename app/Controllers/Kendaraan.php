@@ -16,6 +16,8 @@ class Kendaraan extends BaseController
         $this->lokasiModel = new LokasiModel();
     }
 
+
+
     //Fungsi daftar_kendaraan
     public function daftar_kendaraan()
     {
@@ -27,6 +29,8 @@ class Kendaraan extends BaseController
 
         return view('kendaraan/daftar_kendaraan', $data);
     }
+
+
 
     //Fungsi tambah_kendaraan
     public function tambah_kendaraan()
@@ -46,9 +50,10 @@ class Kendaraan extends BaseController
                 ]
             ],
             'nopol' => [
-                'rules' => 'required',
+                'rules' => 'required|is_unique[kendaraan.nomor_polisi]',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => '{field} harus diisi',
+                    'is_unique' => 'nomor polisi tidak boleh sama'
                 ]
             ],
             'lokasi' => [
@@ -65,7 +70,7 @@ class Kendaraan extends BaseController
                 ]
             ],
             'gambar' => [
-                'rules' => 'uploaded[gambar]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,1024]', //uploaded digunakan utk upload file lihat dokumentasi ci4, cuman pada kali ini rule uploaded[sampul] dihapus karena boleh untuk tidak upload file
+                'rules' => 'uploaded[gambar]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,1024]',
                 'errors' => [
                     'uploaded' => 'Gambar belum dimasukkan',
                     'is_image' => 'Yang anda pilih bukan gambar',
@@ -84,7 +89,7 @@ class Kendaraan extends BaseController
             $kmawal = $this->request->getPost('kmawal');
             $gambar = $this->request->getFile('gambar');
             $namaGambar = $gambar->getRandomName();
-            //pindahkan file ke folder img, nama file adalah hasil generate nama sampul random
+            //pindahkan file ke folder assets/img_kendaraan, nama file adalah hasil generate nama gambar random
             $gambar->move('assets/img_kendaraan', $namaGambar);
             //proses memasukkan data ke database
             $data = [
@@ -93,6 +98,8 @@ class Kendaraan extends BaseController
                 'nomor_polisi' => $nopol,
                 'id_departemen' => $lokasi,
                 'km' => $kmawal,
+                'total_saldo_tol' => '0', //setiap kendaraan baru saldo tolnya diset '0' karena belum mengeluarkan saldo tol, ingat tipe data disini adalah varchar
+                'pinjam' => 0, //setiap kendaraan baru diset pinjam=0 artinya status kendaraan tersedia
                 'gambar' => $namaGambar
             ];
             $this->kendaraanModel->save($data);
@@ -109,6 +116,8 @@ class Kendaraan extends BaseController
         return json_encode($hasil);
     }
 
+
+
     //Fungsi edit_kendaraan
     public function edit_kendaraan($id_kendaraan)
     {
@@ -118,6 +127,13 @@ class Kendaraan extends BaseController
     public function update_kendaraan()
     {
         $validasi = \Config\Services::validation();
+        // cek nomor polisi, karena nomor polisi harus unik
+        $kendaraanLama = $this->kendaraanModel->getKendaraan($this->request->getPost('id_kendaraan')); //dari input yang bertipe hidden
+        if ($kendaraanLama['nomor_polisi'] == $this->request->getPost('nopol')) {
+            $rule_nopol = 'required';
+        } else {
+            $rule_nopol = 'required|is_unique[kendaraan.nomor_polisi]';
+        }
         $aturan = [
             'jeniskendaraan' => [
                 'rules' => 'required',
@@ -132,9 +148,10 @@ class Kendaraan extends BaseController
                 ]
             ],
             'nopol' => [
-                'rules' => 'required',
+                'rules' => $rule_nopol,
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => '{field} harus diisi',
+                    'is_unique' => 'nomor polisi tidak boleh sama'
                 ]
             ],
             'lokasi' => [
@@ -151,7 +168,7 @@ class Kendaraan extends BaseController
                 ]
             ],
             'gambar' => [
-                'rules' => 'uploaded[gambar]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,1024]', //uploaded digunakan utk upload file lihat dokumentasi ci4, cuman pada kali ini rule uploaded[sampul] dihapus karena boleh untuk tidak upload file
+                'rules' => 'uploaded[gambar]|is_image[gambar]|mime_in[gambar,image/jpg,image/jpeg,image/png]|max_size[gambar,1024]',
                 'errors' => [
                     'uploaded' => 'Gambar belum diupload',
                     'is_image' => 'Yang anda pilih bukan gambar',
@@ -174,9 +191,10 @@ class Kendaraan extends BaseController
                 ]
             ],
             'nopol' => [
-                'rules' => 'required',
+                'rules' => $rule_nopol,
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => '{field} harus diisi',
+                    'is_unique' => 'nomor polisi tidak boleh sama'
                 ]
             ],
             'lokasi' => [
@@ -213,7 +231,7 @@ class Kendaraan extends BaseController
                 $namaGambar = $gambarlama;
             } else {
                 $namaGambar = $gambar->getRandomName();
-                //pindahkan file ke folder img, nama file adalah hasil generate nama sampul random
+                //pindahkan file ke folder assets/img_kendaraan, nama file adalah hasil generate nama gambar random
                 $gambar->move('assets/img_kendaraan', $namaGambar);
                 //hapus file yang lama
                 unlink('assets/img_kendaraan/' . $this->request->getPost('gambarlama'));
@@ -242,7 +260,9 @@ class Kendaraan extends BaseController
         return json_encode($hasil);
     }
 
-    //Fungsi delete_driver
+
+
+    //Fungsi delete_kendaraan
     public function delete_kendaraan($id_kendaraan)
     {
         $kendaraan = $this->kendaraanModel->find($id_kendaraan);

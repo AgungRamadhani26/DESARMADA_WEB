@@ -2,13 +2,24 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\I18n\Time; //biar bisa gunain fungsi time
+use App\Models\KendaraanModel;
+use App\Models\LokasiModel;
 
 class Dashboard extends BaseController
 {
+    //Konstruktor agar semua method dapat menggunakan model
+    protected $kendaraanModel;
+    protected $lokasiModel;
+    public function __construct()
+    {
+        $this->kendaraanModel = new KendaraanModel();
+        $this->lokasiModel = new LokasiModel();
+    }
+
     public function daftar_mobil()
     {
         $data = [
+            'mobil' => $this->kendaraanModel->getMobil(),
             'url' => '/dashboard_admin/mobil'
         ];
         return view('dashboard_admin/mobil',  $data);
@@ -17,6 +28,7 @@ class Dashboard extends BaseController
     public function daftar_motor()
     {
         $data = [
+            'sepedaMotor' => $this->kendaraanModel->getMotor(),
             'url' => '/dashboard_admin/mobil'
         ];
         return view('dashboard_admin/motor',  $data);

@@ -20,4 +20,14 @@ class KendaraanModel extends Model
         }
         return $this->where(['id_kendaraan' => $id_kendaraan])->first();
     }
+
+    public function getMobil()
+    {
+        return $this->where(['jenis_kendaraan' => 'mobil'])->findAll();
+    }
+
+    public function getMotor()
+    {
+        return $this->where(['jenis_kendaraan' => 'motor'])->findAll();
+    }
 }

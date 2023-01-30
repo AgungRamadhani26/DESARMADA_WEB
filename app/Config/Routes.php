@@ -39,6 +39,10 @@ $routes->get('/dashboard_admin/motor', 'Dashboard::daftar_motor');
 $routes->get('/dashboard_admin/mobil_keluar', 'Dashboard::mobil_keluar');
 $routes->get('/dashboard_admin/motor_keluar', 'Dashboard::motor_keluar');
 
+//Peminjaman
+$routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');
+$routes->get('/peminjaman/pinjam_kendaraan/(:num)', 'Peminjaman::pinjam_kendaraan/$1');
+
 
 //Routes User
 //Untuk menampilkan daftar user
@@ -83,9 +87,6 @@ $routes->get('/kendaraan/edit_kendaraan/(:num)', 'Kendaraan::edit_kendaraan/$1')
 $routes->post('/kendaraan/update_kendaraan', 'Kendaraan::update_kendaraan');
 //Untuk menghapus kendaraan
 $routes->delete('/kendaraan/delete_kendaraan/(:num)', 'Kendaraan::delete_kendaraan/$1');
-
-//Peminjaman
-$routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');
 
 //Laporan
 $routes->get('/laporan/laporan_penggunaan', 'Laporan::laporan_penggunaan');

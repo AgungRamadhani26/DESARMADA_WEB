@@ -44,3 +44,17 @@ header{
 .gambar{
     width: 80px;
 }
+
+.aktif{
+    background-color: #f1d9dc;
+}
+
+.cardDashboard{
+    background-color: #fdfdef;
+}
+
+.form-kontainer{
+    background-color: white;
+    border-radius: 2rem;
+    font-weight: bold;  
+}

@@ -24,6 +24,9 @@ class Login extends BaseController
 
     public function login()
     {
+        $secret = "6LfQ0D0kAAAAAL40cEXQhchOPGFJlk6-87lOXoEA";
+        $verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+        $response = json_decode($verify);
         $login = $this->request->getPost('login');
         if ($login) {
             $valid = true; //Flag variabel
@@ -45,7 +48,7 @@ class Login extends BaseController
                 $valid = false;
             }
 
-            if ($valid) {
+            if ($valid && $response->success) {
                 $password = md5($password_asli);
                 $array = ['username' => $username, 'password' => $password];
                 $dataUser = $this->userModel->where($array)->first();
@@ -68,20 +71,5 @@ class Login extends BaseController
                 }
             }
         }
-
-        // $secret = "6LfQ0D0kAAAAAL40cEXQhchOPGFJlk6-87lOXoEA";
-        // $verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
-        // $response = json_decode($verify);
-        // $username = $this->request->getPost('username');
-        // $password = $this->request->getPost('password');
-        // if ($response->success) {
-        //     $data = [
-        //         'url' => '/dashboard_admin/mobil',
-        //         'mobil' => $this->kendaraanModel->getMobil(),
-        //     ];
-        //     return view('dashboard_admin/mobil',  $data);
-        // } else {
-        //     echo 'gagal';
-        // }
     }
 }

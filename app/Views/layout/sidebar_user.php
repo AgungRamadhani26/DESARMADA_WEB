@@ -19,8 +19,8 @@
             <!--Menu-menu yang ada di sidebar-->
             <div class="sidebar-menu">
                 <ul class="menu" id="menu">
-                    <li class="sidebar-item <?= $url == 'dashboardadmin' ? 'active' : '' ?>">
-                        <a href="/dashboardadmin" class='sidebar-link'>
+                    <li class="sidebar-item <?= $url == '/dashboard_user/mobil' ? 'active' : '' ?>">
+                        <a href="/dashboard_user/mobil" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>
                             <span>Dashboard</span>
                         </a>

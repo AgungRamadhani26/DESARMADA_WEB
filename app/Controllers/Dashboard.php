@@ -25,6 +25,15 @@ class Dashboard extends BaseController
         return view('dashboard_admin/mobil',  $data);
     }
 
+    public function daftar_mobil_u()
+    {
+        $data = [
+            'mobil' => $this->kendaraanModel->getMobil(),
+            'url' => '/dashboard_user/mobil'
+        ];
+        return view('dashboard_user/mobil',  $data);
+    }
+
     public function daftar_motor()
     {
         $data = [

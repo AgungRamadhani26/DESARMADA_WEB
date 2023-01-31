@@ -36,7 +36,13 @@
     </header>
 
     <!--Load file sidebar-->
-    <?= $this->include('layout/sidebar_admin'); ?>
+    <?php
+    if (session()->get('level') == 1) {
+        echo $this->include('layout/sidebar_admin');
+    } elseif (session()->get('level') == 2) {
+        echo $this->include('layout/sidebar_user');
+    }
+    ?>
 
     <!--Footer Tampilan-->
     <footer>

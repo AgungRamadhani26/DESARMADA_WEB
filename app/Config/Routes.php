@@ -32,12 +32,16 @@ $routes->set404Override();
 
 //Root
 $routes->get('/', 'Login::index');
+$routes->post('/login', 'Login::login');
 
 //Routes dashboard admin
 $routes->get('/dashboard_admin/mobil', 'Dashboard::daftar_mobil'); //menampilkan dashboard dan daftar mobil
 $routes->get('/dashboard_admin/motor', 'Dashboard::daftar_motor');
 $routes->get('/dashboard_admin/mobil_keluar', 'Dashboard::mobil_keluar');
 $routes->get('/dashboard_admin/motor_keluar', 'Dashboard::motor_keluar');
+
+//Routes dashboard user
+$routes->get('/dashboard_user/mobil', 'Dashboard::daftar_mobil_u');
 
 //Peminjaman
 $routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');

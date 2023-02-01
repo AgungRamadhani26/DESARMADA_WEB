@@ -28,6 +28,8 @@ class Login extends BaseController
         $verify = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
         $response = json_decode($verify);
         $login = $this->request->getPost('login');
+        $error_username = null;
+        $error_password = null;
         if ($login) {
             $valid = true; //Flag variabel
 
@@ -54,6 +56,10 @@ class Login extends BaseController
                 $dataUser = $this->userModel->where($array)->first();
                 if (is_null($dataUser)) {
                     $error = "Username atau password salah";
+                    session()->setFlashdata('error', $error);
+                    session()->setFlashdata('username', $username);
+                    session()->setFlashdata('password', $password_asli);
+                    return redirect()->to('/');
                 } else {
                     $dataSesi = [
                         'id_user' => $dataUser['id_user'],
@@ -69,6 +75,13 @@ class Login extends BaseController
                         return redirect()->to('/dashboard_user/mobil');
                     }
                 }
+            } else {
+                session()->setFlashdata('error_captcha', 'Anda belum mengklik captcha');
+                session()->setFlashdata('username', $username);
+                session()->setFlashdata('password', $password_asli);
+                session()->setFlashdata('error_username', $error_username);
+                session()->setFlashdata('error_password', $error_password);
+                return redirect()->to('/');
             }
         }
     }

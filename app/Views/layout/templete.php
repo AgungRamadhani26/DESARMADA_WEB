@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="/assets/vendors/simple-datatables/style.css">
     <!--Load CSS tambahan dari folder public-->
     <link rel="stylesheet" href="/assets/css/tambahan.css">
+    <!--Js untuk google recapcha-->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>

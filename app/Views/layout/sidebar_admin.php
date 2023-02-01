@@ -4,10 +4,10 @@
             <div class="sidebar-header">
                 <div class="d-flex justify-content-between">
                     <ul>
-                        <a href="">
+                        <a href="/profile/lihat_profile">
                             <center>
                                 <i class="bi bi-person-circle"></i>
-                                <h3>Profile</h3>
+                                <h3 class="<?= $url == '/profile/lihat_profile' ? 'profile' : '' ?>">Profile</h3>
                             </center>
                         </a>
                     </ul>

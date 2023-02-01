@@ -2,11 +2,6 @@
     width: 70px;
 }
 
-.aktif{
-    border-radius: 10px;
-    background-color: #b3cd0d;
-}
-
 footer{
     font-size: 18px;
     text-align: center;
@@ -57,4 +52,18 @@ header{
     background-color: white;
     border-radius: 2rem;
     font-weight: bold;  
+}
+
+.profile{
+    padding: 3px;
+    border-radius: 5px;
+    color: white;
+    background-color: #cd0d30;
+}
+
+.updateProfile{
+    padding: 1px;
+    border-radius: 5px;
+    color: white;
+    background-color: #c3cd0d;
 }

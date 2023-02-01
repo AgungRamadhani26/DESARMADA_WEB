@@ -34,6 +34,9 @@ $routes->set404Override();
 $routes->get('/', 'Login::index');
 $routes->post('/login', 'Login::login');
 
+//Profile
+$routes->get('/profile/lihat_profile', 'Profile::lihat_profile');
+
 //Routes dashboard admin
 $routes->get('/dashboard_admin/mobil', 'Dashboard::daftar_mobil'); //menampilkan dashboard dan daftar mobil
 $routes->get('/dashboard_admin/motor', 'Dashboard::daftar_motor');

@@ -31,20 +31,20 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 //Root
-$routes->get('/', 'Login::index');
+$routes->get('/', 'Login::index', ['filter' => 'khususTamu']);
 $routes->post('/login', 'Login::login');
+$routes->get('/logout', 'Login::logout');
+
 
 //Profile
 $routes->get('/profile/lihat_profile', 'Profile::lihat_profile');
+$routes->post('/profile/update_profile', 'Profile::update_profile');
 
-//Routes dashboard admin
-$routes->get('/dashboard_admin/mobil', 'Dashboard::daftar_mobil'); //menampilkan dashboard dan daftar mobil
-$routes->get('/dashboard_admin/motor', 'Dashboard::daftar_motor');
-$routes->get('/dashboard_admin/mobil_keluar', 'Dashboard::mobil_keluar');
-$routes->get('/dashboard_admin/motor_keluar', 'Dashboard::motor_keluar');
-
-//Routes dashboard user
-$routes->get('/dashboard_user/mobil', 'Dashboard::daftar_mobil_u');
+//Routes dashboard
+$routes->get('/dashboard/mobil', 'Dashboard::daftar_mobil'); //menampilkan dashboard dan daftar mobil
+$routes->get('/dashboard/motor', 'Dashboard::daftar_motor');
+$routes->get('/dashboard/mobil_keluar', 'Dashboard::mobil_keluar');
+$routes->get('/dashboard/motor_keluar', 'Dashboard::motor_keluar');
 
 //Peminjaman
 $routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');

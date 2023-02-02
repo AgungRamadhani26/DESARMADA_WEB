@@ -8,11 +8,11 @@
             <div class="row">
 
                 <div class="col-6 col-lg-3">
-                    <div class="card">
+                    <div class="card aktif">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/mobil" class="stats-icon purple">
+                                    <a href="/dashboard/mobil" class="stats-icon purple">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -25,11 +25,11 @@
                 </div>
 
                 <div class="col-6 col-lg-3">
-                    <div class="card aktif">
+                    <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/motor" class="stats-icon blue">
+                                    <a href="/dashboard/motor" class="stats-icon blue">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -46,7 +46,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/mobil_keluar" class="stats-icon green">
+                                    <a href="/dashboard/mobil_keluar" class="stats-icon green">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -63,7 +63,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/motor_keluar" class="stats-icon red">
+                                    <a href="/dashboard/motor_keluar" class="stats-icon red">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -80,33 +80,41 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Daftar Motor</h3>
+                            <h3>Daftar Mobil</h3>
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <?php foreach ($sepedaMotor as $sm) : ?>
+                                <?php foreach ($mobil as $m) : ?>
                                     <div class="col-md-3">
                                         <div class="card mb-3 cardDashboard">
-                                            <img src="/assets/img_kendaraan/<?= $sm['gambar']; ?>" alt="" height="190px">
+                                            <img src="/assets/img_kendaraan/<?= $m['gambar']; ?>" alt="" height="190px">
                                             <div class="card-body">
-                                                <h5 class="card-title"><?= $sm["tipe_kendaraan"]; ?></h5>
+                                                <h5 class="card-title"><?= $m["tipe_kendaraan"]; ?></h5>
                                                 <?php
                                                 $db = \Config\Database::connect();
-                                                $query = $db->query("SELECT nama_departemen AS lokasi FROM departemen WHERE departemen.id_departemen =" . $sm['id_departemen'] . "");
+                                                $query = $db->query("SELECT nama_departemen AS lokasi FROM departemen WHERE departemen.id_departemen =" . $m['id_departemen'] . "");
                                                 $results = $query->getRowArray();
                                                 ?>
                                                 <p>Lokasi : <?= $results['lokasi'] ?></p>
-                                                <p>No Polisi : <?= $sm['nomor_polisi'] ?></p>
-                                                <p class="fw-bold <?= ($sm['pinjam'] == 0 ? 'text-success' : ($sm['pinjam'] == 1 ? 'text-danger' : 'text-info')); ?>">
-                                                    Status : <?= ($sm['pinjam'] == 0 ? 'Tersedia' : ($sm['pinjam'] == 1 ? 'Tidak tersedia' : 'Service'));  ?>
+                                                <p>No Polisi : <?= $m['nomor_polisi'] ?></p>
+                                                <p class="fw-bold <?= ($m['pinjam'] == 0 ? 'text-success' : ($m['pinjam'] == 1 ? 'text-danger' : 'text-info')); ?>">
+                                                    Status : <?= ($m['pinjam'] == 0 ? 'Tersedia' : ($m['pinjam'] == 1 ? 'Tidak tersedia' : 'Service'));  ?>
                                                 </p>
                                                 <center>
                                                     <?php
-                                                    if ($sm['pinjam'] == 0) {
-                                                        echo '<a href="#" class="btn btn-primary">Pinjam</a>';
+                                                    if ($m['pinjam'] == 0) {
+                                                    ?>
+                                                        <a href="/peminjaman/pinjam_kendaraan/<?= $m['id_kendaraan'] ?>" class="btn btn-primary">Pinjam</a>
+                                                    <?php
                                                     }
                                                     ?>
-                                                    <a href="#" class="btn btn-info">Lihat QR</a>
+                                                    <?php
+                                                    if (session()->get('level') == 1) {
+                                                    ?>
+                                                        <a href="#" class="btn btn-info">Lihat QR</a>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </center>
                                             </div>
                                         </div>

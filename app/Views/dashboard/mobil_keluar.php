@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/mobil" class="stats-icon purple">
+                                    <a href="/dashboard/mobil" class="stats-icon purple">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/motor" class="stats-icon blue">
+                                    <a href="/dashboard/motor" class="stats-icon blue">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -42,11 +42,11 @@
                 </div>
 
                 <div class="col-6 col-lg-3">
-                    <div class="card">
+                    <div class="card aktif">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/mobil_keluar" class="stats-icon green">
+                                    <a href="/dashboard/mobil_keluar" class="stats-icon green">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -59,11 +59,11 @@
                 </div>
 
                 <div class="col-6 col-lg-3">
-                    <div class="card aktif">
+                    <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/motor_keluar" class="stats-icon red">
+                                    <a href="/dashboard/motor_keluar" class="stats-icon red">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Armada Motor Keluar</h3>
+                            <h3>Armada Mobil Keluar</h3>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped table-hover" id="table1">

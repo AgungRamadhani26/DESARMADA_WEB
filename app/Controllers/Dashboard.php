@@ -20,42 +20,33 @@ class Dashboard extends BaseController
     {
         $data = [
             'mobil' => $this->kendaraanModel->getMobil(),
-            'url' => '/dashboard_admin/mobil'
+            'url' => '/dashboard/mobil'
         ];
-        return view('dashboard_admin/mobil',  $data);
-    }
-
-    public function daftar_mobil_u()
-    {
-        $data = [
-            'mobil' => $this->kendaraanModel->getMobil(),
-            'url' => '/dashboard_user/mobil'
-        ];
-        return view('dashboard_user/mobil',  $data);
+        return view('dashboard/mobil',  $data);
     }
 
     public function daftar_motor()
     {
         $data = [
             'sepedaMotor' => $this->kendaraanModel->getMotor(),
-            'url' => '/dashboard_admin/mobil'
+            'url' => '/dashboard/mobil'
         ];
-        return view('dashboard_admin/motor',  $data);
+        return view('dashboard/motor',  $data);
     }
 
     public function mobil_keluar()
     {
         $data = [
-            'url' => '/dashboard_admin/mobil'
+            'url' => '/dashboard/mobil'
         ];
-        return view('dashboard_admin/mobil_keluar',  $data);
+        return view('dashboard/mobil_keluar',  $data);
     }
 
     public function motor_keluar()
     {
         $data = [
-            'url' => '/dashboard_admin/mobil'
+            'url' => '/dashboard/mobil'
         ];
-        return view('dashboard_admin/motor_keluar',  $data);
+        return view('dashboard/motor_keluar',  $data);
     }
 }

@@ -26,7 +26,6 @@ class User extends BaseController
             'driver' => $this->driverModel->getDriver(),
             'url' => '/user/daftar_user'
         ];
-
         return view('user/daftar_user', $data);
     }
 

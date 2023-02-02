@@ -3,18 +3,14 @@
 namespace App\Controllers;
 
 use App\Models\UserModel;
-use App\Models\KendaraanModel;
-use CodeIgniter\I18n\Time; //biar bisa gunain fungsi time
 
 class Login extends BaseController
 {
     //Konstruktor agar semua method dapat menggunakan model
-    protected $kendaraanModel;
     protected $userModel;
     public function __construct()
     {
         $this->userModel = new UserModel();
-        $this->kendaraanModel = new KendaraanModel();
     }
 
     public function index()
@@ -69,11 +65,7 @@ class Login extends BaseController
                         'nama' => $dataUser['nama']
                     ];
                     session()->set($dataSesi);
-                    if (session()->get('level') == 1) { //admin
-                        return redirect()->to('dashboard_admin/mobil');
-                    } else if (session()->get('level') == 2) { //user
-                        return redirect()->to('/dashboard_user/mobil');
-                    }
+                    return redirect()->to('dashboard/mobil');
                 }
             } else {
                 session()->setFlashdata('error_captcha', 'Anda belum mengklik captcha');
@@ -84,5 +76,11 @@ class Login extends BaseController
                 return redirect()->to('/');
             }
         }
+    }
+
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/');
     }
 }

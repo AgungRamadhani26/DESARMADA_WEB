@@ -12,7 +12,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/mobil" class="stats-icon purple">
+                                    <a href="/dashboard/mobil" class="stats-icon purple">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -29,7 +29,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/motor" class="stats-icon blue">
+                                    <a href="/dashboard/motor" class="stats-icon blue">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -46,7 +46,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/mobil_keluar" class="stats-icon green">
+                                    <a href="/dashboard/mobil_keluar" class="stats-icon green">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -63,7 +63,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <a href="/dashboard_admin/motor_keluar" class="stats-icon red">
+                                    <a href="/dashboard/motor_keluar" class="stats-icon red">
                                         <i class="iconly-boldBookmark"></i>
                                     </a>
                                 </div>
@@ -106,7 +106,13 @@
                                                         echo '<a href="#" class="btn btn-primary">Pinjam</a>';
                                                     }
                                                     ?>
-                                                    <a href="#" class="btn btn-info">Lihat QR</a>
+                                                    <?php
+                                                    if (session()->get('level') == 1) {
+                                                    ?>
+                                                        <a href="#" class="btn btn-info">Lihat QR</a>
+                                                    <?php
+                                                    }
+                                                    ?>
                                                 </center>
                                             </div>
                                         </div>

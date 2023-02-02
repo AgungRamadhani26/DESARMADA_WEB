@@ -8,6 +8,8 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
+use App\Filters\KhususTamu;
+use App\Filters\KhususMember;
 
 class Filters extends BaseConfig
 {
@@ -21,6 +23,8 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'khususMember'  => KhususMember::class, //mendaftarkan filter/middleware yang udah kita buat agar dapat digunakan
+        'khususTamu'    => KhususTamu::class
     ];
 
     /**
@@ -29,6 +33,9 @@ class Filters extends BaseConfig
      */
     public array $globals = [
         'before' => [
+            'khususMember' => ['except' => [
+                '/', '/login'
+            ]]
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

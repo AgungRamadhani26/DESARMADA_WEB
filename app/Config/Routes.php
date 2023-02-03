@@ -45,6 +45,7 @@ $routes->get('/dashboard/mobil', 'Dashboard::daftar_mobil'); //menampilkan dashb
 $routes->get('/dashboard/motor', 'Dashboard::daftar_motor');
 $routes->get('/dashboard/mobil_keluar', 'Dashboard::mobil_keluar');
 $routes->get('/dashboard/motor_keluar', 'Dashboard::motor_keluar');
+$routes->get('/dashboard/generateQR/(:any)', 'Dashboard::generateQR/$1');
 
 //Peminjaman
 $routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');

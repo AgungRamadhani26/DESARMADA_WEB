@@ -111,7 +111,7 @@
                                                     <?php
                                                     if (session()->get('level') == 1) {
                                                     ?>
-                                                        <a href="#" class="btn btn-info">Lihat QR</a>
+                                                        <a href="/dashboard/generateQR/<?= $m['nomor_polisi'] ?>" class="btn btn-info">Lihat QR</a>
                                                     <?php
                                                     }
                                                     ?>

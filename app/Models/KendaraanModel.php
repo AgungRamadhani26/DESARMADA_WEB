@@ -21,6 +21,12 @@ class KendaraanModel extends Model
         return $this->where(['id_kendaraan' => $id_kendaraan])->first();
     }
 
+    //Fungsi buatan untuk mendapatkan kendaraan berdasarkan nomor_polisi
+    public function getKendaraanViaNopol($nomor_polisi)
+    {
+        return $this->where(['nomor_polisi' => $nomor_polisi])->first();
+    }
+
     public function getMobil()
     {
         return $this->where(['jenis_kendaraan' => 'mobil'])->findAll();

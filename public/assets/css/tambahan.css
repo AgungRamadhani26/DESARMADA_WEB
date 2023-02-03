@@ -67,3 +67,7 @@ header{
     color: white;
     background-color: #c3cd0d;
 }
+
+.qr-codeHeader{
+    background-color: #f6f6a9;
+}

@@ -49,4 +49,14 @@ class Dashboard extends BaseController
         ];
         return view('dashboard/motor_keluar',  $data);
     }
+
+
+    public function generateQR($nomor_polisi)
+    {
+        $data = [
+            'mobil' => $this->kendaraanModel->getKendaraanViaNopol($nomor_polisi),
+            'url' => '/dashboard/mobil'
+        ];
+        return view('dashboard/generateQR', $data);
+    }
 }

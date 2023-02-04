@@ -8,25 +8,27 @@
             <div class="card-header qr-codeHeader">
                 <h2>Generate QR-Code</h2>
             </div>
-            <div class="row">
+            <div class="row mt-2 mb-2">
                 <div class="col-md-8">
-                    <img src="/assets/img_kendaraan/<?= $mobil['gambar'] ?>" class="img-fluid rounded-start" alt="">
+                    <center>
+                        <img src="<?= $url_QR_Code ?>" class="img-fluid rounded-start" alt="">
+                    </center>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mt-5">
                     <div class="card-body">
                         <?php
                         $db = \Config\Database::connect();
-                        $query = $db->query("SELECT nama_departemen AS lokasi FROM departemen WHERE departemen.id_departemen =" . $mobil['id_departemen'] . "");
+                        $query = $db->query("SELECT nama_departemen AS lokasi FROM departemen WHERE departemen.id_departemen =" . $kendaraan['id_departemen'] . "");
                         $results = $query->getRowArray();
                         ?>
                         <p style="font-weight:bold">Lokasi : <?= $results['lokasi'] ?></p>
-                        <p style="font-weight:bold">No Polisi : <?= $mobil['nomor_polisi'] ?></p>
-                        <a href="" class="btn btn-primary">Cetak</a>
+                        <p style="font-weight:bold">No Polisi : <?= $kendaraan['nomor_polisi'] ?></p>
+                        <a href="/dashboard/printQR/<?= $kendaraan['nomor_polisi'] ?>" class="btn btn-primary">Print</a>
                     </div>
                 </div>
             </div>
             <div class="qr-codeHeader">
-                <a class="ms-3" style="font-weight:bold" href="/dashboard/mobil">Kembali ke daftar mobil</a>
+                <a class="ms-3" style="font-weight:bold" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] ?>">Kembali ke daftar <?= $kendaraan['jenis_kendaraan'] ?></a>
             </div>
         </div>
     </div>

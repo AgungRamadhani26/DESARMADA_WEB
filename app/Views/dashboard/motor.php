@@ -103,13 +103,15 @@
                                                 <center>
                                                     <?php
                                                     if ($sm['pinjam'] == 0) {
-                                                        echo '<a href="#" class="btn btn-primary">Pinjam</a>';
+                                                    ?>
+                                                        <a href="/peminjaman/pinjam_kendaraan/<?= $sm['id_kendaraan'] ?>" class="btn btn-primary">Pinjam</a>
+                                                    <?php
                                                     }
                                                     ?>
                                                     <?php
                                                     if (session()->get('level') == 1) {
                                                     ?>
-                                                        <a href="#" class="btn btn-info">Lihat QR</a>
+                                                        <a href="/dashboard/generateQR/<?= $sm['nomor_polisi'] ?>" class="btn btn-info">Lihat QR</a>
                                                     <?php
                                                     }
                                                     ?>

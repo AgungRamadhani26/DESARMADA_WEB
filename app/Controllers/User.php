@@ -14,6 +14,7 @@ class User extends BaseController
     {
         $this->userModel = new UserModel();
         $this->driverModel = new DriverModel();
+        helper(['swal_helper']);
     }
 
 
@@ -64,15 +65,17 @@ class User extends BaseController
                 ]
             ],
             'password' => [
-                'rules' => 'required',
+                'rules' => 'required|min_length[6]',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => '{field} harus diisi',
+                    'min_length' => '{field} tidak boleh kurang dari 6 karakter'
                 ]
             ],
             'konfirpass' => [
-                'rules' => 'required',
+                'rules' => 'required|min_length[6]',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => '{field} harus diisi',
+                    'min_length' => '{field} tidak boleh kurang dari 6 karakter'
                 ]
             ]
         ];
@@ -200,6 +203,7 @@ class User extends BaseController
     public function delete_user($id_user)
     {
         $this->userModel->delete($id_user);
+        Set_notifikasi_swal('success', 'Sukses :)', 'Data user berhasil dihapus');
         return redirect()->to('/user/daftar_user');
     }
 }

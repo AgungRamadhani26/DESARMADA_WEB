@@ -6,7 +6,7 @@
     <div class="col-12">
         <div class="card mb-3" style="max-width: 600px;">
             <div class="card-header qr-codeHeader">
-                <h2>Generate QR-Code</h2>
+                <h3 style="color:white">Generate QR-Code</h3>
             </div>
             <div class="row mt-2 mb-2">
                 <div class="col-md-8">
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="qr-codeHeader">
-                <a class="ms-3" style="font-weight:bold" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] ?>">Kembali ke daftar <?= $kendaraan['jenis_kendaraan'] ?></a>
+                <a class="ms-3" style="font-weight:bold; color:white" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] ?>">Kembali ke daftar <?= $kendaraan['jenis_kendaraan'] ?></a>
             </div>
         </div>
     </div>

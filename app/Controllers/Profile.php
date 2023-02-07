@@ -11,6 +11,7 @@ class Profile extends BaseController
     public function __construct()
     {
         $this->userModel = new UserModel();
+        helper(['swal_helper']); //load helper yang udah dibuat
     }
 
     public function lihat_profile()
@@ -39,21 +40,24 @@ class Profile extends BaseController
                 ]
             ],
             'password' => [
-                'rules' => 'required',
+                'rules' => 'required|min_length[6]',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => '{field} harus diisi',
+                    'min_length' => 'Password tidak boleh kurang dari 6 karakter'
                 ]
             ],
             'passwordBaru' => [
-                'rules' => 'required',
+                'rules' => 'required|min_length[6]',
                 'errors' => [
-                    'required' => 'Password Baru harus diisi'
+                    'required' => 'Password Baru harus diisi',
+                    'min_length' => 'Password Baru tidak boleh kurang dari 6 karakter'
                 ]
             ],
             'konfirPassBaru' => [
-                'rules' => 'required',
+                'rules' => 'required|min_length[6]',
                 'errors' => [
-                    'required' => 'Konfirmasi password baru belum diisi'
+                    'required' => 'Konfirmasi password baru belum diisi',
+                    'min_length' => 'Konfirmasi Password tidak boleh kurang dari 6 karakter'
                 ]
             ]
         ];
@@ -78,15 +82,15 @@ class Profile extends BaseController
                         'password' => md5($passwordBaru)
                     ];
                     $this->userModel->save($datauser);
-                    session()->setFlashdata('berhasilupdate', 'Profile berhasil dupdate');
+                    Set_notifikasi_swal('success', 'Sukses :)', 'Profile berhasil diupdate'); //kirim notifikasi sweet alert make fungsi dari helper yang udah dibuat
                 } else {
-                    session()->setFlashdata('errUpdateProfile', 'Password Baru tidak sama dengan konfirmasi password baru');
+                    Set_notifikasi_swal('error', 'Maaf', 'Password baru tidak cocok dengan konfirmasi password baru');
                     session()->setFlashdata('password', $password);
                     session()->setFlashdata('passwordBaru', $passwordBaru);
                     session()->setFlashdata('konfirPassBaru', $konfirPassBaru);
                 }
             } else {
-                session()->setFlashdata('errUpdateProfile', 'Password saat ini tidak valid');
+                Set_notifikasi_swal('error', 'Maaf', 'Password saat ini salah');
                 session()->setFlashdata('password', $password);
                 session()->setFlashdata('passwordBaru', $passwordBaru);
                 session()->setFlashdata('konfirPassBaru', $konfirPassBaru);

@@ -9,13 +9,13 @@
             <h3>Daftar Kendaraan</h3>
             <div>
                 <!-- Modal trigger button untuk menambah kendaraan baru -->
-                <button type="button" class="btn badge bg-primary" data-bs-toggle="modal" data-bs-target="#modaltambah_kendaraan">
-                    Tambah
+                <button type="button" class="btn badge tambah" data-bs-toggle="modal" data-bs-target="#modaltambah_kendaraan">
+                    <i class="bi bi-plus-square-fill"></i> Tambah
                 </button>
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-striped table-hover" id="table1">
+            <table class="table table-bordered table-hover bg-light" id="table1">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -36,7 +36,12 @@
                             <td><img src="/assets/img_kendaraan/<?= $k['gambar']; ?>" alt="" class="gambar"></td>
                             <td><?= $k['jenis_kendaraan'] ?></td>
                             <td><?= $k['tipe_kendaraan'] ?></td>
-                            <td><?= $k['id_departemen'] ?></td>
+                            <?php
+                            $db = \Config\Database::connect();
+                            $query = $db->query("SELECT nama_departemen AS loc FROM departemen WHERE departemen.id_departemen =" . $k['id_departemen'] . "");
+                            $results = $query->getRowArray();
+                            ?>
+                            <td><?= $results['loc'] ?></td>
                             <td><?= $k['nomor_polisi'] ?></td>
                             <td>
                                 <span class="fw-bold <?= ($k['pinjam'] == 0 ? 'text-success' : ($k['pinjam'] == 1 ? 'text-danger' : 'text-info')); ?>">
@@ -44,11 +49,11 @@
                                 </span>
                             </td>
                             <td>
-                                <button type="button" class="btn badge bg-warning" data-bs-toggle="modal" data-bs-target="#modaledit_kendaraan" onclick="edit_kendaraan(<?php echo $k['id_kendaraan'] ?>)">Edit</button>
+                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_kendaraan" onclick="edit_kendaraan(<?php echo $k['id_kendaraan'] ?>)"><i class="bi bi-pencil-square"></i> Edit</button>
                                 <form action="/kendaraan/delete_kendaraan/<?= $k['id_kendaraan'] ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn badge bg-danger" onclick="return confirm('Apakah anda yakin ?');">Hapus</button>
+                                    <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin ?');"><i class="bi bi-trash3-fill"></i> Hapus</button>
                                 </form>
                             </td>
                         </tr>

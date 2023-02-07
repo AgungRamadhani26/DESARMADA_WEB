@@ -11,6 +11,7 @@ class Driver extends BaseController
     public function __construct()
     {
         $this->driverModel = new DriverModel();
+        helper(['swal_helper']);
     }
 
 
@@ -124,6 +125,7 @@ class Driver extends BaseController
         $db->query("SET FOREIGN_KEY_CHECKS=0"); //biar menghiraukan foreign key ke tabel lain, dibuat kode ini karena pada driver tidak ada kolom untuk soft deletes
         $this->driverModel->delete($id_driver);
         $db->query("SET FOREIGN_KEY_CHECKS=1"); //sehabis dihapus kembalikan ke awal
+        Set_notifikasi_swal('success', 'Sukses :)', 'Data driver berhasil dihapus');
         return redirect()->to('/driver/daftar_driver');
     }
 }

@@ -126,7 +126,8 @@ class Dashboard extends BaseController
         $dompdf = new Dompdf();
         $dompdf->loadHtml(view('dashboard/printQR_code_pdf', $data));
         // (optional) setup the paper size and orientation
-        $dompdf->setPaper('A5', 'landscape');
+        $customPaper = array(0, 0, 300, 300);
+        $dompdf->setPaper($customPaper, 'landscape');
         // render html as PDF
         $dompdf->render();
         // output the generated pdf

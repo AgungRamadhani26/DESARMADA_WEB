@@ -14,6 +14,7 @@ class Kendaraan extends BaseController
     {
         $this->kendaraanModel = new KendaraanModel();
         $this->lokasiModel = new LokasiModel();
+        helper(['swal_helper']);
     }
 
 
@@ -265,8 +266,9 @@ class Kendaraan extends BaseController
     //Fungsi delete_kendaraan
     public function delete_kendaraan($id_kendaraan)
     {
-        $kendaraan = $this->kendaraanModel->find($id_kendaraan);
-        unlink('assets/img_kendaraan/' . $kendaraan['gambar']);
+        //$kendaraan = $this->kendaraanModel->find($id_kendaraan);
+        //unlink('assets/img_kendaraan/' . $kendaraan['gambar']);
+        Set_notifikasi_swal('success', 'Sukses :)', 'Data kendaraan berhasil dihapus');
         $this->kendaraanModel->delete($id_kendaraan);
         return redirect()->to('/kendaraan/daftar_kendaraan');
     }

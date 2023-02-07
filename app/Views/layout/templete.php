@@ -31,7 +31,7 @@
     <header>
         <?php $date = date('Y-m-d');
         $datenow = date('d F Y', strtotime($date)); ?>
-        <div>Tanggal <?= $datenow; ?></div>
+        <div>Tanggal : <?= $datenow; ?></div>
         <div class="header-content">
             <img src="/assets/images/img_tampilan/logo.png" width="100" />
         </div>
@@ -61,6 +61,17 @@
     <script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
     <!--Load Jquery-->
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <!--Untuk sweetalert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        <?php if (session()->getFlashdata('swal_icon')) { ?>
+            Swal.fire({
+                icon: '<?= session()->getFlashdata('swal_icon') ?>',
+                title: '<?= session()->getFlashdata('swal_title') ?>',
+                text: '<?= session()->getFlashdata('swal_text') ?>',
+            })
+        <?php } ?>
+    </script>
     <!--Script untuk menjalankan datatable-->
     <!--Simple Datatable-->
     <script>

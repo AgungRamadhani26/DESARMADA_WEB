@@ -19,16 +19,6 @@
                     <br>
                     <div class="col-7">
                         <form action="/profile/update_profile/" method="POST">
-                            <?php if (session()->getFlashdata('errUpdateProfile')) { ?>
-                                <div class="alert alert-danger">
-                                    <?= session()->getFlashdata('errUpdateProfile') ?>
-                                </div>
-                            <?php } ?>
-                            <?php if (session()->getFlashdata('berhasilupdate')) { ?>
-                                <div class="alert alert-success">
-                                    <?= session()->getFlashdata('berhasilupdate') ?>
-                                </div>
-                            <?php } ?>
                             <?= csrf_field(); ?>
                             <div class="row mb-3">
                                 <label for="username" class="col-sm-3 col-form-label">Username</label>
@@ -50,7 +40,7 @@
                             <div class="row mb-3">
                                 <label for="password" class="col-sm-3 col-form-label">Password Saat Ini</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control <?= (session()->getFlashdata('passkosong')) ? 'is-invalid' : ''; ?>" name="password" value="<?= session()->getFlashdata('password') ?>">
+                                    <input type="password" class="form-control <?= (session()->getFlashdata('passkosong')) ? 'is-invalid' : ''; ?>" name="password" value="<?= session()->getFlashdata('password') ?>">
                                     <div class="invalid-feedback">
                                         <?= session()->getFlashdata('passkosong') ?>
                                     </div>
@@ -59,7 +49,7 @@
                             <div class="row mb-3">
                                 <label for="passwordBaru" class="col-sm-3 col-form-label">Password Baru</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control <?= (session()->getFlashdata('passbaru_kosong')) ? 'is-invalid' : ''; ?>" name="passwordBaru" value="<?= session()->getFlashdata('passwordBaru') ?>">
+                                    <input type="password" class="form-control <?= (session()->getFlashdata('passbaru_kosong')) ? 'is-invalid' : ''; ?>" name="passwordBaru" value="<?= session()->getFlashdata('passwordBaru') ?>">
                                     <div class="invalid-feedback">
                                         <?= session()->getFlashdata('passbaru_kosong') ?>
                                     </div>
@@ -68,7 +58,7 @@
                             <div class="row mb-3">
                                 <label for="konfirPassBaru" class="col-sm-3 col-form-label">Konfirmasi Password Baru</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control <?= (session()->getFlashdata('konfirpass_barukosong')) ? 'is-invalid' : ''; ?>" name="konfirPassBaru" value="<?= session()->getFlashdata('konfirPassBaru') ?>">
+                                    <input type="password" class="form-control <?= (session()->getFlashdata('konfirpass_barukosong')) ? 'is-invalid' : ''; ?>" name="konfirPassBaru" value="<?= session()->getFlashdata('konfirPassBaru') ?>">
                                     <div class="invalid-feedback">
                                         <?= session()->getFlashdata('konfirpass_barukosong') ?>
                                     </div>

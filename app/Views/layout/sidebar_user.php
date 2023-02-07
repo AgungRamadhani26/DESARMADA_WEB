@@ -19,6 +19,9 @@
             <!--Menu-menu yang ada di sidebar-->
             <div class="sidebar-menu">
                 <ul class="menu" id="menu">
+                    <li class="sidebar-title">
+                        <h5 style="color: rgb(72,92,188)">Beranda</h5>
+                    </li>
                     <li class="sidebar-item <?= $url == '/dashboard/mobil' ? 'active' : '' ?>">
                         <a href="/dashboard/mobil" class='sidebar-link'>
                             <i class="bi bi-grid-fill"></i>

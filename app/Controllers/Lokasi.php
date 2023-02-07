@@ -11,6 +11,7 @@ class Lokasi extends BaseController
     public function __construct()
     {
         $this->lokasiModel = new LokasiModel();
+        helper(['swal_helper']);
     }
 
 
@@ -114,6 +115,7 @@ class Lokasi extends BaseController
     public function delete_lokasi($id_lokasi)
     {
         $this->lokasiModel->delete($id_lokasi);
+        Set_notifikasi_swal('success', 'Sukses :)', 'Data lokasi berhasil dihapus');
         return redirect()->to('/lokasi/daftar_lokasi');
     }
 }

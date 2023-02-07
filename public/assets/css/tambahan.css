@@ -24,11 +24,15 @@ header{
     padding-bottom: 12px;
     padding-left: 12px;
     padding-right: 12px;
+    position:sticky;
+    z-index: 999;
+    top: 0;
+    width: 100%;
 }
 
 .header-content{
     background-color: #f2f2e2;
-    padding: 12px;
+    padding: 5px;
 }
 
 .TopSide{
@@ -58,16 +62,27 @@ header{
     padding: 3px;
     border-radius: 5px;
     color: white;
-    background-color: #cd0d30;
+    background-color: rgb(72,92,188);
 }
 
 .updateProfile{
     padding: 1px;
     border-radius: 5px;
-    color: white;
-    background-color: #c3cd0d;
+    background-color: #edf0b3;
 }
 
 .qr-codeHeader{
-    background-color: #f6f6a9;
+    background-color: #4ca1de;
+}
+
+.delete{
+    background-color: #8a0b0b;
+}
+
+.edit{
+    background-color: #e6c41a;
+}
+
+.tambah{
+    background-color: #3f8354;
 }

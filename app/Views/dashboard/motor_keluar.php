@@ -76,14 +76,16 @@
                 </div>
 
             </div>
+
             <div class="row">
+
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Armada Motor Keluar</h3>
+                            <h3>Armada Mobil Keluar</h3>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-hover" id="table1">
+                            <table class="table table-hover" id="table1">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -98,12 +100,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <?php $i = 1 ?>
+                                    <?php foreach ($motor_dipinjam as $mtr) : ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td>
+                                                <a href="" style="border-radius: 2rem" class="btn btn-outline-primary"><i class="bi bi-arrow-return-right"></i> Kembalikan</a>
+                                            </td>
+                                            <td><?= $mtr['tipe_k_motor'] ?></td>
+                                            <td><?= $mtr['nama_dep_Motor'] ?></td>
+                                            <td><?= $mtr['nopol_motor'] ?></td>
+                                            <td><?= $mtr['tgl_pinjam_motor'] ?></td>
+                                            <td><?= $mtr['jam_pinjam_motor'] ?></td>
+                                            <td><?= $mtr['peminjam'] ?></td>
+                                            <td><?= $mtr['keperluan'] ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

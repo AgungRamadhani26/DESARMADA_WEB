@@ -7,7 +7,6 @@ use App\Models\PeminjamanModel;
 use App\Models\KendaraanModel;
 use App\Models\UserModel;
 use App\Models\DriverModel;
-use PhpParser\Node\Stmt\Echo_;
 
 class Peminjaman extends BaseController
 {
@@ -41,25 +40,25 @@ class Peminjaman extends BaseController
         $validasi = \Config\Services::validation();
         $aturan = [
             'tgl_pinjam' => [
-                'rules' => 'required', //uploaded digunakan utk upload file lihat dokumentasi ci4, cuman pada kali ini rule uploaded[sampul] dihapus karena boleh untuk tidak upload file
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'Tanggal pinjam harus diisi',
                 ]
             ],
             'jam_pinjam' => [
-                'rules' => 'required', //uploaded digunakan utk upload file lihat dokumentasi ci4, cuman pada kali ini rule uploaded[sampul] dihapus karena boleh untuk tidak upload file
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'Jam pinjam harus diisi',
                 ]
             ],
             'keperluan' => [
-                'rules' => 'required', //uploaded digunakan utk upload file lihat dokumentasi ci4, cuman pada kali ini rule uploaded[sampul] dihapus karena boleh untuk tidak upload file
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'Keperluan harus diisi',
                 ]
             ],
             'tujuan' => [
-                'rules' => 'required', //uploaded digunakan utk upload file lihat dokumentasi ci4, cuman pada kali ini rule uploaded[sampul] dihapus karena boleh untuk tidak upload file
+                'rules' => 'required',
                 'errors' => [
                     'required' => 'Tujuan harus diisi',
                 ]
@@ -78,31 +77,52 @@ class Peminjaman extends BaseController
         //mengubah format jam_pinjam
         $jam_pinjam1 = strtotime($jam_pinjam);
         $jam_pinjam2 = date('H:i:s', $jam_pinjam1);
+        //Pengecekan apakah memilih driver, jika tidak maka secara default driver adalah si peminjam
+        if ($driver) {
+            $driver_peminjaman = $driver;
+        } else {
+            $driverr = $this->driverModel->getDriver(session()->get('id_driver'));
+            $driver_peminjaman = $driverr['nama'];
+        }
+        $jenis_kendaraan = $this->kendaraanModel->select('jenis_kendaraan')->where('id_kendaraan', $id_kendaraan);
+        $data_pinjam = [
+            'id_kendaraan' => $id_kendaraan,
+            'id_user' => session()->get('id_user'),
+            'tgl_peminjaman' => $tgl_pinjam2,
+            'jam_peminjaman' => $jam_pinjam2,
+            'km_awal' => $km,
+            'keperluan' => $keperluan,
+            'driver' =>  $driver_peminjaman,
+            'tujuan' => $tujuan
+        ];
+        $data_kendaraan = [
+            'id_kendaraan' => $id_kendaraan,
+            'pinjam' => 1
+        ];
         //jika valid
         if ($validasi->withRequest($this->request)->run()) {
-            if ($tgl_pinjam2 >= date('Y-m-d')) {
+            if ($tgl_pinjam2 == date('Y-m-d')) {
                 if ($jam_pinjam2 >= date('H:i')) { //DETIK DIABAIKAN SAJA
-                    $data_pinjam = [
-                        'id_kendaraan' => $id_kendaraan,
-                        'id_user' => session()->get('id_user'),
-                        'tgl_peminjaman' => $tgl_pinjam2,
-                        'jam_peminjaman' => $jam_pinjam2,
-                        'km_awal' => $km,
-                        'keperluan' => $keperluan,
-                        'driver' => $driver,
-                        'tujuan' => $tujuan
-                    ];
-                    $data_kendaraan = [
-                        'id_kendaraan' => $id_kendaraan,
-                        'pinjam' => 1
-                    ];
                     $this->peminjamanModel->save($data_pinjam);
                     $this->kendaraanModel->save($data_kendaraan);
                     Set_notifikasi_swal('success', 'Sukses :)', 'Peminjaman kendaraan berhasil');
-                    return redirect()->to('/dashboard/mobil_keluar');
+                    if ($jenis_kendaraan == 'mobil') {
+                        return redirect()->to('/dashboard/mobil_keluar');
+                    } else {
+                        return redirect()->to('/dashboard/motor_keluar');
+                    }
                 } else {
                     Set_notifikasi_swal('error', 'Maaf', 'Pilih jam peminjaman minimal jam saat ini');
                     return redirect()->to('/peminjaman/pinjam_kendaraan/' . $id_kendaraan)->withInput();
+                }
+            } elseif ($tgl_pinjam2 > date('Y-m-d')) {
+                $this->peminjamanModel->save($data_pinjam);
+                $this->kendaraanModel->save($data_kendaraan);
+                Set_notifikasi_swal('success', 'Sukses :)', 'Peminjaman kendaraan berhasil');
+                if ($jenis_kendaraan == 'mobil') {
+                    return redirect()->to('/dashboard/mobil_keluar');
+                } else {
+                    return redirect()->to('/dashboard/motor_keluar');
                 }
             } else {
                 Set_notifikasi_swal('error', 'Maaf', 'Pilih tanggal peminjaman minimal hari ini');
@@ -123,9 +143,7 @@ class Peminjaman extends BaseController
         $data = [
             'history' => $this->peminjamanModel->getHistory(),
             'url' => '/peminjaman/history_peminjaman'
-
         ];
-
         return view('peminjaman/history_peminjaman', $data);
     }
 }

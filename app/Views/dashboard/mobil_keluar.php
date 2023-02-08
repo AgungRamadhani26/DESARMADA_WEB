@@ -76,14 +76,16 @@
                 </div>
 
             </div>
+
             <div class="row">
+
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h3>Armada Mobil Keluar</h3>
                         </div>
                         <div class="card-body">
-                            <table class="table table-striped table-hover" id="table1">
+                            <table class="table table-hover" id="table1">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -98,12 +100,28 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <?php $i = 1 ?>
+                                    <?php foreach ($mobil_dipinjam as $mbl) : ?>
+                                        <tr>
+                                            <td><?= $i++ ?></td>
+                                            <td>
+                                                <a href="" style="border-radius: 2rem" class="btn btn-outline-primary"><i class="bi bi-arrow-return-right"></i> Kembalikan</a>
+                                            </td>
+                                            <td><?= $mbl['tipe_k_mobil'] ?></td>
+                                            <td><?= $mbl['nama_dep_Mobil'] ?></td>
+                                            <td><?= $mbl['nopol_mobil'] ?></td>
+                                            <td><?= $mbl['tgl_pinjam_mobil'] ?></td>
+                                            <td><?= $mbl['jam_pinjam_mobil'] ?></td>
+                                            <td><?= $mbl['peminjam'] ?></td>
+                                            <td><?= $mbl['keperluan'] ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Controllers\Peminjaman;
 use CodeIgniter\Model;
 
 class PeminjamanModel extends Model
@@ -19,12 +20,46 @@ class PeminjamanModel extends Model
         'total_km'
     ]; //berguna untuk mengijinkan kolom mana saja yg dapat kita isi secara manual melalui aplikasi yang kita buat
 
-    //Fungsi buatan yang berguna untuk mendapatkan data peminjaman
-    public function getHistory($id_peminjaman = false)
+    //Fungsi buatan yang berguna untuk mendapatkan mobil-mobil yang sedang dipinjam
+    public function getAllPeminjaman_mobil()
     {
-        if ($id_peminjaman == false) {
-            return $this->findAll();
-        }
-        return $this->where(['id_peminjaman' => $id_peminjaman])->first();
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT kendaraan.tipe_kendaraan AS tipe_k_mobil, departemen.nama_departemen AS nama_dep_Mobil, kendaraan.nomor_polisi AS nopol_mobil, 
+            peminjaman.tgl_peminjaman AS tgl_pinjam_mobil, peminjaman.jam_peminjaman AS jam_pinjam_mobil, user.nama AS peminjam, peminjaman.keperluan AS keperluan 
+            FROM kendaraan, peminjaman, departemen, user
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan AND user.id_user = peminjaman.id_user AND departemen.id_departemen = kendaraan.id_departemen) 
+            AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'mobil')
+            ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
+    }
+
+    //Fungsi buatan yang berguna untuk mendapatkan motor-motor yang sedang dipinjam
+    public function getAllPeminjaman_motor()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT kendaraan.tipe_kendaraan AS tipe_k_motor, departemen.nama_departemen AS nama_dep_Motor, kendaraan.nomor_polisi AS nopol_motor,
+            peminjaman.tgl_peminjaman AS tgl_pinjam_motor, peminjaman.jam_peminjaman AS jam_pinjam_motor, user.nama AS peminjam, peminjaman.keperluan AS keperluan
+            FROM kendaraan, peminjaman, departemen, user
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan AND user.id_user = peminjaman.id_user AND departemen.id_departemen = kendaraan.id_departemen)
+            AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'motor')
+            ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
+    }
+
+    //Fungsi buatan yang berguna untuk mendapatkan seluruh data peminjaman (history)
+    public function getHistory()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT * FROM kendaraan, peminjaman WHERE kendaraan.id_kendaraan = peminjaman.id_kendaraan ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
     }
 }

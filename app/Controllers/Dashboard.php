@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\KendaraanModel;
 use App\Models\LokasiModel;
+use App\Models\PeminjamanModel;
 
 use Dompdf\Dompdf;
 
@@ -22,10 +23,12 @@ class Dashboard extends BaseController
     //Konstruktor agar semua method dapat menggunakan model
     protected $kendaraanModel;
     protected $lokasiModel;
+    protected $peminjamanModel;
     public function __construct()
     {
         $this->kendaraanModel = new KendaraanModel();
         $this->lokasiModel = new LokasiModel();
+        $this->peminjamanModel = new PeminjamanModel();
     }
 
     public function daftar_mobil()
@@ -49,7 +52,8 @@ class Dashboard extends BaseController
     public function mobil_keluar()
     {
         $data = [
-            'url' => '/dashboard/mobil'
+            'url' => '/dashboard/mobil',
+            'mobil_dipinjam' => $this->peminjamanModel->getAllPeminjaman_mobil()
         ];
         return view('dashboard/mobil_keluar',  $data);
     }
@@ -57,7 +61,8 @@ class Dashboard extends BaseController
     public function motor_keluar()
     {
         $data = [
-            'url' => '/dashboard/mobil'
+            'url' => '/dashboard/mobil',
+            'motor_dipinjam' => $this->peminjamanModel->getAllPeminjaman_motor()
         ];
         return view('dashboard/motor_keluar',  $data);
     }

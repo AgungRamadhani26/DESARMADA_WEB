@@ -65,48 +65,49 @@ class Peminjaman extends BaseController
             ]
         ];
         $validasi->setRules($aturan);
-        $km = $this->request->getPost('km');
-        $tgl_pinjam = $this->request->getPost('tgl_pinjam');
-        $jam_pinjam = $this->request->getPost('jam_pinjam');
-        $keperluan = $this->request->getPost('keperluan');
-        $driver = $this->request->getPost('driver');
-        $tujuan = $this->request->getPost('tujuan');
-        //mengubah format tgl_pinjam
-        $tgl_pinjam1 = strtotime($tgl_pinjam);
-        $tgl_pinjam2 = date('Y-m-d', $tgl_pinjam1);
-        //mengubah format jam_pinjam
-        $jam_pinjam1 = strtotime($jam_pinjam);
-        $jam_pinjam2 = date('H:i:s', $jam_pinjam1);
-        //Pengecekan apakah memilih driver, jika tidak maka secara default driver adalah si peminjam
-        if ($driver) {
-            $driver_peminjaman = $driver;
-        } else {
-            $driverr = $this->driverModel->getDriver(session()->get('id_driver'));
-            $driver_peminjaman = $driverr['nama'];
-        }
-        $jenis_kendaraan = $this->kendaraanModel->select('jenis_kendaraan')->where('id_kendaraan', $id_kendaraan);
-        $data_pinjam = [
-            'id_kendaraan' => $id_kendaraan,
-            'id_user' => session()->get('id_user'),
-            'tgl_peminjaman' => $tgl_pinjam2,
-            'jam_peminjaman' => $jam_pinjam2,
-            'km_awal' => $km,
-            'keperluan' => $keperluan,
-            'driver' =>  $driver_peminjaman,
-            'tujuan' => $tujuan
-        ];
-        $data_kendaraan = [
-            'id_kendaraan' => $id_kendaraan,
-            'pinjam' => 1
-        ];
         //jika valid
         if ($validasi->withRequest($this->request)->run()) {
+            $km = $this->request->getPost('km');
+            $tgl_pinjam = $this->request->getPost('tgl_pinjam');
+            $jam_pinjam = $this->request->getPost('jam_pinjam');
+            $keperluan = $this->request->getPost('keperluan');
+            $driver = $this->request->getPost('driver');
+            $tujuan = $this->request->getPost('tujuan');
+            //mengubah format tgl_pinjam
+            $tgl_pinjam1 = strtotime($tgl_pinjam);
+            $tgl_pinjam2 = date('Y-m-d', $tgl_pinjam1);
+            //mengubah format jam_pinjam
+            $jam_pinjam1 = strtotime($jam_pinjam);
+            $jam_pinjam2 = date('H:i:s', $jam_pinjam1);
+            //Pengecekan apakah memilih driver, jika tidak maka secara default driver adalah si peminjam
+            if ($driver) {
+                $driver_peminjaman = $driver;
+            } else {
+                $driverr = $this->driverModel->getDriver(session()->get('id_driver'));
+                $driver_peminjaman = $driverr['nama'];
+            }
+            $kendaraan = $this->kendaraanModel->find($id_kendaraan);
+            $data_pinjam = [
+                'id_kendaraan' => $id_kendaraan,
+                'id_user' => session()->get('id_user'),
+                'tgl_peminjaman' => $tgl_pinjam2,
+                'jam_peminjaman' => $jam_pinjam2,
+                'km_awal' => $km,
+                'saldo_tol_awal' => $kendaraan['total_saldo_tol'],
+                'keperluan' => $keperluan,
+                'driver' =>  $driver_peminjaman,
+                'tujuan' => $tujuan
+            ];
+            $data_kendaraan = [
+                'id_kendaraan' => $id_kendaraan,
+                'pinjam' => 1
+            ];
             if ($tgl_pinjam2 == date('Y-m-d')) {
                 if ($jam_pinjam2 >= date('H:i')) { //DETIK DIABAIKAN SAJA
                     $this->peminjamanModel->save($data_pinjam);
                     $this->kendaraanModel->save($data_kendaraan);
                     Set_notifikasi_swal('success', 'Sukses :)', 'Peminjaman kendaraan berhasil');
-                    if ($jenis_kendaraan == 'mobil') {
+                    if ($kendaraan['jenis_kendaraan'] == 'mobil') {
                         return redirect()->to('/dashboard/mobil_keluar');
                     } else {
                         return redirect()->to('/dashboard/motor_keluar');
@@ -119,7 +120,7 @@ class Peminjaman extends BaseController
                 $this->peminjamanModel->save($data_pinjam);
                 $this->kendaraanModel->save($data_kendaraan);
                 Set_notifikasi_swal('success', 'Sukses :)', 'Peminjaman kendaraan berhasil');
-                if ($jenis_kendaraan == 'mobil') {
+                if ($kendaraan['jenis_kendaraan'] == 'mobil') {
                     return redirect()->to('/dashboard/mobil_keluar');
                 } else {
                     return redirect()->to('/dashboard/motor_keluar');
@@ -134,6 +135,177 @@ class Peminjaman extends BaseController
             session()->setFlashdata('keperluan_kosong', $validasi->getError('keperluan'));
             session()->setFlashdata('tujuan_kosong', $validasi->getError('tujuan'));
             return redirect()->to('/peminjaman/pinjam_kendaraan/' . $id_kendaraan)->withInput();
+        }
+    }
+
+    public function kembalikan_kendaraan($id_peminjaman)
+    {
+        $peminjaman = $this->peminjamanModel->find($id_peminjaman);
+        $kendaraan = $this->kendaraanModel->find($peminjaman['id_kendaraan']);
+        $data = [
+            'url' => '/dashboard/mobil',
+            'kendaraan' => $kendaraan,
+            'peminjaman' => $peminjaman
+        ];
+        return view('peminjaman/kembalikan_kendaraan', $data);
+    }
+
+    public function add_pengembalian($id_peminjaman)
+    {
+        // Validasi input
+        $validasi = \Config\Services::validation();
+        if ($this->request->getPost('isi_tol') != '0') {
+            $rule_lampiran_isi_tol  = 'uploaded[lampiran_isi_tol]|max_size[lampiran_isi_tol,1024]|is_image[lampiran_isi_tol]|mime_in[lampiran_isi_tol,image/jpg,image/jpeg,image/png]';
+        } else {
+            $rule_lampiran_isi_tol  = 'is_image[lampiran_isi_tol]';
+        }
+        if ($this->request->getPost('isi_bbm')) {
+            $rule_lampiran_isi_bbm  = 'uploaded[lampiran_isi_bbm]|max_size[lampiran_isi_bbm,1024]|is_image[lampiran_isi_bbm]|mime_in[lampiran_isi_bbm,image/jpg,image/jpeg,image/png]';
+        } else {
+            $rule_lampiran_isi_bbm  = 'is_image[lampiran_isi_bbm]';
+        }
+        $aturan = [
+            'tgl_kembali' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Tanggal kembali harus diisi',
+                ]
+            ],
+            'jam_kembali' => [
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'Jam kembali harus diisi',
+                ]
+            ],
+            'km_akhir' => [
+                'rules' => 'required|integer',
+                'errors' => [
+                    'required' => 'Km akhir harus diisi',
+                    'integer' => 'km akhir harus berupa angka'
+                ]
+            ],
+            'isi_tol' => [
+                'rules' => 'integer',
+                'errors' => [
+                    'integer' => 'Isi tol harus berupa angka'
+                ]
+            ],
+            'lampiran_isi_tol' => [
+                'rules' => $rule_lampiran_isi_tol,
+                'errors' => [
+                    'uploaded' => 'Tolong kirimkan lampiran',
+                    'max_size' => 'Ukuran gambar terlalu besar',
+                    'is_image' => 'Yang anda pilih bukan gambar',
+                    'mime_in' => 'Yang anda pilih bukan gambar'
+                ]
+            ],
+            'isi_bbm' => [
+                'rules' => 'integer',
+                'errors' => [
+                    'integer' => 'Isi BBM harus berupa angka'
+                ]
+            ],
+            'lampiran_isi_bbm' => [
+                'rules' => $rule_lampiran_isi_bbm,
+                'errors' => [
+                    'uploaded' => 'Tolong kirimkan lampiran',
+                    'max_size' => 'Ukuran gambar terlalu besar',
+                    'is_image' => 'Yang anda pilih bukan gambar',
+                    'mime_in' => 'Yang anda pilih bukan gambar',
+                ]
+            ]
+        ];
+        $validasi->setRules($aturan);
+        //Untuk mengambil data dari model peminjaman yang berguna untuk validasi
+        $peminjaman = $this->peminjamanModel->find($id_peminjaman);
+        $kendaraan = $this->kendaraanModel->find($peminjaman['id_kendaraan']);
+        if ($validasi->withRequest($this->request)->run()) {
+            $tgl_kembali = $this->request->getPost('tgl_kembali');
+            $jam_kembali = $this->request->getPost('jam_kembali');
+            $km_akhir = $this->request->getPost('km_akhir');
+            $isi_tol = $this->request->getPost('isi_tol');
+            $isi_bbm = $this->request->getPost('isi_bbm');
+            $lampiran_isi_tol = $this->request->getFile('lampiran_isi_tol');
+            $lampiran_isi_bbm = $this->request->getFile('lampiran_isi_bbm');
+            //mengubah format tgl_pinjam
+            $tgl_kembali1 = strtotime($tgl_kembali);
+            $tgl_kembali2 = date('Y-m-d', $tgl_kembali1);
+            //mengubah format jam_pinjam
+            $jam_kembali1 = strtotime($jam_kembali);
+            $jam_kembali2 = date('H:i:s', $jam_kembali1);
+            //ngecek apakah ada file yang di upload
+            if ($lampiran_isi_tol->getError() != 4) { //error 4 artinya request filenya tidak ada
+                //generate nama gambar random
+                $namaLampiran_isi_tol = $lampiran_isi_tol->getRandomName();
+                //pindahkan file gambar ke folder yang sudah dibuat di folder public
+                $lampiran_isi_tol->move('assets/img_lampiran_tol', $namaLampiran_isi_tol);
+            } else {
+                $namaLampiran_isi_tol = NULL;
+            }
+            if ($lampiran_isi_bbm->getError() != 4) { //error 4 artinya request filenya tidak ada
+                //generate nama gambar random
+                $namaLampiran_isi_bbm = $lampiran_isi_bbm->getRandomName();
+                //pindahkan file gambar ke folder yang sudah dibuat di folder public
+                $lampiran_isi_bbm->move('assets/img_lampiran_bbm', $namaLampiran_isi_bbm);
+            } else {
+                $namaLampiran_isi_bbm = NULL;
+            }
+            //Untuk mengumpulkan data inputan yang nanti akan dimasukkan ke database jika validasi lolos semua
+            $total_km = $km_akhir - $peminjaman['km_awal'];
+            $saldo_tol_akhir = $peminjaman['saldo_tol_awal'] + $isi_tol;
+            $data_pinjam = [
+                'id_peminjaman' => $id_peminjaman,
+                'tgl_kembali' => $tgl_kembali2,
+                'jam_kembali' => $jam_kembali2,
+                'km_akhir' => $km_akhir,
+                'total_km' => $total_km,
+                'saldo_tol_akhir' => $saldo_tol_akhir,
+                'hargabbm' => $isi_bbm,
+                'lampiran_tol' => $namaLampiran_isi_tol,
+                'lampiran_bbm' => $namaLampiran_isi_bbm
+            ];
+            $data_kendaraan = [
+                'id_kendaraan' => $peminjaman['id_kendaraan'],
+                'pinjam' => 0,
+                'km' => $km_akhir,
+                'total_saldo_tol' => $saldo_tol_akhir
+            ];
+            if ($tgl_kembali2 == $peminjaman['tgl_peminjaman']) {
+                if ($jam_kembali2 >= date('H:i')) { //DETIK DIABAIKAN SAJA
+                    $this->peminjamanModel->save($data_pinjam);
+                    $this->kendaraanModel->save($data_kendaraan);
+                    Set_notifikasi_swal('success', 'Sukses :)', 'Pengembalian kendaraan berhasil');
+                    if ($kendaraan['jenis_kendaraan'] == 'mobil') {
+                        return redirect()->to('/dashboard/mobil_keluar');
+                    } else {
+                        return redirect()->to('/dashboard/motor_keluar');
+                    }
+                } else {
+                    Set_notifikasi_swal('error', 'Maaf', 'Pilih jam pengembalian minimal jam saat ini');
+                    return redirect()->to('/peminjaman/kembalikan_kendaraan/' . $id_peminjaman)->withInput();
+                }
+            } elseif ($tgl_kembali2 > $peminjaman['tgl_peminjaman']) {
+                $this->peminjamanModel->save($data_pinjam);
+                $this->kendaraanModel->save($data_kendaraan);
+                Set_notifikasi_swal('success', 'Sukses :)', 'Pengembalian kendaraan berhasil');
+                if ($kendaraan['jenis_kendaraan'] == 'mobil') {
+                    return redirect()->to('/dashboard/mobil_keluar');
+                } else {
+                    return redirect()->to('/dashboard/motor_keluar');
+                }
+            } else {
+                Set_notifikasi_swal('error', 'Maaf', 'Pilih tanggal pengembalian harus lebih dari tanggal peminjaman');
+                return redirect()->to('/peminjaman/kembalikan_kendaraan/' . $id_peminjaman)->withInput();
+            }
+        } else {
+            session()->setFlashdata('err_tgl_kembali', $validasi->getError('tgl_kembali'));
+            session()->setFlashdata('err_jam_kembali', $validasi->getError('jam_kembali'));
+            session()->setFlashdata('err_km_akhir', $validasi->getError('km_akhir'));
+            session()->setFlashdata('err_isi_tol', $validasi->getError('isi_tol'));
+            session()->setFlashdata('err_lampiran_isi_tol', $validasi->getError('lampiran_isi_tol'));
+            session()->setFlashdata('err_isi_bbm', $validasi->getError('isi_bbm'));
+            session()->setFlashdata('err_lampiran_isi_bbm', $validasi->getError('lampiran_isi_bbm'));
+            return redirect()->to('/peminjaman/kembalikan_kendaraan/' . $id_peminjaman)->withInput();
         }
     }
 

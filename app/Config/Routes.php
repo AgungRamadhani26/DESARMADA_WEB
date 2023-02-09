@@ -52,6 +52,9 @@ $routes->get('/dashboard/printQR/(:any)', 'Dashboard::printQR/$1');
 $routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');
 $routes->get('/peminjaman/pinjam_kendaraan/(:num)', 'Peminjaman::pinjam_kendaraan/$1');
 $routes->post('/peminjaman/add_pinjam/(:num)', 'Peminjaman::add_pinjam/$1');
+$routes->get('/peminjaman/kembalikan_kendaraan/(:num)', 'Peminjaman::kembalikan_kendaraan/$1');
+$routes->post('/peminjaman/add_pengembalian/(:num)', 'Peminjaman::add_pengembalian/$1');
+
 
 
 //Routes User

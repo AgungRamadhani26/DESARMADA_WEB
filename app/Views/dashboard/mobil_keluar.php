@@ -105,7 +105,7 @@
                                         <tr>
                                             <td><?= $i++ ?></td>
                                             <td>
-                                                <a href="" style="border-radius: 2rem" class="btn btn-outline-primary"><i class="bi bi-arrow-return-right"></i> Kembalikan</a>
+                                                <a href="/peminjaman/kembalikan_kendaraan/<?= $mbl['id_peminjaman'] ?>" style="border-radius: 2rem" class="btn btn-outline-primary btn-sm"><i class="bi bi-arrow-return-right"></i> Kembalikan</a>
                                             </td>
                                             <td><?= $mbl['tipe_k_mobil'] ?></td>
                                             <td><?= $mbl['nama_dep_Mobil'] ?></td>

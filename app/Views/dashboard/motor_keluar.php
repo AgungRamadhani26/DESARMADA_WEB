@@ -110,8 +110,18 @@
                                             <td><?= $mtr['tipe_k_motor'] ?></td>
                                             <td><?= $mtr['nama_dep_Motor'] ?></td>
                                             <td><?= $mtr['nopol_motor'] ?></td>
-                                            <td><?= $mtr['tgl_pinjam_motor'] ?></td>
-                                            <td><?= $mtr['jam_pinjam_motor'] ?></td>
+                                            <?php
+                                            $tgl_pinjam = $mtr['tgl_pinjam_motor'];
+                                            $tgl_pinjam1 = strtotime($tgl_pinjam);
+                                            $tgl_pinjam2 = date('d-m-Y', $tgl_pinjam1);
+                                            ?>
+                                            <td><?= $tgl_pinjam2 ?></td>
+                                            <?php
+                                            $jam_pinjam = $mtr['jam_pinjam_motor'];
+                                            $jam_pinjam1 = strtotime($jam_pinjam);
+                                            $jam_pinjam2 = date('H:i', $jam_pinjam1);
+                                            ?>
+                                            <td><?= $jam_pinjam2 ?></td>
                                             <td><?= $mtr['peminjam'] ?></td>
                                             <td><?= $mtr['keperluan'] ?></td>
                                         </tr>

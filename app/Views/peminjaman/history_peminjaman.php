@@ -14,9 +14,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-8">
-                            <a href="#" class="aktiff">Semua History &emsp;</a>
-                            <a href="#" class="">History Mobil &emsp;</a>
-                            <a href="#" class="">History Motor</a>
+                            <a href="/peminjaman/history_peminjaman" class="aktiff">Semua History &emsp;</a>
+                            <a href="/peminjaman/history_peminjaman_mobil" class="">History Mobil &emsp;</a>
+                            <a href="/peminjaman/history_peminjaman_motor" class="">History Motor</a>
                         </div>
                         <div class="col-4">
                             <a href="#" class="btn btn-success btn-sm position-absolute bottom-50 end-10 mb-1">Export Data Excel</a>
@@ -37,7 +37,13 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Action</th>
+                        <?php
+                        if (session()->get('level') == 1) {
+                        ?>
+                            <th>Action</th>
+                        <?php
+                        }
+                        ?>
                         <th>Jenis Kendaraan</th>
                         <th>Tipe Kendaraaan</th>
                         <th>Nomor Polisi</th>
@@ -57,26 +63,80 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1 ?>
+                    <?php
+                    $i = 1 ?>
                     <?php foreach ($history as $h) : ?>
                         <tr>
+                            <?php
+                            //Untuk tanggal pinjam
+                            $tgl_pinjam = $h['tgl_peminjaman'];
+                            $tgl_pinjam1 = strtotime($tgl_pinjam);
+                            $tgl_pinjam2 = date('d-m-Y', $tgl_pinjam1);
+                            //Untuk jam pinjam
+                            $jam_pinjam = $h['jam_peminjaman'];
+                            $jam_pinjam1 = strtotime($jam_pinjam);
+                            $jam_pinjam2 = date('H:i', $jam_pinjam1);
+                            //Untuk tanggal kembali
+                            if ($h['tgl_kembali'] != NULL) {
+                                $tgl_kembali = $h['tgl_kembali'];
+                                $tgl_kembali1 = strtotime($tgl_kembali);
+                                $tgl_kembali2 = date('d-m-Y', $tgl_kembali1);
+                            } else {
+                                $tgl_kembali2 = '';
+                            }
+                            //Untuk jam kembali
+                            if ($h['jam_kembali'] != NULL) {
+                                $jam_kembali = $h['jam_kembali'];
+                                $jam_kembali1 = strtotime($jam_kembali);
+                                $jam_kembali2 = date('H:i', $jam_kembali1);
+                            } else {
+                                $jam_kembali2 = '';
+                            }
+                            //Untuk total KM
+                            if ($h['km_akhir'] != NULL) {
+                                $total_km = $h['km_akhir'] - $h['km_awal'];
+                            } else {
+                                $total_km = 0;
+                            }
+                            //Untuk pengisian tol
+                            if ($h['saldo_tol_akhir'] == NULL) {
+                                $pengisian_tol = 0;
+                                $tol = '/assets/images/img_tampilan/NoImage.png';
+                            } else {
+                                $pengisian_tol = $h['saldo_tol_akhir'] - $h['saldo_tol_awal'];
+                                $tol = '/assets/img_lampiran_tol/' . $h['lampiran_tol'];
+                            }
+                            //Untuk pengisian BBM
+                            if (($h['hargabbm'] != NULL) || ($h['hargabbm'] != 0)) {
+                                $bbm = '/assets/img_lampiran_bbm/' . $h['lampiran_bbm'];
+                            } else {
+                                $bbm = '/assets/images/img_tampilan/NoImage.png';
+                            }
+                            ?>
+                            <!--Menampilkan historynya-->
                             <td><?= $i++ ?></td>
-                            <td>
-                                <a href="" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3-fill"></i> Hapus</a>
-                            </td>
+                            <?php
+                            if (session()->get('level') == 1) {
+                            ?>
+                                <td>
+                                    <a href="" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3-fill"></i> Hapus</a>
+                                </td>
+                            <?php
+                            }
+                            ?>
                             <td><?= $h['jenis_kendaraan'] ?></td>
                             <td><?= $h['tipe_kendaraan'] ?></td>
                             <td><?= $h['nomor_polisi'] ?></td>
-                            <td><?= $h['tgl_peminjaman'] ?></td>
-                            <td><?= $h['jam_peminjaman'] ?></td>
-                            <td><?= $h['tgl_kembali'] ?></td>
-                            <td><?= $h['jam_kembali'] ?></td>
+                            <td><?= $tgl_pinjam2 ?></td>
+                            <td><?= $jam_pinjam2 ?></td>
+                            <td><?= $tgl_kembali2 ?></td>
+                            <td><?= $jam_kembali2 ?></td>
                             <td><?= $h['km_awal'] ?></td>
                             <td><?= $h['km_akhir'] ?></td>
-                            <td><?= 'belum di set' ?></td>
-                            <td><?= 'belum di set' ?></td>
-                            <td><?= 'belum di set' ?></td>
-                            <td><?= 'belum diset' ?></td>
+                            <td><?= $total_km ?></td>
+                            <td><a href="<?= $tol ?>" target="_blank"><?= idr($pengisian_tol) ?></a></td>
+                            <td><a href="<?= $bbm ?>" target="_blank"><?= idr($h['hargabbm']) ?></a></td>
+                            <td><?= $h['nama'] ?></td>
                             <td><?= $h['keperluan'] ?></td>
                             <td><?= $h['tujuan'] ?></td>
                             <td><?= $h['driver'] ?></td>

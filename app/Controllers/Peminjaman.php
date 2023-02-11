@@ -21,6 +21,7 @@ class Peminjaman extends BaseController
         $this->kendaraanModel = new KendaraanModel();
         $this->userModel = new UserModel();
         $this->driverModel = new DriverModel();
+        helper(['options_helper']);
         helper(['swal_helper']); //load helper yang udah dibuat
     }
 
@@ -154,12 +155,12 @@ class Peminjaman extends BaseController
     {
         // Validasi input
         $validasi = \Config\Services::validation();
-        if ($this->request->getPost('isi_tol') != '0') {
+        if ($this->request->getPost('isi_tol') != 0) {
             $rule_lampiran_isi_tol  = 'uploaded[lampiran_isi_tol]|max_size[lampiran_isi_tol,1024]|is_image[lampiran_isi_tol]|mime_in[lampiran_isi_tol,image/jpg,image/jpeg,image/png]';
         } else {
             $rule_lampiran_isi_tol  = 'is_image[lampiran_isi_tol]';
         }
-        if ($this->request->getPost('isi_bbm')) {
+        if ($this->request->getPost('isi_bbm') != 0) {
             $rule_lampiran_isi_bbm  = 'uploaded[lampiran_isi_bbm]|max_size[lampiran_isi_bbm,1024]|is_image[lampiran_isi_bbm]|mime_in[lampiran_isi_bbm,image/jpg,image/jpeg,image/png]';
         } else {
             $rule_lampiran_isi_bbm  = 'is_image[lampiran_isi_bbm]';
@@ -181,13 +182,7 @@ class Peminjaman extends BaseController
                 'rules' => 'required|integer',
                 'errors' => [
                     'required' => 'Km akhir harus diisi',
-                    'integer' => 'km akhir harus berupa angka'
-                ]
-            ],
-            'isi_tol' => [
-                'rules' => 'integer',
-                'errors' => [
-                    'integer' => 'Isi tol harus berupa angka'
+                    'integer' => 'km akhir harus berupa bilangan bulat'
                 ]
             ],
             'lampiran_isi_tol' => [
@@ -197,12 +192,6 @@ class Peminjaman extends BaseController
                     'max_size' => 'Ukuran gambar terlalu besar',
                     'is_image' => 'Yang anda pilih bukan gambar',
                     'mime_in' => 'Yang anda pilih bukan gambar'
-                ]
-            ],
-            'isi_bbm' => [
-                'rules' => 'integer',
-                'errors' => [
-                    'integer' => 'Isi BBM harus berupa angka'
                 ]
             ],
             'lampiran_isi_bbm' => [
@@ -219,12 +208,15 @@ class Peminjaman extends BaseController
         //Untuk mengambil data dari model peminjaman yang berguna untuk validasi
         $peminjaman = $this->peminjamanModel->find($id_peminjaman);
         $kendaraan = $this->kendaraanModel->find($peminjaman['id_kendaraan']);
+        $isi_tol = $this->request->getPost('isi_tol');
+        $isi_bbm = $this->request->getPost('isi_bbm');
+        //Menghapus tanda titik dari inputan karena make autonumeric
+        $isi_tol1 = str_replace('.', '', $isi_tol);
+        $isi_bbm1 = str_replace('.', '', $isi_bbm);
         if ($validasi->withRequest($this->request)->run()) {
             $tgl_kembali = $this->request->getPost('tgl_kembali');
             $jam_kembali = $this->request->getPost('jam_kembali');
             $km_akhir = $this->request->getPost('km_akhir');
-            $isi_tol = $this->request->getPost('isi_tol');
-            $isi_bbm = $this->request->getPost('isi_bbm');
             $lampiran_isi_tol = $this->request->getFile('lampiran_isi_tol');
             $lampiran_isi_bbm = $this->request->getFile('lampiran_isi_bbm');
             //mengubah format tgl_pinjam
@@ -250,9 +242,14 @@ class Peminjaman extends BaseController
             } else {
                 $namaLampiran_isi_bbm = NULL;
             }
+            //Memeriksa km akhir, kalau lebih kecil dari km awal maka mengirim pesan error
+            if ($km_akhir < $peminjaman['km_awal']) {
+                Set_notifikasi_swal('error', 'Maaf', 'Km akhir tidak mungkin lebih kecil dari km awal');
+                return redirect()->to('/peminjaman/kembalikan_kendaraan/' . $id_peminjaman)->withInput();
+            }
             //Untuk mengumpulkan data inputan yang nanti akan dimasukkan ke database jika validasi lolos semua
             $total_km = $km_akhir - $peminjaman['km_awal'];
-            $saldo_tol_akhir = $peminjaman['saldo_tol_awal'] + $isi_tol;
+            $saldo_tol_akhir = $peminjaman['saldo_tol_awal'] + $isi_tol1;
             $data_pinjam = [
                 'id_peminjaman' => $id_peminjaman,
                 'tgl_kembali' => $tgl_kembali2,
@@ -260,7 +257,7 @@ class Peminjaman extends BaseController
                 'km_akhir' => $km_akhir,
                 'total_km' => $total_km,
                 'saldo_tol_akhir' => $saldo_tol_akhir,
-                'hargabbm' => $isi_bbm,
+                'hargabbm' => $isi_bbm1,
                 'lampiran_tol' => $namaLampiran_isi_tol,
                 'lampiran_bbm' => $namaLampiran_isi_bbm
             ];
@@ -305,17 +302,51 @@ class Peminjaman extends BaseController
             session()->setFlashdata('err_lampiran_isi_tol', $validasi->getError('lampiran_isi_tol'));
             session()->setFlashdata('err_isi_bbm', $validasi->getError('isi_bbm'));
             session()->setFlashdata('err_lampiran_isi_bbm', $validasi->getError('lampiran_isi_bbm'));
+            session()->setFlashdata('isi_tol', $isi_tol1);
+            session()->setFlashdata('isi_bbm', $isi_bbm1);
             return redirect()->to('/peminjaman/kembalikan_kendaraan/' . $id_peminjaman)->withInput();
         }
     }
 
-    //method index
     public function history_Peminjaman()
     {
+        if (session()->get('level') == 1) {
+            $history = $this->peminjamanModel->getHistory();
+        } else {
+            $history = $this->peminjamanModel->getHistorybyID_User(session()->get('id_user'));
+        }
         $data = [
-            'history' => $this->peminjamanModel->getHistory(),
+            'history' => $history,
             'url' => '/peminjaman/history_peminjaman'
         ];
         return view('peminjaman/history_peminjaman', $data);
+    }
+
+    public function history_peminjaman_mobil()
+    {
+        if (session()->get('level') == 1) {
+            $history = $this->peminjamanModel->getHistoryMobil();
+        } else {
+            $history = $this->peminjamanModel->getHistoryMobilbyID_USER(session()->get('id_user'));
+        }
+        $data = [
+            'history' => $history,
+            'url' => '/peminjaman/history_peminjaman'
+        ];
+        return view('peminjaman/history_peminjaman_mobil', $data);
+    }
+
+    public function history_peminjaman_motor()
+    {
+        if (session()->get('level') == 1) {
+            $history = $this->peminjamanModel->getHistoryMotor();
+        } else {
+            $history = $this->peminjamanModel->getHistoryMotorbyID_USER(session()->get('id_user'));
+        }
+        $data = [
+            'history' => $history,
+            'url' => '/peminjaman/history_peminjaman'
+        ];
+        return view('peminjaman/history_peminjaman_motor', $data);
     }
 }

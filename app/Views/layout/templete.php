@@ -63,6 +63,22 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <!--Untuk sweetalert-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--Untuk autonumeric pada input bbm dan saldo tol-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.6.0/autoNumeric.min.js" integrity="sha512-6j+LxzZ7EO1Kr7H5yfJ8VYCVZufCBMNFhSMMzb2JRhlwQ/Ri7Zv8VfJ7YI//cg9H5uXT2lQpb14YMvqUAdGlcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.6.0/autoNumeric.js" integrity="sha512-/lbeISSLChIunUcgNvSFJSC+LFCZg08JHFhvDfDWDlY3a/NYb/NPKOcfDte3aA6E3mxm9a3sdxvkktZJSCpxGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        new AutoNumeric('#isi_tol', {
+            decimalPlaces: '0',
+            decimalCharacter: ',',
+            digitGroupSeparator: '.'
+        });
+
+        new AutoNumeric('#isi_bbm', {
+            decimalPlaces: '0',
+            decimalCharacter: ',',
+            digitGroupSeparator: '.'
+        });
+    </script>
     <script>
         <?php if (session()->getFlashdata('swal_icon')) { ?>
             Swal.fire({

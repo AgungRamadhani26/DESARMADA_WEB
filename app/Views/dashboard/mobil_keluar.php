@@ -110,8 +110,18 @@
                                             <td><?= $mbl['tipe_k_mobil'] ?></td>
                                             <td><?= $mbl['nama_dep_Mobil'] ?></td>
                                             <td><?= $mbl['nopol_mobil'] ?></td>
-                                            <td><?= $mbl['tgl_pinjam_mobil'] ?></td>
-                                            <td><?= $mbl['jam_pinjam_mobil'] ?></td>
+                                            <?php
+                                            $tgl_pinjam = $mbl['tgl_pinjam_mobil'];
+                                            $tgl_pinjam1 = strtotime($tgl_pinjam);
+                                            $tgl_pinjam2 = date('d-m-Y', $tgl_pinjam1);
+                                            ?>
+                                            <td><?= $tgl_pinjam2 ?></td>
+                                            <?php
+                                            $jam_pinjam = $mbl['jam_pinjam_mobil'];
+                                            $jam_pinjam1 = strtotime($jam_pinjam);
+                                            $jam_pinjam2 = date('H:i', $jam_pinjam1);
+                                            ?>
+                                            <td><?= $jam_pinjam2 ?></td>
                                             <td><?= $mbl['peminjam'] ?></td>
                                             <td><?= $mbl['keperluan'] ?></td>
                                         </tr>

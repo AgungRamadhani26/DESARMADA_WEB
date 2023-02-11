@@ -50,6 +50,8 @@ $routes->get('/dashboard/printQR/(:any)', 'Dashboard::printQR/$1');
 
 //Peminjaman
 $routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');
+$routes->get('/peminjaman/history_peminjaman_mobil', 'Peminjaman::history_peminjaman_mobil');
+$routes->get('/peminjaman/history_peminjaman_motor', 'Peminjaman::history_peminjaman_motor');
 $routes->get('/peminjaman/pinjam_kendaraan/(:num)', 'Peminjaman::pinjam_kendaraan/$1');
 $routes->post('/peminjaman/add_pinjam/(:num)', 'Peminjaman::add_pinjam/$1');
 $routes->get('/peminjaman/kembalikan_kendaraan/(:num)', 'Peminjaman::kembalikan_kendaraan/$1');

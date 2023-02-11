@@ -61,7 +61,7 @@
                             <div class="row mb-3">
                                 <label for="isi_tol" class="col-sm-4 col-form-label">Nilai Pengisian Saldo Tol</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control <?= (session()->getFlashdata('err_isi_tol')) ? 'is-invalid' : ''; ?>" name="isi_tol" value="<?= old('isi_tol') ? old('isi_tol') : 0; ?>">
+                                    <input type="text" class="form-control <?= (session()->getFlashdata('err_isi_tol')) ? 'is-invalid' : ''; ?>" id="isi_tol" name="isi_tol" value="<?= session()->getFlashdata('isi_tol') ? session()->getFlashdata('isi_tol') : 0; ?>">
                                     <div class="invalid-feedback">
                                         <?= session()->getFlashdata('err_isi_tol') ?>
                                     </div>
@@ -82,7 +82,7 @@
                             <div class="row mb-3">
                                 <label for="isi_bbm" class="col-sm-4 col-form-label">Nilai Pengisian BBM</label>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control <?= (session()->getFlashdata('err_isi_bbm')) ? 'is-invalid' : ''; ?>" name="isi_bbm" value="<?= old('isi_bbm') ? old('isi_bbm') : 0; ?>">
+                                    <input type="text" class="form-control <?= (session()->getFlashdata('err_isi_bbm')) ? 'is-invalid' : ''; ?>" id="isi_bbm" name="isi_bbm" value="<?= session()->getFlashdata('isi_bbm') ? session()->getFlashdata('isi_bbm') : 0; ?>">
                                     <div class="invalid-feedback">
                                         <?= session()->getFlashdata('err_isi_bbm') ?>
                                     </div>

@@ -79,9 +79,11 @@
                                 <label for="" class="col-sm-3 col-form-label">Driver</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="driver">
-                                        <option value="">-- Pilih Driver --</option>
                                         <?php foreach ($driverr as $d) : ?>
-                                            <option value="<?= $d['nama'] ?>"><?= $d['nama'] ?></option>
+                                            <?php
+                                            $selected = ($d['id_driver'] == session()->get('id_driver')) ? 'selected' : '';
+                                            ?>
+                                            <option value="<?= $d['nama'] ?>" <?php echo $selected ?>><?= $d['nama'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">

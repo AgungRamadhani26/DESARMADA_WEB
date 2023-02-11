@@ -57,18 +57,69 @@ class PeminjamanModel extends Model
     {
         $db = \Config\Database::connect();
         $query = $db->query(
-            "SELECT * FROM kendaraan, peminjaman WHERE kendaraan.id_kendaraan = peminjaman.id_kendaraan ORDER BY id_peminjaman DESC"
+            "SELECT * FROM kendaraan, peminjaman, user 
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) 
+            ORDER BY id_peminjaman DESC"
         );
         $results = $query->getResultArray();
         return $results;
     }
 
-    //Fungsi buatan yang berguna unutk mendapatkan data peminjaman berdasarkan id_peminjaman, berguna untuk melakukan pengembalian
-    public function getPeminjamanby_id_peminjaman($id_peminjaman)
+    public function getHistorybyID_User($id_user)
     {
         $db = \Config\Database::connect();
         $query = $db->query(
-            "SELECT * FROM peminjaman WHERE id_peminjaman='$id_peminjaman'"
+            "SELECT * FROM kendaraan, peminjaman, user 
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (peminjaman.id_user = $id_user)
+            ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
+    }
+
+    public function getHistoryMobil()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT * FROM kendaraan, peminjaman, user 
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'mobil')
+            ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
+    }
+
+    public function getHistoryMobilbyID_USER($id_user)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT * FROM kendaraan, peminjaman, user 
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'mobil') AND (peminjaman.id_user = $id_user)
+            ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
+    }
+
+    public function getHistoryMotor()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT * FROM kendaraan, peminjaman, user 
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'motor')
+            ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
+    }
+
+    public function getHistoryMotorbyID_USER($id_user)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT * FROM kendaraan, peminjaman, user 
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'motor') AND (peminjaman.id_user = $id_user)
+            ORDER BY id_peminjaman DESC"
         );
         $results = $query->getResultArray();
         return $results;

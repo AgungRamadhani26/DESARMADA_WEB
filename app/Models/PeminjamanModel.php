@@ -36,6 +36,21 @@ class PeminjamanModel extends Model
         return $results;
     }
 
+    public function getAllPeminjaman_mobilby_ID_user($id_user)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT peminjaman.id_peminjaman AS id_peminjaman, kendaraan.tipe_kendaraan AS tipe_k_mobil, departemen.nama_departemen AS nama_dep_Mobil, 
+            kendaraan.nomor_polisi AS nopol_mobil, peminjaman.tgl_peminjaman AS tgl_pinjam_mobil, peminjaman.jam_peminjaman AS jam_pinjam_mobil, 
+            user.nama AS peminjam, peminjaman.keperluan AS keperluan FROM kendaraan, peminjaman, departemen, user
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan AND user.id_user = peminjaman.id_user AND departemen.id_departemen = kendaraan.id_departemen) 
+            AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'mobil') AND (peminjaman.id_user = $id_user)
+            ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
+    }
+
     //Fungsi buatan yang berguna untuk mendapatkan motor-motor yang sedang dipinjam
     public function getAllPeminjaman_motor()
     {
@@ -46,6 +61,21 @@ class PeminjamanModel extends Model
             user.nama AS peminjam, peminjaman.keperluan AS keperluan FROM kendaraan, peminjaman, departemen, user
             WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan AND user.id_user = peminjaman.id_user AND departemen.id_departemen = kendaraan.id_departemen)
             AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'motor')
+            ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
+    }
+
+    public function getAllPeminjaman_motorby_ID_user($id_user)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT peminjaman.id_peminjaman AS id_peminjaman, kendaraan.tipe_kendaraan AS tipe_k_motor, departemen.nama_departemen AS nama_dep_Motor, 
+            kendaraan.nomor_polisi AS nopol_motor, peminjaman.tgl_peminjaman AS tgl_pinjam_motor, peminjaman.jam_peminjaman AS jam_pinjam_motor, 
+            user.nama AS peminjam, peminjaman.keperluan AS keperluan FROM kendaraan, peminjaman, departemen, user
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan AND user.id_user = peminjaman.id_user AND departemen.id_departemen = kendaraan.id_departemen)
+            AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'motor') AND (peminjaman.id_user = $id_user)
             ORDER BY id_peminjaman DESC"
         );
         $results = $query->getResultArray();

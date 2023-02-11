@@ -51,18 +51,28 @@ class Dashboard extends BaseController
 
     public function mobil_keluar()
     {
+        if (session()->get('level') == 1) {
+            $mobil_dipinjam = $this->peminjamanModel->getAllPeminjaman_mobil();
+        } else {
+            $mobil_dipinjam = $this->peminjamanModel->getAllPeminjaman_mobilby_ID_user(session()->get('id_user'));
+        }
         $data = [
             'url' => '/dashboard/mobil',
-            'mobil_dipinjam' => $this->peminjamanModel->getAllPeminjaman_mobil()
+            'mobil_dipinjam' => $mobil_dipinjam
         ];
         return view('dashboard/mobil_keluar',  $data);
     }
 
     public function motor_keluar()
     {
+        if (session()->get('level') == 1) {
+            $motor_dipinjam = $this->peminjamanModel->getAllPeminjaman_motor();
+        } else {
+            $motor_dipinjam = $this->peminjamanModel->getAllPeminjaman_motorby_ID_user(session()->get('id_user'));
+        }
         $data = [
             'url' => '/dashboard/mobil',
-            'motor_dipinjam' => $this->peminjamanModel->getAllPeminjaman_motor()
+            'motor_dipinjam' => $motor_dipinjam
         ];
         return view('dashboard/motor_keluar',  $data);
     }

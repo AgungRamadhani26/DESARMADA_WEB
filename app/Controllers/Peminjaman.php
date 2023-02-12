@@ -6,8 +6,8 @@ use App\Models\PeminjamanModel;
 use App\Models\KendaraanModel;
 use App\Models\UserModel;
 use App\Models\DriverModel;
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+use Dompdf\Dompdf;
 
 class Peminjaman extends BaseController
 {
@@ -309,7 +309,11 @@ class Peminjaman extends BaseController
         }
     }
 
-    public function history_Peminjaman()
+    public function hapus_peminjaman($id_peminjaman)
+    {
+    }
+
+    public function history_peminjaman()
     {
         if (session()->get('level') == 1) {
             $history = $this->peminjamanModel->getHistory();
@@ -364,6 +368,23 @@ class Peminjaman extends BaseController
         export_history($history, $fileName);
     }
 
+    public function eksport_all_pdf()
+    {
+        if (session()->get('level') == 1) {
+            $history = $this->peminjamanModel->getHistory();
+            $filename = 'Daftar_History_All';
+        } else {
+            $history = $this->peminjamanModel->getHistorybyID_User(session()->get('id_user'));
+            $nama = session()->get('nama');
+            $filename = 'Daftar_History_All_' . $nama;
+        }
+        $data = [
+            'history' => $history,
+        ];
+        $view = 'peminjaman/print_pdf_history/history_peminjaman';
+        export_history_pdf($view, $data, $filename);
+    }
+
     public function eksport_mobil_exc()
     {
         if (session()->get('level') == 1) {
@@ -377,6 +398,23 @@ class Peminjaman extends BaseController
         export_history($history, $fileName);
     }
 
+    public function eksport_mobil_pdf()
+    {
+        if (session()->get('level') == 1) {
+            $history = $this->peminjamanModel->getHistoryMobil();
+            $filename = 'Daftar_History_Mobil';
+        } else {
+            $history = $this->peminjamanModel->getHistoryMobilbyID_USER(session()->get('id_user'));
+            $nama = session()->get('nama');
+            $filename = 'Daftar_History_Mobil_' . $nama;
+        }
+        $data = [
+            'history' => $history,
+        ];
+        $view = 'peminjaman/print_pdf_history/history_peminjaman_mobil';
+        export_history_pdf($view, $data, $filename);
+    }
+
     public function eksport_motor_exc()
     {
         if (session()->get('level') == 1) {
@@ -388,5 +426,22 @@ class Peminjaman extends BaseController
             $fileName = 'Daftar_History_Motor_' . $nama . '.xlsx';
         }
         export_history($history, $fileName);
+    }
+
+    public function eksport_motor_pdf()
+    {
+        if (session()->get('level') == 1) {
+            $history = $this->peminjamanModel->getHistoryMotor();
+            $filename = 'Daftar_History_Motor';
+        } else {
+            $history = $this->peminjamanModel->getHistoryMotorbyID_USER(session()->get('id_user'));
+            $nama = session()->get('nama');
+            $filename = 'Daftar_History_Motor_' . $nama;
+        }
+        $data = [
+            'history' => $history,
+        ];
+        $view = 'peminjaman/print_pdf_history/history_peminjaman_motor';
+        export_history_pdf($view, $data, $filename);
     }
 }

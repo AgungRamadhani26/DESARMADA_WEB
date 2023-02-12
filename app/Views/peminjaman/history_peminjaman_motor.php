@@ -20,7 +20,7 @@
                   </div>
                   <div class="col-4">
                      <a href="/peminjaman/eksport_motor_exc" class="btn btn-success btn-sm position-absolute bottom-50 end-10 mb-1"><i class="bi bi-file-earmark-spreadsheet-fill"></i> Export Data Excel</a>
-                     <a href="#" class="btn btn-success btn-sm position-absolute top-50 end-10 mt-1"><i class="bi bi-file-earmark-pdf-fill"></i> Export Data PDF</a>
+                     <a href="/peminjaman/eksport_motor_pdf" class="btn btn-success btn-sm position-absolute top-50 end-10 mt-1"><i class="bi bi-file-earmark-pdf-fill"></i> Export Data PDF</a>
                   </div>
                </div>
             </div>
@@ -29,7 +29,7 @@
    </div>
 
    <div class="card">
-      <div class="card-header bg-light">
+      <div class="card-header History_bg">
          <h4>Hiatory Peminjaman Motor</h4>
       </div>
       <div class="card-body">

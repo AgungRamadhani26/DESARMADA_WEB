@@ -5,7 +5,7 @@
 
 <section class="section">
     <div class="card">
-        <div class="card-header bg-light">
+        <div class="card-header bg-table">
             <h3>Daftar User</h3>
             <div>
                 <!-- Modal trigger button untuk menambah user baru -->
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-hover bg-light" id="table1">
+            <table class="table table-hover" id="table1">
                 <thead>
                     <tr>
                         <th>No</th>

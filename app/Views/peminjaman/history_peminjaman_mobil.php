@@ -20,7 +20,7 @@
                   </div>
                   <div class="col-4">
                      <a href="/peminjaman/eksport_mobil_exc" class="btn btn-success btn-sm position-absolute bottom-50 end-10 mb-1"><i class="bi bi-file-earmark-spreadsheet-fill"></i> Export Data Excel</a>
-                     <a href="#" class="btn btn-success btn-sm position-absolute top-50 end-10 mt-1"><i class="bi bi-file-earmark-pdf-fill"></i> Export Data PDF</a>
+                     <a href="/peminjaman/eksport_mobil_pdf" class="btn btn-success btn-sm position-absolute top-50 end-10 mt-1"><i class="bi bi-file-earmark-pdf-fill"></i> Export Data PDF</a>
                   </div>
                </div>
             </div>
@@ -29,8 +29,8 @@
    </div>
 
    <div class="card">
-      <div class="card-header bg-light">
-         <h4>Hiatory Peminjaman Mobil</h4>
+      <div class="card-header History_bg">
+         <h4>History Peminjaman Mobil</h4>
       </div>
       <div class="card-body">
          <table class="table table-hover" id="table1">

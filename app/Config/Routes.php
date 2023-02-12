@@ -61,6 +61,9 @@ $routes->post('/peminjaman/add_pengembalian/(:num)', 'Peminjaman::add_pengembali
 $routes->get('/peminjaman/eksport_all_exc', 'Peminjaman::eksport_all_exc');
 $routes->get('/peminjaman/eksport_mobil_exc', 'Peminjaman::eksport_mobil_exc');
 $routes->get('/peminjaman/eksport_motor_exc', 'Peminjaman::eksport_motor_exc');
+$routes->get('/peminjaman/eksport_all_pdf', 'Peminjaman::eksport_all_pdf');
+$routes->get('/peminjaman/eksport_mobil_pdf', 'Peminjaman::eksport_mobil_pdf');
+$routes->get('/peminjaman/eksport_motor_pdf', 'Peminjaman::eksport_motor_pdf');
 
 
 //Routes User

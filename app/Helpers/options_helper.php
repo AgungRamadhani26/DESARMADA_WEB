@@ -2,7 +2,7 @@
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-
+use Dompdf\Dompdf;
 
 function set_dot($d)
 {
@@ -143,4 +143,16 @@ function export_history($history, $fileName)
    header('Cache-Control: max-age=0');
    $writer->save('php://output');
    exit();
+}
+
+function export_history_pdf($view, $data, $filename)
+{
+   $dompdf = new Dompdf();
+   $dompdf->loadHtml(view($view, $data));
+   // (optional) setup the paper size and orientation
+   $dompdf->setPaper('A3', 'landscape');
+   // render html as PDF
+   $dompdf->render();
+   // output the generated pdf
+   $dompdf->stream($filename);
 }

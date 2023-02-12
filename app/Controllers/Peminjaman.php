@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
-use CodeIgniter\I18n\Time; //biar bisa gunain fungsi time
 use App\Models\PeminjamanModel;
 use App\Models\KendaraanModel;
 use App\Models\UserModel;
 use App\Models\DriverModel;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Peminjaman extends BaseController
 {
@@ -348,5 +349,44 @@ class Peminjaman extends BaseController
             'url' => '/peminjaman/history_peminjaman'
         ];
         return view('peminjaman/history_peminjaman_motor', $data);
+    }
+
+    public function eksport_all_exc()
+    {
+        if (session()->get('level') == 1) {
+            $history = $this->peminjamanModel->getHistory();
+            $fileName = 'Daftar_History_All.xlsx';
+        } else {
+            $history = $this->peminjamanModel->getHistorybyID_User(session()->get('id_user'));
+            $nama = session()->get('nama');
+            $fileName = 'Daftar_History_All_' . $nama . '.xlsx';
+        }
+        export_history($history, $fileName);
+    }
+
+    public function eksport_mobil_exc()
+    {
+        if (session()->get('level') == 1) {
+            $history = $this->peminjamanModel->getHistoryMobil();
+            $fileName = 'Daftar_History_Mobil.xlsx';
+        } else {
+            $history = $this->peminjamanModel->getHistoryMobilbyID_USER(session()->get('id_user'));
+            $nama = session()->get('nama');
+            $fileName = 'Daftar_History_Mobil_' . $nama . '.xlsx';
+        }
+        export_history($history, $fileName);
+    }
+
+    public function eksport_motor_exc()
+    {
+        if (session()->get('level') == 1) {
+            $history = $this->peminjamanModel->getHistoryMotor();
+            $fileName = 'Daftar_History_Motor.xlsx';
+        } else {
+            $history = $this->peminjamanModel->getHistoryMotorbyID_USER(session()->get('id_user'));
+            $nama = session()->get('nama');
+            $fileName = 'Daftar_History_Motor_' . $nama . '.xlsx';
+        }
+        export_history($history, $fileName);
     }
 }

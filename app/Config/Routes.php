@@ -57,6 +57,10 @@ $routes->post('/peminjaman/add_pinjam/(:num)', 'Peminjaman::add_pinjam/$1');
 $routes->get('/peminjaman/kembalikan_kendaraan/(:num)', 'Peminjaman::kembalikan_kendaraan/$1');
 $routes->post('/peminjaman/add_pengembalian/(:num)', 'Peminjaman::add_pengembalian/$1');
 
+//Eksport ke Excel dan PDF
+$routes->get('/peminjaman/eksport_all_exc', 'Peminjaman::eksport_all_exc');
+$routes->get('/peminjaman/eksport_mobil_exc', 'Peminjaman::eksport_mobil_exc');
+$routes->get('/peminjaman/eksport_motor_exc', 'Peminjaman::eksport_motor_exc');
 
 
 //Routes User

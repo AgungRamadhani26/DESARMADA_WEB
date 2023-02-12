@@ -19,8 +19,8 @@
                             <a href="/peminjaman/history_peminjaman_motor" class="">History Motor</a>
                         </div>
                         <div class="col-4">
-                            <a href="#" class="btn btn-success btn-sm position-absolute bottom-50 end-10 mb-1">Export Data Excel</a>
-                            <a href="#" class="btn btn-success btn-sm position-absolute top-50 end-10 mt-1">Export Data PDF</a>
+                            <a href="/peminjaman/eksport_all_exc" class="btn btn-success btn-sm position-absolute bottom-50 end-10 mb-1"><i class="bi bi-file-earmark-spreadsheet-fill"></i> Export Data Excel</a>
+                            <a href="#" class="btn btn-success btn-sm position-absolute top-50 end-10 mt-1"><i class="bi bi-file-earmark-pdf-fill"></i> Export Data PDF</a>
                         </div>
                     </div>
                 </div>
@@ -45,7 +45,7 @@
                         }
                         ?>
                         <th>Jenis Kendaraan</th>
-                        <th>Tipe Kendaraaan</th>
+                        <th>Tipe Kendaraan</th>
                         <th>Nomor Polisi</th>
                         <th>Tanggal Pinjam</th>
                         <th>Jam Pinjam</th>

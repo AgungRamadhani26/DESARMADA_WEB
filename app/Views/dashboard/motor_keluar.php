@@ -82,7 +82,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3>Armada Mobil Keluar</h3>
+                            <h3>Armada Motor Keluar</h3>
                         </div>
                         <div class="card-body">
                             <table class="table table-hover" id="table1">

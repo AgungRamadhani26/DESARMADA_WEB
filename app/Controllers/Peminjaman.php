@@ -309,8 +309,40 @@ class Peminjaman extends BaseController
         }
     }
 
-    public function hapus_peminjaman($id_peminjaman)
+    public function delete_peminjaman($id_peminjaman)
     {
+        $peminjaman = $this->peminjamanModel->find($id_peminjaman);
+        if (($peminjaman['tgl_kembali'] == NULL) || $peminjaman['jam_kembali'] == NULL) {
+            Set_notifikasi_swal('info', 'oopss!!!', 'Peminjaman tidak dapat dihapus jika kendaraan belum dikembalikan');
+        } else {
+            $this->peminjamanModel->delete($id_peminjaman);
+            Set_notifikasi_swal('success', 'Sukses :)', 'Data Peminjaman berhasil dihapus');
+        }
+        return redirect()->to('peminjaman/history_peminjaman');
+    }
+
+    public function delete_peminjamanMobil($id_peminjaman)
+    {
+        $peminjaman = $this->peminjamanModel->find($id_peminjaman);
+        if (($peminjaman['tgl_kembali'] == NULL) || $peminjaman['jam_kembali'] == NULL) {
+            Set_notifikasi_swal('info', 'oopss!!!', 'Peminjaman tidak dapat dihapus jika kendaraan belum dikembalikan');
+        } else {
+            $this->peminjamanModel->delete($id_peminjaman);
+            Set_notifikasi_swal('success', 'Sukses :)', 'Data Peminjaman berhasil dihapus');
+        }
+        return redirect()->to('peminjaman/history_peminjaman_mobil');
+    }
+
+    public function delete_peminjamanMotor($id_peminjaman)
+    {
+        $peminjaman = $this->peminjamanModel->find($id_peminjaman);
+        if (($peminjaman['tgl_kembali'] == NULL) || $peminjaman['jam_kembali'] == NULL) {
+            Set_notifikasi_swal('info', 'oopss!!!', 'Peminjaman tidak dapat dihapus jika kendaraan belum dikembalikan');
+        } else {
+            $this->peminjamanModel->delete($id_peminjaman);
+            Set_notifikasi_swal('success', 'Sukses :)', 'Data Peminjaman berhasil dihapus');
+        }
+        return redirect()->to('peminjaman/history_peminjaman_motor');
     }
 
     public function history_peminjaman()

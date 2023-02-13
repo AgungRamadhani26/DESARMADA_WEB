@@ -17,13 +17,10 @@ footer{
 
 header{
     font-size: 18px;
-    text-align: center;
     color: white;
     font-weight: bold;
     background-color: rgba(67,94,190,255);
-    padding-bottom: 12px;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding: 32px;
     position:sticky;
     z-index: 999;
     top: 0;

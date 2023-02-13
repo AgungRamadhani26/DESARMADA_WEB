@@ -5,9 +5,6 @@
     <div class="container">
         <div class="container form-kontainer">
             <div class="row">
-                <div>
-                    <a href="/logout" class="btn btn-warning mt-3">Logout</a>
-                </div>
                 <center>
                     <hr />
                     <div class="updateProfile">

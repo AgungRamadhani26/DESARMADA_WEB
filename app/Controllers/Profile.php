@@ -17,7 +17,7 @@ class Profile extends BaseController
     public function lihat_profile()
     {
         $data = [
-            'url' => '/profile/lihat_profile'
+            'url' => 'profile'
         ];
         return view('profile/lihat_profile',  $data);
     }

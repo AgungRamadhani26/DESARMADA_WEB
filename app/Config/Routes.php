@@ -56,6 +56,9 @@ $routes->get('/peminjaman/pinjam_kendaraan/(:num)', 'Peminjaman::pinjam_kendaraa
 $routes->post('/peminjaman/add_pinjam/(:num)', 'Peminjaman::add_pinjam/$1');
 $routes->get('/peminjaman/kembalikan_kendaraan/(:num)', 'Peminjaman::kembalikan_kendaraan/$1');
 $routes->post('/peminjaman/add_pengembalian/(:num)', 'Peminjaman::add_pengembalian/$1');
+$routes->delete('/peminjaman/delete_peminjaman/(:num)', 'Peminjaman::delete_peminjaman/$1');
+$routes->delete('/peminjaman/delete_peminjamanMobil/(:num)', 'Peminjaman::delete_peminjamanMobil/$1');
+$routes->delete('/peminjaman/delete_peminjamanMotor/(:num)', 'Peminjaman::delete_peminjamanMotor/$1');
 
 //Eksport ke Excel dan PDF
 $routes->get('/peminjaman/eksport_all_exc', 'Peminjaman::eksport_all_exc');
@@ -112,6 +115,7 @@ $routes->delete('/kendaraan/delete_kendaraan/(:num)', 'Kendaraan::delete_kendara
 
 //Laporan
 $routes->get('/laporan/laporan_penggunaan', 'Laporan::laporan_penggunaan');
+$routes->post('/laporan/cari_laporan', 'Laporan::cari_laporan');
 
 /*
  * --------------------------------------------------------------------

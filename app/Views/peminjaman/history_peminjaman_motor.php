@@ -99,7 +99,7 @@
                         $total_km = 0;
                      }
                      //Untuk pengisian tol
-                     if ($h['saldo_tol_akhir'] == NULL) {
+                     if ($h['saldo_tol_akhir'] == NULL || $h['saldo_tol_akhir'] == $h['saldo_tol_awal']) {
                         $pengisian_tol = 0;
                         $tol = '/assets/images/img_tampilan/NoImage.png';
                      } else {
@@ -107,10 +107,10 @@
                         $tol = '/assets/img_lampiran_tol/' . $h['lampiran_tol'];
                      }
                      //Untuk pengisian BBM
-                     if (($h['hargabbm'] != NULL) || ($h['hargabbm'] != 0)) {
-                        $bbm = '/assets/img_lampiran_bbm/' . $h['lampiran_bbm'];
-                     } else {
+                     if (($h['hargabbm'] == NULL) || ($h['hargabbm'] == 0)) {
                         $bbm = '/assets/images/img_tampilan/NoImage.png';
+                     } else {
+                        $bbm = '/assets/img_lampiran_bbm/' . $h['lampiran_bbm'];
                      }
                      ?>
                      <!--Menampilkan historynya-->
@@ -119,7 +119,11 @@
                      if (session()->get('level') == 1) {
                      ?>
                         <td>
-                           <a href="" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3-fill"></i> Hapus</a>
+                           <form action="/peminjaman/delete_peminjamanMotor/<?= $h['id_peminjaman'] ?>" method="POST" class="d-inline">
+                              <?= csrf_field(); ?>
+                              <input type="hidden" name="_method" value="DELETE">
+                              <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Apakah anda yakin ?');"><i class="bi bi-trash3-fill"></i> Hapus</button>
+                           </form>
                         </td>
                      <?php
                      }

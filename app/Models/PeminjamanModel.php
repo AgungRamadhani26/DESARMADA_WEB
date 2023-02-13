@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Controllers\Peminjaman;
 use CodeIgniter\Model;
 
 class PeminjamanModel extends Model
@@ -88,7 +87,7 @@ class PeminjamanModel extends Model
         $db = \Config\Database::connect();
         $query = $db->query(
             "SELECT * FROM kendaraan, peminjaman, user 
-            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) 
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (peminjaman.deleted_at IS NULL)
             ORDER BY id_peminjaman DESC"
         );
         $results = $query->getResultArray();
@@ -100,7 +99,7 @@ class PeminjamanModel extends Model
         $db = \Config\Database::connect();
         $query = $db->query(
             "SELECT * FROM kendaraan, peminjaman, user 
-            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (peminjaman.id_user = $id_user)
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (peminjaman.id_user = $id_user) AND (peminjaman.deleted_at IS NULL)
             ORDER BY id_peminjaman DESC"
         );
         $results = $query->getResultArray();
@@ -112,7 +111,7 @@ class PeminjamanModel extends Model
         $db = \Config\Database::connect();
         $query = $db->query(
             "SELECT * FROM kendaraan, peminjaman, user 
-            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'mobil')
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'mobil') AND (peminjaman.deleted_at IS NULL)
             ORDER BY id_peminjaman DESC"
         );
         $results = $query->getResultArray();
@@ -124,7 +123,7 @@ class PeminjamanModel extends Model
         $db = \Config\Database::connect();
         $query = $db->query(
             "SELECT * FROM kendaraan, peminjaman, user 
-            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'mobil') AND (peminjaman.id_user = $id_user)
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'mobil') AND (peminjaman.id_user = $id_user) AND (peminjaman.deleted_at IS NULL)
             ORDER BY id_peminjaman DESC"
         );
         $results = $query->getResultArray();
@@ -136,7 +135,7 @@ class PeminjamanModel extends Model
         $db = \Config\Database::connect();
         $query = $db->query(
             "SELECT * FROM kendaraan, peminjaman, user 
-            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'motor')
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'motor') AND (peminjaman.deleted_at IS NULL)
             ORDER BY id_peminjaman DESC"
         );
         $results = $query->getResultArray();
@@ -148,7 +147,7 @@ class PeminjamanModel extends Model
         $db = \Config\Database::connect();
         $query = $db->query(
             "SELECT * FROM kendaraan, peminjaman, user 
-            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'motor') AND (peminjaman.id_user = $id_user)
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (user.id_user = peminjaman.id_user) AND (kendaraan.jenis_kendaraan = 'motor') AND (peminjaman.id_user = $id_user) AND (peminjaman.deleted_at IS NULL)
             ORDER BY id_peminjaman DESC"
         );
         $results = $query->getResultArray();

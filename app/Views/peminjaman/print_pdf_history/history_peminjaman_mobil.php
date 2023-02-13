@@ -89,7 +89,7 @@
                   $total_km = 0;
                }
                //Untuk pengisian tol
-               if ($h['saldo_tol_akhir'] == NULL) {
+               if ($h['saldo_tol_akhir'] == NULL || $h['saldo_tol_akhir'] == $h['saldo_tol_awal']) {
                   $pengisian_tol = 0;
                } else {
                   $pengisian_tol = $h['saldo_tol_akhir'] - $h['saldo_tol_awal'];

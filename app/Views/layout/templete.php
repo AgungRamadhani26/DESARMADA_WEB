@@ -31,10 +31,7 @@
     <header>
         <?php $date = date('Y-m-d');
         $datenow = date('d F Y', strtotime($date)); ?>
-        <div>Tanggal : <?= $datenow; ?></div>
-        <div class="header-content">
-            <img src="/assets/images/img_tampilan/logo.png" width="100" />
-        </div>
+        <div class="position-absolute top-50 start-50 translate-middle">Tanggal : <?= $datenow; ?></div>
     </header>
 
     <!--Load file sidebar-->

@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-3">
+                            <div class="row mb-5">
                                 <label for="tujuan" class="col-sm-3 col-form-label">Kota Tujuan</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control <?= (session()->getFlashdata('tujuan_kosong')) ? 'is-invalid' : ''; ?>" name="tujuan" value="<?= old('tujuan'); ?>">

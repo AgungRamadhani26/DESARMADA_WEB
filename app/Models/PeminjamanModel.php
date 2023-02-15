@@ -25,9 +25,9 @@ class PeminjamanModel extends Model
     {
         $db = \Config\Database::connect();
         $query = $db->query(
-            "SELECT kendaraan.tipe_kendaraan AS tipe_k_mobil, departemen.nama_departemen AS nama_dep_Mobil, kendaraan.nomor_polisi AS nopol_mobil, 
-            peminjaman.tgl_peminjaman AS tgl_pinjam_mobil, peminjaman.jam_peminjaman AS jam_pinjam_mobil, user.nama AS peminjam, peminjaman.keperluan AS keperluan 
-            FROM kendaraan, peminjaman, departemen, user
+            "SELECT peminjaman.id_peminjaman AS id_peminjaman, kendaraan.tipe_kendaraan AS tipe_k_mobil, departemen.nama_departemen AS nama_dep_Mobil, 
+            kendaraan.nomor_polisi AS nopol_mobil, peminjaman.tgl_peminjaman AS tgl_pinjam_mobil, peminjaman.jam_peminjaman AS jam_pinjam_mobil, 
+            user.nama AS peminjam, peminjaman.keperluan AS keperluan FROM kendaraan, peminjaman, departemen, user
             WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan AND user.id_user = peminjaman.id_user AND departemen.id_departemen = kendaraan.id_departemen) 
             AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'mobil')
             ORDER BY id_peminjaman DESC"
@@ -41,9 +41,9 @@ class PeminjamanModel extends Model
     {
         $db = \Config\Database::connect();
         $query = $db->query(
-            "SELECT kendaraan.tipe_kendaraan AS tipe_k_motor, departemen.nama_departemen AS nama_dep_Motor, kendaraan.nomor_polisi AS nopol_motor,
-            peminjaman.tgl_peminjaman AS tgl_pinjam_motor, peminjaman.jam_peminjaman AS jam_pinjam_motor, user.nama AS peminjam, peminjaman.keperluan AS keperluan
-            FROM kendaraan, peminjaman, departemen, user
+            "SELECT peminjaman.id_peminjaman AS id_peminjaman, kendaraan.tipe_kendaraan AS tipe_k_motor, departemen.nama_departemen AS nama_dep_Motor, 
+            kendaraan.nomor_polisi AS nopol_motor, peminjaman.tgl_peminjaman AS tgl_pinjam_motor, peminjaman.jam_peminjaman AS jam_pinjam_motor, 
+            user.nama AS peminjam, peminjaman.keperluan AS keperluan FROM kendaraan, peminjaman, departemen, user
             WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan AND user.id_user = peminjaman.id_user AND departemen.id_departemen = kendaraan.id_departemen)
             AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'motor')
             ORDER BY id_peminjaman DESC"
@@ -58,6 +58,17 @@ class PeminjamanModel extends Model
         $db = \Config\Database::connect();
         $query = $db->query(
             "SELECT * FROM kendaraan, peminjaman WHERE kendaraan.id_kendaraan = peminjaman.id_kendaraan ORDER BY id_peminjaman DESC"
+        );
+        $results = $query->getResultArray();
+        return $results;
+    }
+
+    //Fungsi buatan yang berguna unutk mendapatkan data peminjaman berdasarkan id_peminjaman, berguna untuk melakukan pengembalian
+    public function getPeminjamanby_id_peminjaman($id_peminjaman)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT * FROM peminjaman WHERE id_peminjaman='$id_peminjaman'"
         );
         $results = $query->getResultArray();
         return $results;

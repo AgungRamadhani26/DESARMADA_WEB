@@ -516,4 +516,26 @@ function previewImg_e() {
     }
 }
 
+//Fungsi ini digunakan untuk menampilkan gambar pada form modal add kendaraan
+function previewImg_tol() {
+    const gambar = document.querySelector('#lampiran_isi_tol');
+    const imgPreview = document.querySelector('.img-preview-tol');
+    const fileGambar = new FileReader();
+    fileGambar.readAsDataURL(gambar.files[0]);
+    fileGambar.onload = function(e) {
+        imgPreview.src = e.target.result;
+    }
+}
+
+//Fungsi ini digunakan untuk menampilkan gambar pada form modal add kendaraan
+function previewImg_bbm() {
+    const gambar = document.querySelector('#lampiran_isi_bbm');
+    const imgPreview = document.querySelector('.img-preview-bbm');
+    const fileGambar = new FileReader();
+    fileGambar.readAsDataURL(gambar.files[0]);
+    fileGambar.onload = function(e) {
+        imgPreview.src = e.target.result;
+    }
+}
+
 

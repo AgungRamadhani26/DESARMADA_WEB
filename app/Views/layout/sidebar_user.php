@@ -4,11 +4,9 @@
             <div class="mt-4 ms-5">
                 <div class="d-flex justify-content-between">
                     <ul>
-                        <a href="/profile/lihat_profile">
-                            <img src="/assets/images/img_tampilan/logo.png" width="100" />
-                        </a>
+                        <img src="/assets/images/img_tampilan/logo.png" width="100" />
                     </ul>
-                    <div class="toggler">
+                    <div class="toggler sidebar-header">
                         <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                     </div>
                 </div>

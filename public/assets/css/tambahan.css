@@ -93,3 +93,15 @@ header{
 .History_bg{
     background-color: rgb(224, 223, 223);
 }
+
+.password-container {
+    position:relative;
+}
+  
+#togglePassword_edit_profile1, #togglePassword_edit_profile2, #togglePassword_edit_profile3,
+#togglePassword, #togglekonfirpass {
+    border-radius: 15%;
+    background: gray;
+    cursor: pointer;
+    font-size: 1.4rem;
+  }

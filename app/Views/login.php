@@ -38,7 +38,7 @@
                                     <?= session()->getFlashdata('error_username') ?>
                                 </div>
                             </div>
-                            <div class="form-group position-relative mb-4">
+                            <div class="form-group mb-4">
                                 <input type="password" class="form-control form-control-xl <?= (session()->getFlashdata('error_password')) ? 'is-invalid' : ''; ?>" placeholder="Password" name="password" value="<?= session()->getFlashdata('password') ?>">
                                 <div class=" invalid-feedback">
                                     <?= session()->getFlashdata('error_password') ?>

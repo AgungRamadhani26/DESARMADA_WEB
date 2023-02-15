@@ -50,14 +50,24 @@
                     </div>
                     <div class="row mb-3">
                         <label for="password">Password</label>
-                        <div class="col-sm-12">
+                        <div class="col-sm-10">
                             <input type="password" class="form-control" name="password" id="password">
+                        </div>
+                        <div class="col-sm-2 password-container">
+                            <button type="button" id="togglePassword">
+                                <i class="bi bi-eye-slash-fill" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label for="konfirpass">Konfirmasi Password</label>
-                        <div class="col-sm-12">
+                        <div class="col-sm-10">
                             <input type="password" class="form-control" name="konfirpass" id="konfirpass">
+                        </div>
+                        <div class="col-sm-2 password-container">
+                            <button type="button" id="togglekonfirpass">
+                                <i class="bi bi-eye-slash-fill" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

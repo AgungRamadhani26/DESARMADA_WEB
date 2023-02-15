@@ -2,6 +2,31 @@
 // UNTUK MELAKUKAN TAMBAH DAN EDIT DRIVER //
 //                                        //
 
+
+//Untuk show hide password pada modal
+var togglePassword = document.querySelector('#togglePassword');
+var password = document.querySelector('#password');
+togglePassword.addEventListener('click', function(e) {
+// toggle the type attribute
+   var type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+   password.setAttribute('type', type);
+   // toggle the icon
+   this.querySelector('i').classList.toggle('bi-eye-fill');
+   this.querySelector('i').classList.toggle('bi-eye-slash-fill');
+});
+
+var toggleKonfir = document.querySelector('#togglekonfirpass');
+var passwordKonfir = document.querySelector('#konfirpass');
+toggleKonfir.addEventListener('click', function(e) {
+// toggle the type attribute
+   var type = passwordKonfir.getAttribute('type') === 'password' ? 'text' : 'password';
+   passwordKonfir.setAttribute('type', type);
+   // toggle the icon
+   this.querySelector('i').classList.toggle('bi-eye-fill');
+   this.querySelector('i').classList.toggle('bi-eye-slash-fill');
+});
+
+
 //Fungsi ini digunakan untuk membersihkan form inputan pada modal add maupun edit
 function bersihkanDriver() {
     $('#nama').val('');

@@ -93,6 +93,7 @@
     </script>
     <!--Jquery script-->
     <script src="/assets/ajax.js"></script>
+    <script src="/assets/showhidePass.js"></script>
 </body>
 
 </html>

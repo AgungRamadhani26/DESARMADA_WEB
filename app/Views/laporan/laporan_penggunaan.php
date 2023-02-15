@@ -16,9 +16,18 @@
                                 <div class="input-group mb-2">
                                     <label class="input-group-text" for="inputGroupSelect01">Bulan</label>
                                     <select class="form-select" id="inputGroupSelect01" name="bulan_awal">
-                                        <?php foreach ($bulan as $b) : ?>
-                                            <option value="<?= $b['id_bulan'] ?>"><?= $b['nama_bulan'] ?></option>
-                                        <?php endforeach; ?>
+                                        <option value="01">Januari</option>
+                                        <option value="02">Februari</option>
+                                        <option value="03">Maret</option>
+                                        <option value="04">April</option>
+                                        <option value="05">Mei</option>
+                                        <option value="06">Juni</option>
+                                        <option value="07">Juli</option>
+                                        <option value="08">Agustus</option>
+                                        <option value="09">September</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="11">November</option>
+                                        <option value="12">Desember</option>
                                     </select>
                                 </div>
                             </div>
@@ -26,9 +35,18 @@
                                 <div class="input-group mb-2">
                                     <label class="input-group-text" for="inputGroupSelect01">Sampai</label>
                                     <select class="form-select" id="inputGroupSelect01" name="bulan_akhir">
-                                        <?php foreach ($bulan as $b) : ?>
-                                            <option value="<?= $b['id_bulan'] ?>"><?= $b['nama_bulan'] ?></option>
-                                        <?php endforeach; ?>
+                                        <option value="12">Desember</option>
+                                        <option value="11">November</option>
+                                        <option value="10">Oktober</option>
+                                        <option value="09">September</option>
+                                        <option value="08">Agustus</option>
+                                        <option value="07">Juli</option>
+                                        <option value="06">Juni</option>
+                                        <option value="05">Mei</option>
+                                        <option value="04">April</option>
+                                        <option value="03">Maret</option>
+                                        <option value="02">Februari</option>
+                                        <option value="01">Januari</option>
                                     </select>
                                 </div>
                             </div>
@@ -38,15 +56,14 @@
                                 <div class="input-group mb-3">
                                     <label class="input-group-text" for="inputGroupSelect01">Tahun</label>
                                     <select class="form-select" id="inputGroupSelect01" name="tahun">
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
                                         <option value="2023">2023</option>
                                         <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6 mb-1">
-                                <button type="submit" class="btn btn-primary btn-sm"><i class="bi bi-search"></i> Cari</button>
+                                <button type="submit" class="btn btn-primary btn-md"><i class="bi bi-search"></i> Cari</button>
                             </div>
                         </div>
                     </form>
@@ -68,25 +85,33 @@
                             <table class="table table-bordered mb-0 table-hover">
                                 <thead>
                                     <tr>
-                                        <th>Kendaraan</th>
-                                        <th>Januari</th>
-                                        <th>Februari</th>
-                                        <th>Maret</th>
-                                        <th>April</th>
-                                        <th>Mei</th>
-                                        <th>Juni</th>
-                                        <th>Juli</th>
-                                        <th>Agustus</th>
-                                        <th>September</th>
-                                        <th>Oktober</th>
-                                        <th>November</th>
-                                        <th>Desember</th>
+                                        <th style="color:white; background-color:burlywood" rowspan="2">Bulan</th>
+                                        <?php foreach ($kendaraanTabel as $kt) : ?>
+                                            <th style="color:white; background-color:burlywood"><?= $kt['tipe_kendaraan'] ?></th>
+                                        <?php endforeach; ?>
+
+                                    </tr>
+                                    <tr>
+                                        <?php foreach ($kendaraanTabel as $kt) : ?>
+                                            <th style="color:black; background-color:cadetblue"><?= $kt['nomor_polisi'] ?></th>
+                                        <?php endforeach; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Michael Right</td>
-                                    </tr>
+                                    <?php foreach ($bulanTabel as $bt) : ?>
+                                        <tr>
+                                            <td style="color:black; background-color:cadetblue; font-weight:bold"><?= $bt['nama_bulan'] ?></td>
+                                            <?php foreach ($laporan as $lp) : ?>
+
+                                                <?php if ($lp['month'] == $bt['id_bulan']) {
+                                                    echo '<td>' . $lp['total'] . '</td>';
+                                                } else {
+                                                    echo '<td></td>';
+                                                }
+                                                ?>
+                                            <?php endforeach; ?>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>

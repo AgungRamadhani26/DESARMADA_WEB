@@ -1,12 +1,12 @@
 <div id="app">
     <div id="sidebar" class="active">
         <div class="sidebar-wrapper active TopSide">
-            <div class="mt-4 ms-5">
+            <div class="mt-5 ms-5">
                 <div class="d-flex justify-content-between">
                     <ul>
                         <img src="/assets/images/img_tampilan/logo.png" width="100" />
                     </ul>
-                    <div class="toggler">
+                    <div class="toggler sidebar-header">
                         <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                     </div>
                 </div>
@@ -17,10 +17,10 @@
                     <li class="sidebar-title">
                         <h5 style="color: rgb(72,92,188)">Beranda</h5>
                     </li>
-                    <li class="sidebar-item has-sub <?= $url == 'profile' ? 'active' : '' ?>"">
+                    <li class="sidebar-item has-sub <?= $url == 'profile' ? 'active' : '' ?>">
                         <a href="" class='sidebar-link'>
                             <i class=" bi bi-person-fill"></i>
-                        <span>Profile</span>
+                            <span>Profile</span>
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">

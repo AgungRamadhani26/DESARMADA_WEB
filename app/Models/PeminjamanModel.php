@@ -153,4 +153,17 @@ class PeminjamanModel extends Model
         $results = $query->getResultArray();
         return $results;
     }
+
+    public function getLaporanKM($tahun)
+    {
+        $db = \Config\Database::connect();
+        $laporanKM = $db->query(
+            "SELECT kendaraan.nomor_polisi as nopol, SUM(peminjaman.total_km) AS total, 
+            MONTH(peminjaman.tgl_kembali)AS month, YEAR(peminjaman.tgl_kembali) AS year FROM kendaraan LEFT JOIN peminjaman 
+            ON kendaraan.id_kendaraan = peminjaman.id_kendaraan AND YEAR(peminjaman.tgl_kembali) = $tahun
+            GROUP BY kendaraan.nomor_polisi, month, year ORDER BY kendaraan.id_kendaraan"
+        );
+        $laporan = $laporanKM->getResultArray();
+        return $laporan;
+    }
 }

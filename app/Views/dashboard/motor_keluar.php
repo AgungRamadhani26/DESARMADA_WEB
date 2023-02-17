@@ -68,7 +68,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold mt-2">Pengembalian Motor</h6>
+                                    <h6 class="font-bold mt-3">Pengembalian Motor</h6>
                                 </div>
                             </div>
                         </div>

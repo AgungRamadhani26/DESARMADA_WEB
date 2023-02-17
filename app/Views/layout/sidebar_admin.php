@@ -11,6 +11,7 @@
                     </div>
                 </div>
             </div>
+            <hr style="border: 1px solid black; border-radius: 2px" />
             <!--Menu-menu yang ada di sidebar-->
             <div class="sidebar-menu">
                 <ul class="menu" id="menu">

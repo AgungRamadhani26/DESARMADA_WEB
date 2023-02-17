@@ -7,7 +7,7 @@ footer{
     text-align: center;
     color: white;
     font-weight: 500;
-    background-color: rgba(67,94,190,255);
+    background-image: linear-gradient(to right, rgb(70, 90, 190) , #6cb1e2);
     padding: 8px;
     position:fixed;
     z-index: 999;
@@ -19,7 +19,7 @@ header{
     font-size: 18px;
     color: white;
     font-weight: bold;
-    background-color: rgba(67,94,190,255);
+    background-image: linear-gradient(to right, rgb(70, 90, 190) , #57a5dd);
     padding: 32px;
     position:sticky;
     z-index: 999;
@@ -41,18 +41,19 @@ header{
     width: 80px;
 }
 
-.aktif{
-    background-color: #f1d9dc;
-}
-
 .aktiff{
     font-weight: bold;
     font-size: large;
-    color: blue;
+    color: rgb(47, 47, 231);
 }
 
 .cardDashboard{
-    background-color: #fdfdef;
+    background-color: #abb7cf;
+    color: white;
+}
+
+.aktif{
+    background-image: linear-gradient(to right, rgb(81, 109, 236) , #91a6cf);
 }
 
 .form-kontainer{
@@ -75,7 +76,7 @@ header{
 }
 
 .qr-codeHeader{
-    background-color: #4ca1de;
+    background-color: #53abea;
 }
 
 .delete{
@@ -104,4 +105,8 @@ header{
     background: gray;
     cursor: pointer;
     font-size: 1.4rem;
-  }
+}
+
+.bagian_logo{
+    background-color: #abb7cf;
+}

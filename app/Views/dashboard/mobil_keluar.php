@@ -51,7 +51,7 @@
                                     </a>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold mt-3">Pengembalian Mobil</h6>
+                                    <h6 class="font-bold mt-3">Pengembalian Mobil</h6>
                                 </div>
                             </div>
                         </div>

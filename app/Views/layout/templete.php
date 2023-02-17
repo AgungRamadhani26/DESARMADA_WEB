@@ -24,6 +24,15 @@
     <link rel="stylesheet" href="/assets/css/tambahan.css">
     <!--Js untuk google recapcha-->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!--Load hightchart.js-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/series-label.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <!--Load Jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -56,13 +65,12 @@
     <script src="/assets/js/main.js"></script>
     <!--Load script datatable dari folder public-->
     <script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
-    <!--Load Jquery-->
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <!--Untuk sweetalert-->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--Untuk autonumeric pada input bbm dan saldo tol-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.6.0/autoNumeric.min.js" integrity="sha512-6j+LxzZ7EO1Kr7H5yfJ8VYCVZufCBMNFhSMMzb2JRhlwQ/Ri7Zv8VfJ7YI//cg9H5uXT2lQpb14YMvqUAdGlcg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/autonumeric/4.6.0/autoNumeric.js" integrity="sha512-/lbeISSLChIunUcgNvSFJSC+LFCZg08JHFhvDfDWDlY3a/NYb/NPKOcfDte3aA6E3mxm9a3sdxvkktZJSCpxGw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
         new AutoNumeric('#isi_tol', {
             decimalPlaces: '0',
@@ -85,6 +93,7 @@
             })
         <?php } ?>
     </script>
+
     <!--Script untuk menjalankan datatable-->
     <!--Simple Datatable-->
     <script>

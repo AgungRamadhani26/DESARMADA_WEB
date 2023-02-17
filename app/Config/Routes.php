@@ -115,7 +115,7 @@ $routes->delete('/kendaraan/delete_kendaraan/(:num)', 'Kendaraan::delete_kendara
 
 //Laporan
 $routes->get('/laporan/laporan_penggunaan', 'Laporan::laporan_penggunaan');
-$routes->post('/laporan/cari_laporan', 'Laporan::cari_laporan');
+$routes->get('/laporan/cari_laporan', 'Laporan::cari_laporan');
 
 /*
  * --------------------------------------------------------------------

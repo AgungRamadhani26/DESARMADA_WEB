@@ -3,6 +3,38 @@
 <!--Menampilkan daftar user-->
 <?= $this->section('content'); ?>
 
+<aside>
+    <article class="card">
+        <div class="card-header">
+            <center>
+                <h5>Jumlah User</h5>
+                <hr>
+            </center>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <td><span class="fw-bold">Semua</span></td>
+                        <td>:</td>
+                        <td><?= $jlh_useraktif ?></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fw-bold text-primary">Admin</span></td>
+                        <td>:</td>
+                        <td><?= $jlh_useraktifadmin ?></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fw-bold text-success">Karyawan</span></td>
+                        <td>:</td>
+                        <td><?= $jlh_useraktifkaryawan ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </article>
+</aside>
+
 <section class="section">
     <div class="card">
         <div class="card-header bg-table">

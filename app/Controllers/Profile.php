@@ -105,4 +105,9 @@ class Profile extends BaseController
         }
         return redirect()->to('/profile/lihat_profile');
     }
+
+
+    public function lupa_password()
+    {
+    }
 }

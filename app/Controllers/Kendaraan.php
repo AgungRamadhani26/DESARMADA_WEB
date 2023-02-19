@@ -25,7 +25,11 @@ class Kendaraan extends BaseController
         $data = [
             'kendaraan' => $this->kendaraanModel->getKendaraan(),
             'lokasi' => $this->lokasiModel->getLokasi(),
-            'url' => '/kendaraan/daftar_kendaraan'
+            'url' => '/kendaraan/daftar_kendaraan',
+            'jlh_kendaraan' => $this->kendaraanModel->countKendaraan(),
+            'jlh_kendaraanTersedia' => $this->kendaraanModel->countKendaraanTersedia(),
+            'jlh_kendaraanTdkTersedia' => $this->kendaraanModel->countKendaraanTidakTersedia(),
+            'jlh_kendaraanServis' => $this->kendaraanModel->countKendaraanServis()
         ];
 
         return view('kendaraan/daftar_kendaraan', $data);

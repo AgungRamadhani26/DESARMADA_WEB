@@ -25,7 +25,10 @@ class User extends BaseController
         $data = [
             'user' => $this->userModel->getUser(),
             'driver' => $this->driverModel->getDriver(),
-            'url' => '/user/daftar_user'
+            'url' => '/user/daftar_user',
+            'jlh_useraktif' => $this->userModel->countUserAktif(),
+            'jlh_useraktifadmin' => $this->userModel->countUserAktifAdmin(),
+            'jlh_useraktifkaryawan' => $this->userModel->countUserAktifKaryawan(),
         ];
         return view('user/daftar_user', $data);
     }

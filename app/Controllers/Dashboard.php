@@ -33,18 +33,40 @@ class Dashboard extends BaseController
 
     public function daftar_mobil()
     {
+        if (session()->get('level') == 1) {
+            $jlh_mblBLM_Kembali = $this->peminjamanModel->countPeminjamanMobil();
+            $jlh_mtrBLM_Kembali = $this->peminjamanModel->countPeminjamanMotor();
+        } else {
+            $jlh_mblBLM_Kembali = $this->peminjamanModel->countPeminjamanMobilby_id_user(session()->get('id_user'));
+            $jlh_mtrBLM_Kembali = $this->peminjamanModel->countPeminjamanMotorby_id_user(session()->get('id_user'));
+        }
         $data = [
             'mobil' => $this->kendaraanModel->getMobil(),
-            'url' => '/dashboard/mobil'
+            'url' => '/dashboard/mobil',
+            'jlh_mblTersedia' => $this->kendaraanModel->countKendaraanMobilTersedia(),
+            'jlh_mtrTersedia' => $this->kendaraanModel->countKendaraanMotorTersedia(),
+            'jlh_mblBLM_Kembali' => $jlh_mblBLM_Kembali,
+            'jlh_mtrBLM_Kembali' => $jlh_mtrBLM_Kembali,
         ];
         return view('dashboard/mobil',  $data);
     }
 
     public function daftar_motor()
     {
+        if (session()->get('level') == 1) {
+            $jlh_mblBLM_Kembali = $this->peminjamanModel->countPeminjamanMobil();
+            $jlh_mtrBLM_Kembali = $this->peminjamanModel->countPeminjamanMotor();
+        } else {
+            $jlh_mblBLM_Kembali = $this->peminjamanModel->countPeminjamanMobilby_id_user(session()->get('id_user'));
+            $jlh_mtrBLM_Kembali = $this->peminjamanModel->countPeminjamanMotorby_id_user(session()->get('id_user'));
+        }
         $data = [
             'sepedaMotor' => $this->kendaraanModel->getMotor(),
-            'url' => '/dashboard/mobil'
+            'url' => '/dashboard/mobil',
+            'jlh_mblTersedia' => $this->kendaraanModel->countKendaraanMobilTersedia(),
+            'jlh_mtrTersedia' => $this->kendaraanModel->countKendaraanMotorTersedia(),
+            'jlh_mblBLM_Kembali' => $jlh_mblBLM_Kembali,
+            'jlh_mtrBLM_Kembali' => $jlh_mtrBLM_Kembali,
         ];
         return view('dashboard/motor',  $data);
     }
@@ -53,12 +75,20 @@ class Dashboard extends BaseController
     {
         if (session()->get('level') == 1) {
             $mobil_dipinjam = $this->peminjamanModel->getAllPeminjaman_mobil();
+            $jlh_mblBLM_Kembali = $this->peminjamanModel->countPeminjamanMobil();
+            $jlh_mtrBLM_Kembali = $this->peminjamanModel->countPeminjamanMotor();
         } else {
             $mobil_dipinjam = $this->peminjamanModel->getAllPeminjaman_mobilby_ID_user(session()->get('id_user'));
+            $jlh_mblBLM_Kembali = $this->peminjamanModel->countPeminjamanMobilby_id_user(session()->get('id_user'));
+            $jlh_mtrBLM_Kembali = $this->peminjamanModel->countPeminjamanMotorby_id_user(session()->get('id_user'));
         }
         $data = [
             'url' => '/dashboard/mobil',
-            'mobil_dipinjam' => $mobil_dipinjam
+            'mobil_dipinjam' => $mobil_dipinjam,
+            'jlh_mblTersedia' => $this->kendaraanModel->countKendaraanMobilTersedia(),
+            'jlh_mtrTersedia' => $this->kendaraanModel->countKendaraanMotorTersedia(),
+            'jlh_mblBLM_Kembali' => $jlh_mblBLM_Kembali,
+            'jlh_mtrBLM_Kembali' => $jlh_mtrBLM_Kembali,
         ];
         return view('dashboard/mobil_keluar',  $data);
     }
@@ -67,12 +97,20 @@ class Dashboard extends BaseController
     {
         if (session()->get('level') == 1) {
             $motor_dipinjam = $this->peminjamanModel->getAllPeminjaman_motor();
+            $jlh_mblBLM_Kembali = $this->peminjamanModel->countPeminjamanMobil();
+            $jlh_mtrBLM_Kembali = $this->peminjamanModel->countPeminjamanMotor();
         } else {
             $motor_dipinjam = $this->peminjamanModel->getAllPeminjaman_motorby_ID_user(session()->get('id_user'));
+            $jlh_mblBLM_Kembali = $this->peminjamanModel->countPeminjamanMobilby_id_user(session()->get('id_user'));
+            $jlh_mtrBLM_Kembali = $this->peminjamanModel->countPeminjamanMotorby_id_user(session()->get('id_user'));
         }
         $data = [
             'url' => '/dashboard/mobil',
-            'motor_dipinjam' => $motor_dipinjam
+            'motor_dipinjam' => $motor_dipinjam,
+            'jlh_mblTersedia' => $this->kendaraanModel->countKendaraanMobilTersedia(),
+            'jlh_mtrTersedia' => $this->kendaraanModel->countKendaraanMotorTersedia(),
+            'jlh_mblBLM_Kembali' => $jlh_mblBLM_Kembali,
+            'jlh_mtrBLM_Kembali' => $jlh_mtrBLM_Kembali,
         ];
         return view('dashboard/motor_keluar',  $data);
     }

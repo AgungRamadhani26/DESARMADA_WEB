@@ -1,7 +1,7 @@
 <div id="app">
     <div id="sidebar" class="active">
         <div class="sidebar-wrapper active TopSide">
-            <div class="mt-4 ms-5">
+            <div class="mt-5 ms-5">
                 <div class="d-flex justify-content-between">
                     <ul>
                         <img src="/assets/images/img_tampilan/logo.png" width="100" />

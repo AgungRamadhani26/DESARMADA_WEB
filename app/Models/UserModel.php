@@ -20,4 +20,21 @@ class UserModel extends Model
         }
         return $this->where(['id_user' => $id_user])->first();
     }
+
+    public function countUserAktif()
+    {
+        return $this->where(['deleted_at' => null])->countAllResults();
+    }
+
+    //hitung user aktif berupa admin
+    public function countUserAktifAdmin()
+    {
+        return $this->where(['deleted_at' => null, 'level' => 1])->countAllResults();
+    }
+
+    //hitung user aktif berupa karyawan
+    public function countUserAktifKaryawan()
+    {
+        return $this->where(['deleted_at' => null, 'level' => 2])->countAllResults();
+    }
 }

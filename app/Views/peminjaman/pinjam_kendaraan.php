@@ -7,7 +7,7 @@
             <div class="row">
                 <center>
                     <hr />
-                    <div class="updateProfile">
+                    <div class="pinjam-kembali">
                         <h3 class="my-3">Form Peminjaman Kendaraan</h3>
                     </div>
                     <hr />

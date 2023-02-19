@@ -197,8 +197,8 @@
 
 <script>
     $(function() {
-        var bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-        var nopol = <?= json_encode($nopolGR); ?>;
+        var bulan = <?= json_encode($bulanGrafik) ?>;
+        var nopol = <?= json_encode($nopolGR) ?>;
         var km = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         var data = [];
@@ -208,10 +208,6 @@
             km[i] = [];
             for (var j = 0; j < bulan.length; j++) {
                 km[i].push(parseInt($('#bulan_' + nopol[i] + '_' + bulan[j]).val()));
-                // membatasi jumlah data yang ditampilkan
-                if (j == <?= count($bulanGrafik) - 1; ?>) {
-                    break;
-                }
             }
 
         }

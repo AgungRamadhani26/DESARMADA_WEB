@@ -166,4 +166,52 @@ class PeminjamanModel extends Model
         $laporan = $laporanKM->getResultArray();
         return $laporan;
     }
+
+    //Hitung jumlah peminjaman Mobil
+    public function countPeminjamanMobil()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT COUNT(*) AS jumlah FROM kendaraan, peminjaman
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'mobil')"
+        );
+        $results = $query->getRowArray();
+        return $results;
+    }
+
+    //Hitung jumlah peminjaman Motor
+    public function countPeminjamanMotor()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT COUNT(*) AS jumlah FROM kendaraan, peminjaman
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'motor')"
+        );
+        $results = $query->getRowArray();
+        return $results;
+    }
+
+    //Hitung jumlah peminjaman Motor oleh user tertentu
+    public function countPeminjamanMotorby_id_user($id_user)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT COUNT(*) AS jumlah FROM kendaraan, peminjaman
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'motor') AND (peminjaman.id_user = $id_user)"
+        );
+        $results = $query->getRowArray();
+        return $results;
+    }
+
+    //Hitung jumlah peminjaman Mobil oleh user tertentu
+    public function countPeminjamanMobilby_id_user($id_user)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query(
+            "SELECT COUNT(*) AS jumlah FROM kendaraan, peminjaman
+            WHERE (kendaraan.id_kendaraan = peminjaman.id_kendaraan) AND (peminjaman.tgl_kembali IS NULL) AND (kendaraan.jenis_kendaraan = 'mobil') AND (peminjaman.id_user = $id_user)"
+        );
+        $results = $query->getRowArray();
+        return $results;
+    }
 }

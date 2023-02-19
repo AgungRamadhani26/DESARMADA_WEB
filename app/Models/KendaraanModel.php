@@ -36,4 +36,40 @@ class KendaraanModel extends Model
     {
         return $this->where(['jenis_kendaraan' => 'motor'])->findAll();
     }
+
+    //Hitung jumlah kendaraan
+    public function countKendaraan()
+    {
+        return $this->where(['deleted_at' => null])->countAllResults();
+    }
+
+    //Hitung jumlah kendaraan tersedia
+    public function countKendaraanTersedia()
+    {
+        return $this->where(['deleted_at' => null, 'pinjam' => 0])->countAllResults();
+    }
+
+    //Hitung jumlah kendaraan tidak tersedia
+    public function countKendaraanTidakTersedia()
+    {
+        return $this->where(['deleted_at' => null, 'pinjam' => 1])->countAllResults();
+    }
+
+    //Hitung jumlah kendaraan servis
+    public function countKendaraanServis()
+    {
+        return $this->where(['deleted_at' => null, 'pinjam' => 2])->countAllResults();
+    }
+
+    //Hitung jumlah kendaraan mobil tersedia
+    public function countKendaraanMobilTersedia()
+    {
+        return $this->where(['deleted_at' => null, 'pinjam' => 0, 'jenis_kendaraan' => 'mobil'])->countAllResults();
+    }
+
+    //Hitung jumlah kendaraan motor tersedia
+    public function countKendaraanMotorTersedia()
+    {
+        return $this->where(['deleted_at' => null, 'pinjam' => 0, 'jenis_kendaraan' => 'motor'])->countAllResults();
+    }
 }

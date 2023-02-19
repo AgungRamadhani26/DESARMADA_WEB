@@ -7,7 +7,7 @@
             <div class="row">
                 <center>
                     <hr />
-                    <div class="updateProfile">
+                    <div class="pinjam-kembali">
                         <h3 class="my-3">Form Pengembalian Kendaraan</h3>
                     </div>
                     <hr />
@@ -58,7 +58,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-3">
+                            <div class="row mb-3" <?= ($kendaraan['jenis_kendaraan'] == 'motor') ? 'style="display: none"' : '';  ?>>
                                 <label for="isi_tol" class="col-sm-4 col-form-label">Nilai Pengisian Saldo Tol</label>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control <?= (session()->getFlashdata('err_isi_tol')) ? 'is-invalid' : ''; ?>" id="isi_tol" name="isi_tol" value="<?= session()->getFlashdata('isi_tol') ? session()->getFlashdata('isi_tol') : 0; ?>">
@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mb-3">
+                            <div class="row mb-3" <?= ($kendaraan['jenis_kendaraan'] == 'motor') ? 'style="display: none"' : '';  ?>>
                                 <label for="lampiran_isi_tol" class="col-sm-4 col-form-label">Lampiran Pengisian Saldo Tol (*)</label>
                                 <div class="col-sm-6">
                                     <input type="file" class="form-control <?= (session()->getFlashdata('err_lampiran_isi_tol')) ? 'is-invalid' : ''; ?>" id="lampiran_isi_tol" name="lampiran_isi_tol" value="<?= old('lampiran_isi_tol'); ?>" onchange="previewImg_tol()">

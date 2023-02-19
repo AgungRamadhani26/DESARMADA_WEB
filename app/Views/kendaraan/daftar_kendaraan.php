@@ -3,6 +3,41 @@
 <!--Menampilkan daftar kendaraan-->
 <?= $this->section('content'); ?>
 
+<aside>
+    <article class="card">
+        <div class="card-header">
+            <h5>Status Kendaraan</h5>
+            <hr>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <tr>
+                        <td><span class="fw-bold">Semua</span></td>
+                        <td>:</td>
+                        <td><?= $jlh_kendaraan ?></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fw-bold text-success">Tersedia</span></td>
+                        <td>:</td>
+                        <td><?= $jlh_kendaraanTersedia ?></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fw-bold text-danger">Tidak Tersedia</span></td>
+                        <td>:</td>
+                        <td><?= $jlh_kendaraanTdkTersedia ?></td>
+                    </tr>
+                    <tr>
+                        <td><span class="fw-bold text-info">Servis</span></td>
+                        <td>:</td>
+                        <td><?= $jlh_kendaraanServis ?></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </article>
+</aside>
+
 <section class="section">
     <div class="card">
         <div class="card-header bg-table">

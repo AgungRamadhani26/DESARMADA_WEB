@@ -39,6 +39,9 @@ $routes->get('/logout', 'Login::logout');
 //Profile
 $routes->get('/profile/lihat_profile', 'Profile::lihat_profile');
 $routes->post('/profile/update_profile', 'Profile::update_profile');
+$routes->get('/lupa_password', 'Profile::lupa_password');
+$routes->post('/lupa_password/cek_email', 'Profile::cek_email');
+$routes->get('/lupa_password/reset_password', 'Profile::reset_password');
 
 //Routes dashboard
 $routes->get('/dashboard/mobil', 'Dashboard::daftar_mobil'); //menampilkan dashboard dan daftar mobil

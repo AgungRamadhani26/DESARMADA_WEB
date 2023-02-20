@@ -109,5 +109,56 @@ class Profile extends BaseController
 
     public function lupa_password()
     {
+        return view('/profile/lupa_password');
+    }
+
+    public function cek_email()
+    {
+        $validasi = \Config\Services::validation();
+        $aturan = [
+            'username' => [
+                'rules' => 'required|valid_email',
+                'errors' => [
+                    'required' => '{field} harus diisi',
+                    'valid_email' => 'format {field} adalah email',
+                ]
+            ]
+        ];
+        $validasi->setRules($aturan);
+        if (!$validasi->withRequest($this->request)->run()) {
+            session()->setFlashdata('err_username', $validasi->getError('username'));
+            return redirect()->to('/lupa_password')->withInput();
+        } else {
+            $username = $this->request->getPost('username');
+            $user = $this->userModel->where(['username' => $username])->first();
+            if (is_null($user)) {
+                session()->setFlashdata('err_username', 'Email tidak terdaftar');
+                return redirect()->to('/lupa_password')->withInput();
+            } else {
+                $email = service('email');
+                $email->setTo($username);
+                $email->setFrom('agungramadhani2409@gmail.com', 'DESARMADA Reset Password');
+                $email->setSubject('Reset Password');
+                // $email->setMessage(' Klik link ini untuk reset password anda : <a href="http://localhost:8080/lupa_password/reset_password/' . $user['id_user'] . '">Reset Password</a>
+                // <br><b>Noted:</b> Jika anda tidak merasa melakukan reset password, abaikan email ini !.');
+                $email->setMessage(view('profile/reset_password', ['user' => $user]));
+                if ($email->send()) {
+                    session()->setFlashdata('berhasil_kirim_email', 'Email berhasil dikirim, silahkan cek email anda. jika anda tidak menemukannya coba cek di spam');
+                    return redirect()->to('/lupa_password');
+                } else {
+                    $data = $email->printDebugger(['headers']);
+                    print_r($data);
+                }
+            }
+        }
+    }
+
+    public function reset_password($id_user)
+    {
+        $user = $this->userModel->where(['id_user' => $id_user])->first();
+        $datauser = [
+            'user' => $user
+        ];
+        return view('/profile/reset_password', $datauser);
     }
 }

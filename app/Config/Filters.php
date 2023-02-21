@@ -10,6 +10,7 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\KhususTamu;
 use App\Filters\KhususMember;
+use App\Filters\FilterJwt;
 
 class Filters extends BaseConfig
 {
@@ -24,7 +25,8 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'khususMember'  => KhususMember::class, //mendaftarkan filter/middleware yang udah kita buat agar dapat digunakan
-        'khususTamu'    => KhususTamu::class
+        'khususTamu'    => KhususTamu::class,
+        'autentikasi'   => FilterJwt::class,
     ];
 
     /**
@@ -34,9 +36,9 @@ class Filters extends BaseConfig
     public array $globals = [
         'before' => [
             'khususMember' => ['except' => [
-                '/', '/login'
+                '/', '/login', 'api/*', '/autentikasiapi'
             ]]
-            // 'honeypot',
+            // 'honeypot',  
             // 'csrf',
             // 'invalidchars',
         ],
@@ -67,5 +69,10 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+        'autentikasi' => ['before' => [
+            'api/driver',
+            'api'
+        ]],
+    ];
 }

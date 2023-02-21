@@ -13,11 +13,15 @@ class Login extends BaseController
         $this->userModel = new UserModel();
     }
 
+
+    //Method untuk menampilkan halaman login
     public function index()
     {
         return view('login');
     }
 
+
+    //Method untuk melakukan login
     public function login()
     {
         $secret = "6LfQ0D0kAAAAAL40cEXQhchOPGFJlk6-87lOXoEA";
@@ -26,9 +30,10 @@ class Login extends BaseController
         $login = $this->request->getPost('login');
         $error_username = null;
         $error_password = null;
+        $error_captcha = null;
+        //jika menekan tombol login
         if ($login) {
-            $valid = true; //Flag variabel
-
+            $valid = true; //Flag variabel validasi
             //Cek validasi username
             $username = $this->request->getPost('username');
             if ($username == '') {
@@ -38,15 +43,19 @@ class Login extends BaseController
                 $error_username = 'Format email tidak valid';
                 $valid = false;
             }
-
             //Cek validasi password
             $password_asli = $this->request->getPost('password');
             if ($password_asli == '') {
                 $error_password = "Password harus diisi";
                 $valid = false;
             }
-
-            if ($valid && $response->success) {
+            //Cek validasi captcha
+            if (!$response->success) {
+                $error_captcha = "Anda belum mengklik captcha";
+                $valid = false;
+            }
+            //jika validasi benar
+            if ($valid == true) {
                 $password = md5($password_asli);
                 $array = ['username' => $username, 'password' => $password];
                 $dataUser = $this->userModel->where($array)->first();
@@ -68,7 +77,7 @@ class Login extends BaseController
                     return redirect()->to('dashboard/mobil');
                 }
             } else {
-                session()->setFlashdata('error_captcha', 'Anda belum mengklik captcha');
+                session()->setFlashdata('error_captcha', $error_captcha);
                 session()->setFlashdata('username', $username);
                 session()->setFlashdata('password', $password_asli);
                 session()->setFlashdata('error_username', $error_username);
@@ -78,6 +87,8 @@ class Login extends BaseController
         }
     }
 
+
+    //Method untuk melakukan logout
     public function logout()
     {
         session()->destroy();

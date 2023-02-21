@@ -139,9 +139,8 @@ class Profile extends BaseController
                 $email->setTo($username);
                 $email->setFrom('agungramadhani2409@gmail.com', 'DESARMADA Reset Password');
                 $email->setSubject('Reset Password');
-                // $email->setMessage(' Klik link ini untuk reset password anda : <a href="http://localhost:8080/lupa_password/reset_password/' . $user['id_user'] . '">Reset Password</a>
-                // <br><b>Noted:</b> Jika anda tidak merasa melakukan reset password, abaikan email ini !.');
-                $email->setMessage(view('profile/reset_password', ['user' => $user]));
+                $email->setMessage(' Klik link ini untuk reset password anda : <a href="http://localhost:8080/lupa_password/reset_password/' . md5($user['id_user']) . '">Reset Password</a>
+                <br><b>Noted:</b> Jika anda tidak merasa melakukan reset password, abaikan email ini !.');
                 if ($email->send()) {
                     session()->setFlashdata('berhasil_kirim_email', 'Email berhasil dikirim, silahkan cek email anda. jika anda tidak menemukannya coba cek di spam');
                     return redirect()->to('/lupa_password');
@@ -153,12 +152,54 @@ class Profile extends BaseController
         }
     }
 
-    public function reset_password($id_user)
+    public function reset_password($md5_id_user)
     {
-        $user = $this->userModel->where(['id_user' => $id_user])->first();
+        $user = $this->userModel->where(['md5(id_user)' => $md5_id_user])->first();
         $datauser = [
             'user' => $user
         ];
         return view('/profile/reset_password', $datauser);
+    }
+
+    public function save_reset_password($id_user)
+    {
+        $validasi = \Config\Services::validation();
+        $aturan = [
+            'password_Baru' => [
+                'rules' => 'required|min_length[6]',
+                'errors' => [
+                    'required' => 'Password baru harus diisi',
+                    'min_length' => 'Password tidak boleh kurang dari 6 karakter'
+                ]
+            ],
+            'Konfir_passwordBaru' => [
+                'rules' => 'required|min_length[6]',
+                'errors' => [
+                    'required' => 'Anda belum mengkonfirmasi password baru',
+                    'min_length' => 'Password Baru tidak boleh kurang dari 6 karakter'
+                ]
+            ]
+        ];
+        $validasi->setRules($aturan);
+        $password_Baru = $this->request->getPost('password_Baru');
+        $Konfir_passwordBaru = $this->request->getPost('Konfir_passwordBaru');
+        if ($validasi->withRequest($this->request)->run()) {
+            if ($password_Baru == $Konfir_passwordBaru) {
+                $datauser = [
+                    'id_user' => $id_user,
+                    'password' => md5($password_Baru)
+                ];
+                $this->userModel->save($datauser);
+                session()->setFlashdata('success_pass_Konf', 'Password berhasil diubah, silahkan login kembali');
+                return redirect()->to('/lupa_password/reset_password/' . md5($id_user));
+            } else {
+                session()->setFlashdata('err_pass_Konf', 'Password baru tidak cocok dengan konfirmasi password baru');
+                return redirect()->to('/lupa_password/reset_password/' . md5($id_user))->withInput();
+            }
+        } else {
+            session()->setFlashdata('err_passwordBaru', $validasi->getError('password_Baru'));
+            session()->setFlashdata('err_konfirPassBaru', $validasi->getError('Konfir_passwordBaru'));
+            return redirect()->to('/lupa_password/reset_password/' . md5($id_user))->withInput();
+        }
     }
 }

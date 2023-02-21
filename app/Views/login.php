@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aplikasi Peminjaman Kendaraan</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/bootstrap.css">
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
@@ -17,7 +16,6 @@
 </head>
 
 <body>
-    <!-- Section: Design Block -->
     <section class="text-center">
         <!-- Background image -->
         <div class="p-5 bg-image" style="background-image: linear-gradient(to right, #53abea, #91a6cf); height: 300px;"></div>
@@ -62,7 +60,7 @@
                                     <button class="btn btn-primary btn-block shadow-lg mt-5" type="submit" name="login" value="login">Log in</button>
                                 </div>
                             </center>
-                            <!-- Register buttons -->
+                            <!-- Lupa password -->
                             <div class="text-center mt-3">
                                 <p><a class="font-bold" href="/lupa_password">Lupa Password ?</a></p>
                             </div>
@@ -72,7 +70,6 @@
             </div>
         </div>
     </section>
-    <!-- Section: Design Block -->
 </body>
 
 </html>

@@ -31,8 +31,11 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 //Root
+//Untuk menampilkan halaman login
 $routes->get('/', 'Login::index', ['filter' => 'khususTamu']);
+//Untuk melakukan login ke Aplikasi WEB-DESARMADA
 $routes->post('/login', 'Login::login');
+//Untuk melakukan logout dari Aplikasi WEB-DESARMADA
 $routes->get('/logout', 'Login::logout');
 
 
@@ -41,7 +44,8 @@ $routes->get('/profile/lihat_profile', 'Profile::lihat_profile');
 $routes->post('/profile/update_profile', 'Profile::update_profile');
 $routes->get('/lupa_password', 'Profile::lupa_password');
 $routes->post('/lupa_password/cek_email', 'Profile::cek_email');
-$routes->get('/lupa_password/reset_password', 'Profile::reset_password');
+$routes->get('/lupa_password/reset_password/(:any)', 'Profile::reset_password/$1');
+$routes->post('/lupa_password/save_reset_password/(:num)', 'Profile::save_reset_password/$1');
 
 //Routes dashboard
 $routes->get('/dashboard/mobil', 'Dashboard::daftar_mobil'); //menampilkan dashboard dan daftar mobil

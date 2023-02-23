@@ -45,7 +45,8 @@ class Lokasi extends BaseController
         //jika valid
         if ($validasi->withRequest($this->request)->run()) {
             //mengambil dari data ajax
-            $namalokasi = $this->request->getPost('namalokasi');
+            $namalokasi1 = $this->request->getPost('namalokasi');
+            $namalokasi = trim($namalokasi1);
             //proses memasukkan data ke database
             $data = [
                 'nama_departemen' => $namalokasi
@@ -89,7 +90,8 @@ class Lokasi extends BaseController
         if ($validasi->withRequest($this->request)->run()) {
             //mengambil dari data ajax
             $id_lokasi = $this->request->getPost('id_lokasi');
-            $namalokasi = $this->request->getPost('namalokasi');
+            $namalokasi1 = $this->request->getPost('namalokasi');
+            $namalokasi = trim($namalokasi1);
             //proses memasukkan data ke database
             $data = [
                 'id_departemen' => $id_lokasi,

@@ -28,7 +28,7 @@
                         <td><?= $jlh_kendaraanTdkTersedia ?></td>
                     </tr>
                     <tr>
-                        <td><span class="fw-bold text-info">Servis</span></td>
+                        <td><span class="fw-bold text-primary">Servis</span></td>
                         <td>:</td>
                         <td><?= $jlh_kendaraanServis ?></td>
                     </tr>
@@ -79,12 +79,12 @@
                             <td><?= $results['loc'] ?></td>
                             <td><?= $k['nomor_polisi'] ?></td>
                             <td>
-                                <span class="fw-bold <?= ($k['pinjam'] == 0 ? 'text-success' : ($k['pinjam'] == 1 ? 'text-danger' : 'text-info')); ?>">
-                                    <?= ($k['pinjam'] == 0 ? 'Tersedia' : ($k['pinjam'] == 1 ? 'Tidak tersedia' : 'Service'));  ?>
+                                <span class="fw-bold <?= ($k['pinjam'] == 0 ? 'text-success' : ($k['pinjam'] == 1 ? 'text-danger' : 'text-primary')); ?>">
+                                    <?= ($k['pinjam'] == 0 ? 'Tersedia' : ($k['pinjam'] == 1 ? 'Tidak tersedia' : 'Servis'));  ?>
                                 </span>
                             </td>
                             <td>
-                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_kendaraan" onclick="edit_kendaraan(<?php echo $k['id_kendaraan'] ?>)"><i class="bi bi-pencil-square"></i> Edit</button>
+                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_kendaraan" onclick="edit_kendaraan(<?php echo $k['id_kendaraan'] ?>)"><i class="bi bi-pencil-square"></i> Ubah</button>
                                 <form action="/kendaraan/delete_kendaraan/<?= $k['id_kendaraan'] ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">

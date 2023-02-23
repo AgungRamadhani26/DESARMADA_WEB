@@ -70,7 +70,7 @@
                                 </span>
                             </td>
                             <td>
-                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_user" onclick="edit_user(<?php echo $u['id_user'] ?>)"><i class="bi bi-pencil-square"></i> Edit</button>
+                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_user" onclick="edit_user(<?php echo $u['id_user'] ?>)"><i class="bi bi-pencil-square"></i> Ubah</button>
                                 <form action="/user/delete_user/<?= $u['id_user'] ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">

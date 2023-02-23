@@ -27,11 +27,13 @@ class KendaraanModel extends Model
         return $this->where(['nomor_polisi' => $nomor_polisi])->first();
     }
 
+    //Untuk mendapatkan kendaraan mobil
     public function getMobil()
     {
         return $this->where(['jenis_kendaraan' => 'mobil'])->findAll();
     }
 
+    //Untuk mendapatkan kendaraan motor
     public function getMotor()
     {
         return $this->where(['jenis_kendaraan' => 'motor'])->findAll();

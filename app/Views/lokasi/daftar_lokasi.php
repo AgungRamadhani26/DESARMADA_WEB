@@ -30,7 +30,7 @@
                             <td><?= $i++ ?></td>
                             <td><?= $l['nama_departemen'] ?></td>
                             <td>
-                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_lokasi" onclick="edit_lokasi(<?php echo $l['id_departemen'] ?>)"><i class="bi bi-pencil-square"></i> Edit</button>
+                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_lokasi" onclick="edit_lokasi(<?php echo $l['id_departemen'] ?>)"><i class="bi bi-pencil-square"></i> Ubah</button>
                                 <form action="/lokasi/delete_lokasi/<?= $l['id_departemen'] ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">

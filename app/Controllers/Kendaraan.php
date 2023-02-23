@@ -55,10 +55,11 @@ class Kendaraan extends BaseController
                 ]
             ],
             'nopol' => [
-                'rules' => 'required|is_unique[kendaraan.nomor_polisi]',
+                'rules' => 'required|is_unique[kendaraan.nomor_polisi]|alpha_numeric',
                 'errors' => [
                     'required' => '{field} harus diisi',
-                    'is_unique' => 'nomor polisi tidak boleh sama'
+                    'is_unique' => 'nomor polisi tidak boleh sama',
+                    'alpha_numeric' => 'Nomor Polisi tidak boleh mengandung spasi'
                 ]
             ],
             'lokasi' => [
@@ -88,8 +89,10 @@ class Kendaraan extends BaseController
         if ($validasi->withRequest($this->request)->run()) {
             //mengambil dari data ajax
             $jeniskendaraan = $this->request->getPost('jeniskendaraan');
-            $tipekendaraan = $this->request->getPost('tipekendaraan');
-            $nopol = $this->request->getPost('nopol');
+            $tipekendaraan1 = $this->request->getPost('tipekendaraan');
+            $tipekendaraan = trim($tipekendaraan1);
+            $nopol1 = $this->request->getPost('nopol');
+            $nopol = trim($nopol1);
             $lokasi = $this->request->getPost('lokasi');
             $kmawal = $this->request->getPost('kmawal');
             $gambar = $this->request->getFile('gambar');
@@ -135,9 +138,9 @@ class Kendaraan extends BaseController
         // cek nomor polisi, karena nomor polisi harus unik
         $kendaraanLama = $this->kendaraanModel->getKendaraan($this->request->getPost('id_kendaraan')); //dari input yang bertipe hidden
         if ($kendaraanLama['nomor_polisi'] == $this->request->getPost('nopol')) {
-            $rule_nopol = 'required';
+            $rule_nopol = 'required|alpha_numeric';
         } else {
-            $rule_nopol = 'required|is_unique[kendaraan.nomor_polisi]';
+            $rule_nopol = 'required|is_unique[kendaraan.nomor_polisi]|alpha_numeric';
         }
         $aturan = [
             'jeniskendaraan' => [
@@ -156,7 +159,8 @@ class Kendaraan extends BaseController
                 'rules' => $rule_nopol,
                 'errors' => [
                     'required' => '{field} harus diisi',
-                    'is_unique' => 'nomor polisi tidak boleh sama'
+                    'is_unique' => 'nomor polisi tidak boleh sama',
+                    'alpha_numeric' => 'Nomor Polisi tidak boleh mengandung spasi'
                 ]
             ],
             'lokasi' => [
@@ -199,7 +203,8 @@ class Kendaraan extends BaseController
                 'rules' => $rule_nopol,
                 'errors' => [
                     'required' => '{field} harus diisi',
-                    'is_unique' => 'nomor polisi tidak boleh sama'
+                    'is_unique' => 'nomor polisi tidak boleh sama',
+                    'alpha_numeric' => 'Nomor Polisi tidak boleh mengandung spasi'
                 ]
             ],
             'lokasi' => [
@@ -227,8 +232,10 @@ class Kendaraan extends BaseController
             $id_kendaraan = $this->request->getPost('id_kendaraan');
             $gambarlama = $this->request->getPost('gambarlama');
             $jeniskendaraan = $this->request->getPost('jeniskendaraan');
-            $tipekendaraan = $this->request->getPost('tipekendaraan');
-            $nopol = $this->request->getPost('nopol');
+            $tipekendaraan1 = $this->request->getPost('tipekendaraan');
+            $tipekendaraan = trim($tipekendaraan1);
+            $nopol1 = $this->request->getPost('nopol');
+            $nopol = trim($nopol1);
             $lokasi = $this->request->getPost('lokasi');
             $kmawal = $this->request->getPost('kmawal');
             $gambar = $this->request->getFile('gambar');

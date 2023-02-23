@@ -369,6 +369,7 @@ function bersihkanKendaraan() {
 }
 
 
+
 //Digunakan untuk membersihkan form input jika kita mengclose modal 
 $('.tombol-tutup-kendaraan').on('click', function() {
     if ($('sukses-kendaraan').is(":visible")) {
@@ -377,6 +378,7 @@ $('.tombol-tutup-kendaraan').on('click', function() {
     $('.alert').hide();
     bersihkanKendaraan();
 });
+
 
 
 //Untuk melakukan proses TAMBAH KENDARAAN
@@ -493,6 +495,7 @@ $('#formKendaraan_e').on('keypress', function(e){
         $('#tombol-simpan-edit-kendaraan').click();
     }
 });
+
 
 
 //Fungsi ini digunakan untuk menampilkan gambar pada form modal add kendaraan

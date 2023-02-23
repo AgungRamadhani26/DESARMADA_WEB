@@ -86,12 +86,16 @@ class User extends BaseController
         //jika valid
         if ($validasi->withRequest($this->request)->run()) {
             //mengambil dari data ajax
-            $username = $this->request->getPost('username');
-            $nama = $this->request->getPost('nama');
+            $username1 = $this->request->getPost('username');
+            $username = trim($username1);
+            $nama1 = $this->request->getPost('nama');
+            $nama = trim($nama1);
             $level = $this->request->getPost('level');
             $driver = $this->request->getPost('driver');
-            $password = $this->request->getPost('password');
-            $konfirpass = $this->request->getPost('konfirpass');
+            $password1 = $this->request->getPost('password');
+            $password = trim($password1);
+            $konfirpass1 = $this->request->getPost('konfirpass');
+            $konfirpass = trim($konfirpass1);
             //proses memasukkan data ke database
             if ($password == $konfirpass) {
                 //menambah user
@@ -174,8 +178,10 @@ class User extends BaseController
         if ($validasi->withRequest($this->request)->run()) {
             //mengambil dari data ajax
             $id_user = $this->request->getPost('id_user');
-            $username = $this->request->getPost('username');
-            $nama = $this->request->getPost('nama');
+            $username1 = $this->request->getPost('username');
+            $username = trim($username1);
+            $nama1 = $this->request->getPost('nama');
+            $nama = trim($nama1);
             $level = $this->request->getPost('level');
             $driver = $this->request->getPost('driver');
             //proses memasukkan data ke database

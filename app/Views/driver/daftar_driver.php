@@ -30,7 +30,7 @@
                             <td><?= $i++ ?></td>
                             <td><?= $d['nama'] ?></td>
                             <td>
-                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_driver" onclick="edit_driver(<?php echo $d['id_driver'] ?>)"><i class="bi bi-pencil-square"></i> Edit</button>
+                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_driver" onclick="edit_driver(<?php echo $d['id_driver'] ?>)"><i class="bi bi-pencil-square"></i> Ubah</button>
                                 <form action="/driver/delete_driver/<?= $d['id_driver'] ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">

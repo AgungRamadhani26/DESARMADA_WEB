@@ -33,6 +33,7 @@
                     </div>
                     <div class="row mb-3">
                         <label for="nopol">Nomor Polisi</label>
+                        <div style="color: red; font-size: 13px;">*Tuliskan tanpa spasi, contoh: BK1234AB</div>
                         <div class="col-sm-12">
                             <input type="text" class="form-control" id="nopol">
                         </div>

@@ -45,7 +45,8 @@ class Driver extends BaseController
         //jika valid
         if ($validasi->withRequest($this->request)->run()) {
             //mengambil dari data ajax
-            $nama = $this->request->getPost('nama');
+            $nama1 = $this->request->getPost('nama');
+            $nama = trim($nama1);
             //proses memasukkan data ke database
             $data = [
                 'nama' => $nama
@@ -93,7 +94,8 @@ class Driver extends BaseController
         if ($validasi->withRequest($this->request)->run()) {
             //mengambil dari data ajax
             $id_driver = $this->request->getPost('id_driver');
-            $nama = $this->request->getPost('nama');
+            $nama1 = $this->request->getPost('nama');
+            $nama = trim($nama1);
             //proses memasukkan data ke database
             $data = [
                 'id_driver' => $id_driver,
@@ -121,10 +123,7 @@ class Driver extends BaseController
     //Fungsi delete_driver
     public function delete_driver($id_driver)
     {
-        $db = \Config\Database::connect();
-        $db->query("SET FOREIGN_KEY_CHECKS=0"); //biar menghiraukan foreign key ke tabel lain, dibuat kode ini karena pada driver tidak ada kolom untuk soft deletes
         $this->driverModel->delete($id_driver);
-        $db->query("SET FOREIGN_KEY_CHECKS=1"); //sehabis dihapus kembalikan ke awal
         Set_notifikasi_swal('success', 'Sukses :)', 'Data driver berhasil dihapus');
         return redirect()->to('/driver/daftar_driver');
     }

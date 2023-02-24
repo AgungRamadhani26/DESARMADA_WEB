@@ -14,6 +14,8 @@ class Profile extends BaseController
         helper(['swal_helper']); //load helper yang udah dibuat
     }
 
+
+    //Method untuk menampilkan halaman profile
     public function lihat_profile()
     {
         $data = [
@@ -22,6 +24,8 @@ class Profile extends BaseController
         return view('profile/lihat_profile',  $data);
     }
 
+
+    //Method untuk menampilkan halaman edit profile
     public function update_profile()
     {
         $validasi = \Config\Services::validation();
@@ -29,20 +33,20 @@ class Profile extends BaseController
             'username' => [
                 'rules' => 'required|valid_email',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'valid_email' => 'format {field} adalah email',
+                    'required' => 'Username harus diisi',
+                    'valid_email' => 'Format Username adalah email',
                 ]
             ],
             'nama' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => 'Nama harus diisi'
                 ]
             ],
             'password' => [
                 'rules' => 'required|min_length[6]',
                 'errors' => [
-                    'required' => '{field} harus diisi',
+                    'required' => 'Password harus diisi',
                     'min_length' => 'Password tidak boleh kurang dari 6 karakter'
                 ]
             ],

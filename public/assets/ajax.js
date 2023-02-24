@@ -509,7 +509,6 @@ function previewImg() {
     }
 }
 
-
 //Fungsi ini digunakan untuk menampilkan gambar pada form modal edit kendaraan, jika mengupload gambar baru
 function previewImg_e() {
     const gambar = document.querySelector('#gambar_e');

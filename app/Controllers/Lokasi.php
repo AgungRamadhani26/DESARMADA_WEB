@@ -19,9 +19,22 @@ class Lokasi extends BaseController
     //Fungsi daftar_lokasi
     public function daftar_lokasi()
     {
+        $jumlahMotorMobil = $this->lokasiModel->getJumlahMobilMotor();
+        $lokasiGR = array();
+        $jumlahMobilGR = array();
+        $jumlahMotorGR = array();
+        foreach ($jumlahMotorMobil as $row) {
+            $lokasiGR[] = $row['nama_dp'];
+            $jumlahMobilGR[] = $row['jumlah_mobil'];
+            $jumlahMotorGR[] = $row['jumlah_motor'];
+        }
         $data = [
             'lokasi' => $this->lokasiModel->getLokasi(),
-            'url' => '/lokasi/daftar_lokasi'
+            'url' => '/lokasi/daftar_lokasi',
+            'jumlahMobilMotor' => $this->lokasiModel->getJumlahMobilMotor(),
+            'lokasiGR' => $lokasiGR,
+            'jumlahMobilGR' => $jumlahMobilGR,
+            'jumlahMotorGR' => $jumlahMotorGR
         ];
         return view('lokasi/daftar_lokasi', $data);
     }

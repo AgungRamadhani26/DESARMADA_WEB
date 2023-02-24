@@ -277,10 +277,16 @@ class Kendaraan extends BaseController
     //Fungsi delete_kendaraan
     public function delete_kendaraan($id_kendaraan)
     {
-        //$kendaraan = $this->kendaraanModel->find($id_kendaraan);
-        //unlink('assets/img_kendaraan/' . $kendaraan['gambar']);
-        Set_notifikasi_swal('success', 'Sukses :)', 'Data kendaraan berhasil dihapus');
-        $this->kendaraanModel->delete($id_kendaraan);
+        $kendaraan = $this->kendaraanModel->find($id_kendaraan);
+        if ($kendaraan['pinjam'] == 1) {
+            Set_notifikasi_swal('info', 'oopss!!!', 'Data kendaraan tidak dapat dihapus jika kendaraan belum dikembalikan');
+        } elseif ($kendaraan['pinjam'] == 2) {
+            Set_notifikasi_swal('info', 'oopss!!!', 'Data kendaraan tidak dapat dihapus karena sedang diperbaiki');
+        } else {
+            //unlink('assets/img_kendaraan/' . $kendaraan['gambar']);
+            Set_notifikasi_swal('success', 'Sukses :)', 'Data kendaraan berhasil dihapus');
+            $this->kendaraanModel->delete($id_kendaraan);
+        }
         return redirect()->to('/kendaraan/daftar_kendaraan');
     }
 }

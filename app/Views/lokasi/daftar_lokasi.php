@@ -45,9 +45,102 @@
     </div>
 </section>
 
+<div class="row">
+    <div class="col-4">
+        <article class="card">
+            <div class="card-header">
+                <h5>Jumlah kendaraan di Setiap Lokasi</h5>
+                <hr>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id=tabel_jumlah_kendaraan>
+                        <thead>
+                            <tr style="color:white; background-color:rgba(67,94,190,255)">
+                                <th rowspan="2">
+                                    <center>Lokasi</center>
+                                </th>
+                                <th colspan="2">
+                                    <center>Jenis Kendaraan</center>
+                                </th>
+                            </tr>
+                            <tr style="color:black; background-color:#f2f7ff">
+                                <th>
+                                    <center>Mobil</center>
+                                </th>
+                                <th>
+                                    <center>Motor</center>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($jumlahMobilMotor as $jmm) : ?>
+                                <tr>
+                                    <th style="color:black; background-color:#f2f7ff"><?= $jmm['nama_dp'] ?></tH>
+                                    <td><?= $jmm['jumlah_mobil'] ?></td>
+                                    <td><?= $jmm['jumlah_motor'] ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                <h3>Grafik Jumlah Kendaraan</h3>
+            </div>
+            <div class="card-content">
+                <div class="card-body">
+                    <figure class="highcharts-figure">
+                        <div id="Grafik_jlh_kendaraan"></div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--include Modal untuk menambah lokasi baru-->
 <?= $this->include('lokasi/modal_add_lokasi'); ?>
 <!--include Modal untuk mengedit lokasi-->
 <?= $this->include('lokasi/modal_edit_lokasi'); ?>
+
+<script>
+    $(function() {
+        var jumlahMobilGR1 = <?= json_encode($jumlahMobilGR) ?>;
+        //parsing jumlahMobilGR1 ke array of integer
+        var jumlahMobilGR = jumlahMobilGR1.map(Number);
+
+        var jumlahMotorGR1 = <?= json_encode($jumlahMotorGR) ?>;
+        //parsing jumlahMotorGR1 ke array integer of integer
+        var jumlahMotorGR = jumlahMotorGR1.map(Number);
+
+
+        Highcharts.chart('Grafik_jlh_kendaraan', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Jumlah kendaraan di setiap lokasi'
+            },
+            xAxis: {
+                categories: <?= json_encode($lokasiGR) ?>
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Mobil',
+                data: jumlahMobilGR
+            }, {
+                name: 'Motor',
+                data: jumlahMotorGR
+            }]
+        });
+    });
+</script>
 
 <?= $this->endSection(); ?>

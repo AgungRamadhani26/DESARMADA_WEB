@@ -21,7 +21,7 @@
                     <li class="sidebar-item has-sub <?= $url == 'profile' ? 'active' : '' ?>">
                         <a href="" class='sidebar-link'>
                             <i class=" bi bi-person-fill"></i>
-                            <span>Profile</span>
+                            <span><?= session()->get('nama'); ?></span>
                         </a>
                         <ul class="submenu ">
                             <li class="submenu-item ">

@@ -40,7 +40,9 @@ $routes->get('/logout', 'Login::logout');
 
 
 //Profile
+//Untuk menampilkan halaman profile
 $routes->get('/profile/lihat_profile', 'Profile::lihat_profile');
+//Untuk melakukan update profile
 $routes->post('/profile/update_profile', 'Profile::update_profile');
 $routes->get('/lupa_password', 'Profile::lupa_password');
 $routes->post('/lupa_password/cek_email', 'Profile::cek_email');

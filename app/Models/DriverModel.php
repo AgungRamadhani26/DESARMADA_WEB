@@ -20,4 +20,10 @@ class DriverModel extends Model
         }
         return $this->where(['id_driver' => $id_driver])->first();
     }
+
+    //Hitung jumlah driver
+    public function countDriver()
+    {
+        return $this->where(['deleted_at' => null])->countAllResults();
+    }
 }

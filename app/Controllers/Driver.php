@@ -21,7 +21,8 @@ class Driver extends BaseController
     {
         $data = [
             'driver' => $this->driverModel->getDriver(),
-            'url' => '/driver/daftar_driver'
+            'url' => '/driver/daftar_driver',
+            'jlh_driver' => $this->driverModel->countDriver()
         ];
         return view('driver/daftar_driver', $data);
     }

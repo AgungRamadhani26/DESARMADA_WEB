@@ -186,6 +186,12 @@ class Peminjaman extends BaseController
                     'integer' => 'km akhir harus berupa bilangan bulat'
                 ]
             ],
+            'isi_tol' => [
+                'rules' => 'greater_than_equal_to[0]',
+                'errors' => [
+                    'greater_than_equal_to' => 'Tidak mungkin berisi nilai negatif',
+                ]
+            ],
             'lampiran_isi_tol' => [
                 'rules' => $rule_lampiran_isi_tol,
                 'errors' => [
@@ -193,6 +199,12 @@ class Peminjaman extends BaseController
                     'max_size' => 'Ukuran gambar terlalu besar',
                     'is_image' => 'Yang anda pilih bukan gambar',
                     'mime_in' => 'Yang anda pilih bukan gambar'
+                ]
+            ],
+            'isi_bbm' => [
+                'rules' => 'greater_than_equal_to[0]',
+                'errors' => [
+                    'greater_than_equal_to' => 'Tidak mungkin berisi nilai negatif',
                 ]
             ],
             'lampiran_isi_bbm' => [

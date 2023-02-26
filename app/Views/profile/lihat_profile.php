@@ -77,7 +77,7 @@
                                 </div>
                             </div>
                             <div class="mb-3 row col-sm-4">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary btn-sm"><span class="material-icons">done_outline</span>Submit</button>
                             </div>
                         </form>
                     </div>

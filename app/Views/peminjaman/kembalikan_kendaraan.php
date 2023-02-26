@@ -68,6 +68,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3" <?= ($kendaraan['jenis_kendaraan'] == 'motor') ? 'style="display: none"' : '';  ?>>
+                                <div style="color: red; font-size: 13px;">*Ukuran maksimal gambar 1 mb</div>
                                 <label for="lampiran_isi_tol" class="col-sm-4 col-form-label">Lampiran Pengisian Saldo Tol (*)</label>
                                 <div class="col-sm-6">
                                     <input type="file" class="form-control <?= (session()->getFlashdata('err_lampiran_isi_tol')) ? 'is-invalid' : ''; ?>" id="lampiran_isi_tol" name="lampiran_isi_tol" value="<?= old('lampiran_isi_tol'); ?>" onchange="previewImg_tol()">
@@ -89,6 +90,7 @@
                                 </div>
                             </div>
                             <div class="row mb-5">
+                                <div style="color: red; font-size: 13px;">*Ukuran maksimal gambar 1 mb</div>
                                 <label for="lampiran_isi_bbm" class="col-sm-4 col-form-label">Lampiran Pengisian BBM (*)</label>
                                 <div class="col-sm-6">
                                     <input type="file" class="form-control <?= (session()->getFlashdata('err_lampiran_isi_bbm')) ? 'is-invalid' : ''; ?>" id="lampiran_isi_bbm" name="lampiran_isi_bbm" value="<?= old('lampiran_isi_bbm'); ?>" onchange="previewImg_bbm()">
@@ -100,14 +102,14 @@
                                     <img src="" class="img-thumbnail img-preview-bbm" alt="">
                                 </div>
                             </div>
-                            <div class="mb-3 row col-sm-4">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="mb-3 row col-sm-3">
+                                <button type="submit" class="btn btn-primary btn-sm"><span class="material-icons">check</span>Submit</button>
                             </div>
                         </form>
                     </div>
                 </center>
                 <div class="mb-3 mt-3 row col-2">
-                    <a class="ms-3 btn btn-info" style="font-weight:bold; color:white" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] . '_keluar' ?>"><i class="bi bi-skip-backward-circle-fill"></i> Back</a>
+                    <a class="ms-3 btn btn-info btn-sm" style="font-weight:bold; color:white" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] . '_keluar' ?>"><span class="material-icons">arrow_back</span>Kembali</a>
                 </div>
 
             </div>

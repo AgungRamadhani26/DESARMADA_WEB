@@ -23,7 +23,7 @@
                         ?>
                         <p style="font-weight:bold">Lokasi : <?= $results['lokasi'] ?></p>
                         <p style="font-weight:bold">No Polisi : <?= $kendaraan['nomor_polisi'] ?></p>
-                        <a href="/dashboard/printQR/<?= $kendaraan['nomor_polisi'] ?>" class="btn btn-primary">Print</a>
+                        <a href="/dashboard/printQR/<?= $kendaraan['nomor_polisi'] ?>" class="btn btn-primary btn-sm"><span class="material-icons">picture_as_pdf</span>Print</a>
                     </div>
                 </div>
             </div>

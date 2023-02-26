@@ -17,7 +17,7 @@
 </head>
 
 <body>
-   <section class="vh-100" style="background-image: linear-gradient(to right, #53abea, #91a6cf);">
+   <section class="vh-100" style="background-image: url('/assets/images/img_tampilan/BG-LupaPass.jpg');">
       <div class="container py-5 h-100">
          <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -60,6 +60,9 @@
                            </div>
                         </center>
                      </form>
+                  </div>
+                  <div class="mb-4 ms-5">
+                     <a href="/"><b>Kembali ke menu login</b></a>
                   </div>
                </div>
             </div>

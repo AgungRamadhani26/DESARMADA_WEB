@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 mb-1">
-                                <button type="submit" class="btn btn-primary btn-md"><i class="bi bi-search"></i> Cari</button>
+                                <button type="submit" class="btn badge biru"><span class="material-icons">search</span></button>
                             </div>
                         </div>
                     </form>

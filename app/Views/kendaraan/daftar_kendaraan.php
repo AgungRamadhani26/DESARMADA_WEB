@@ -6,8 +6,15 @@
 <aside>
     <article class="card">
         <div class="card-header">
-            <h5>Status Kendaraan</h5>
-            <hr>
+            <!-- Modal trigger button untuk menambah kendaraan baru -->
+            <button type="button" class="btn badge tambah" data-bs-toggle="modal" data-bs-target="#modaltambah_kendaraan">
+                <span class="material-icons">add</span>
+            </button>
+            <center>
+                <hr>
+                <h5>Jumlah Kendaraan</h5>
+                <hr>
+            </center>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -42,12 +49,6 @@
     <div class="card">
         <div class="card-header bg-table">
             <h3>Daftar Kendaraan</h3>
-            <div>
-                <!-- Modal trigger button untuk menambah kendaraan baru -->
-                <button type="button" class="btn badge tambah" data-bs-toggle="modal" data-bs-target="#modaltambah_kendaraan">
-                    <i class="bi bi-plus-square-fill"></i> Tambah
-                </button>
-            </div>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="table1">
@@ -84,11 +85,11 @@
                                 </span>
                             </td>
                             <td>
-                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_kendaraan" onclick="edit_kendaraan(<?php echo $k['id_kendaraan'] ?>)"><i class="bi bi-pencil-square"></i> Ubah</button>
+                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_kendaraan" onclick="edit_kendaraan(<?php echo $k['id_kendaraan'] ?>)"><span class="material-icons">edit</span></button>
                                 <form action="/kendaraan/delete_kendaraan/<?= $k['id_kendaraan'] ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin ?');"><i class="bi bi-trash3-fill"></i> Hapus</button>
+                                    <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin ?');"><span class="material-icons">clear</span></button>
                                 </form>
                             </td>
                         </tr>

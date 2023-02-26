@@ -57,6 +57,7 @@
                     </div>
                     <div class="row mb-3">
                         <label for="gambar">Gambar</label>
+                        <div style="color: red; font-size: 13px;">*Ukuran maksimal gambar 1 mb</div>
                         <div class="col-sm-3">
                             <img src="" class="img-thumbnail img-preview">
                         </div>

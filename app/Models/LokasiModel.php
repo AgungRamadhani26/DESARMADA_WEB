@@ -29,12 +29,18 @@ class LokasiModel extends Model
             "SELECT departemen.id_departemen as id_dp, departemen.nama_departemen as nama_dp, 
             COUNT(CASE WHEN kendaraan.jenis_kendaraan = 'mobil' THEN 1 ELSE NULL END) as jumlah_mobil, 
             COUNT(CASE WHEN kendaraan.jenis_kendaraan = 'motor' THEN 1 ELSE NULL END) as jumlah_motor 
-            FROM kendaraan RIGHT JOIN departemen ON departemen.id_departemen = kendaraan.id_departemen 
-            WHERE departemen.deleted_at IS NULL AND kendaraan.deleted_at IS NULL 
+            FROM departemen LEFT JOIN kendaraan ON departemen.id_departemen = kendaraan.id_departemen 
+            AND kendaraan.deleted_at IS NULL WHERE departemen.deleted_at IS NULL 
             GROUP BY departemen.id_departemen ORDER BY departemen.id_departemen ASC;
         "
         );
         $jlhMobildanMotor = $jlhMobilMotor->getResultArray();
         return $jlhMobildanMotor;
+    }
+
+    //Hitung jumlah lokasi
+    public function countLokasi()
+    {
+        return $this->where(['deleted_at' => null])->countAllResults();
     }
 }

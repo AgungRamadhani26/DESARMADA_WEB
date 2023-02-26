@@ -99,14 +99,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-3 row col-sm-4">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="mb-3 row col-sm-3">
+                                <button type="submit" class="btn btn-primary btn-sm"><span class="material-icons">check</span>Submit</button>
                             </div>
                         </form>
                     </div>
                 </center>
                 <div class="mb-3 mt-3 row col-2">
-                    <a class="ms-3 btn btn-info" style="font-weight:bold; color:white" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] ?>"><i class="bi bi-skip-backward-circle-fill"></i> Back</a>
+                    <a class="ms-3 btn btn-info btn-sm" style="font-weight:bold; color:white" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] ?>"><span class="material-icons">arrow_back</span>Kembali</a>
                 </div>
 
             </div>

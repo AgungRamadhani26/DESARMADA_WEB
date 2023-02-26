@@ -19,8 +19,8 @@
                      <a href="/peminjaman/history_peminjaman_motor" class="aktiff">History Motor</a>
                   </div>
                   <div class="col-4">
-                     <a href="/peminjaman/eksport_motor_exc" class="btn btn-success btn-sm position-absolute bottom-50 end-10 mb-1"><i class="bi bi-file-earmark-spreadsheet-fill"></i> Export Data Excel</a>
-                     <a href="/peminjaman/eksport_motor_pdf" class="btn btn-success btn-sm position-absolute top-50 end-10 mt-1"><i class="bi bi-file-earmark-pdf-fill"></i> Export Data PDF</a>
+                     <a href="/peminjaman/eksport_motor_exc" class="btn btn-success btn-sm position-absolute bottom-50 end-10 mb-1"><span class="material-icons">description</span>Export Excel</a>
+                     <a href="/peminjaman/eksport_motor_pdf" class="btn btn-success btn-sm position-absolute top-50 end-10 mt-1"><span class="material-icons">picture_as_pdf</span>Export PDF</a>
                   </div>
                </div>
             </div>
@@ -122,7 +122,7 @@
                            <form action="/peminjaman/delete_peminjamanMotor/<?= $h['id_peminjaman'] ?>" method="POST" class="d-inline">
                               <?= csrf_field(); ?>
                               <input type="hidden" name="_method" value="DELETE">
-                              <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Apakah anda yakin ?');"><i class="bi bi-trash3-fill"></i> Hapus</button>
+                              <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin ?');"><span class="material-icons">clear</span></button>
                            </form>
                         </td>
                      <?php

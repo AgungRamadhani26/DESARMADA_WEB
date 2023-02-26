@@ -31,6 +31,7 @@ class Lokasi extends BaseController
         $data = [
             'lokasi' => $this->lokasiModel->getLokasi(),
             'url' => '/lokasi/daftar_lokasi',
+            'jlh_lokasi' => $this->lokasiModel->countLokasi(),
             'jumlahMobilMotor' => $this->lokasiModel->getJumlahMobilMotor(),
             'lokasiGR' => $lokasiGR,
             'jumlahMobilGR' => $jumlahMobilGR,

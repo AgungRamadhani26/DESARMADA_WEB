@@ -101,21 +101,21 @@
                                                 ?>
                                                 <p>Lokasi : <?= $results['lokasi'] ?></p>
                                                 <p>No Polisi : <?= $sm['nomor_polisi'] ?></p>
-                                                <p class="fw-bold <?= ($sm['pinjam'] == 0 ? 'text-success' : ($sm['pinjam'] == 1 ? 'text-danger' : 'text-info')); ?>">
-                                                    Status : <?= ($sm['pinjam'] == 0 ? 'Tersedia' : ($sm['pinjam'] == 1 ? 'Tidak tersedia' : 'Service'));  ?>
+                                                <p class="fw-bold <?= ($sm['pinjam'] == 0 ? 'text-success' : ($sm['pinjam'] == 1 ? 'text-danger' : 'text-primary')); ?>">
+                                                    Status : <?= ($sm['pinjam'] == 0 ? 'Tersedia' : ($sm['pinjam'] == 1 ? 'Tidak tersedia' : 'Servis'));  ?>
                                                 </p>
                                                 <center>
                                                     <?php
                                                     if ($sm['pinjam'] == 0) {
                                                     ?>
-                                                        <a href="/peminjaman/pinjam_kendaraan/<?= $sm['id_kendaraan'] ?>" class="btn btn-primary">Pinjam</a>
+                                                        <a href="/peminjaman/pinjam_kendaraan/<?= $sm['id_kendaraan'] ?>" class="btn btn-primary btn-sm"><span class="material-icons">post_add</span>Pinjam</a>
                                                     <?php
                                                     }
                                                     ?>
                                                     <?php
                                                     if (session()->get('level') == 1) {
                                                     ?>
-                                                        <a href="/dashboard/generateQR/<?= $sm['nomor_polisi'] ?>" class="btn btn-info">Lihat QR</a>
+                                                        <a href="/dashboard/generateQR/<?= $sm['nomor_polisi'] ?>" class="btn btn-info btn-sm"><span class="material-icons">qr_code_2</span>Lihat QR</a>
                                                     <?php
                                                     }
                                                     ?>

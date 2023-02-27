@@ -44,37 +44,63 @@ $routes->get('/logout', 'Login::logout');
 $routes->get('/profile/lihat_profile', 'Profile::lihat_profile');
 //Untuk melakukan update profile
 $routes->post('/profile/update_profile', 'Profile::update_profile');
+//Untuk menampilkan halaman lupa password
 $routes->get('/lupa_password', 'Profile::lupa_password');
+//Untuk melakukan cek email
 $routes->post('/lupa_password/cek_email', 'Profile::cek_email');
+//Untuk menampilkan halaman reset password
 $routes->get('/lupa_password/reset_password/(:any)', 'Profile::reset_password/$1');
+//Untuk melakukan reset password
 $routes->post('/lupa_password/save_reset_password/(:num)', 'Profile::save_reset_password/$1');
 
 //Routes dashboard
-$routes->get('/dashboard/mobil', 'Dashboard::daftar_mobil'); //menampilkan dashboard dan daftar mobil
+//menampilkan dashboard dan daftar mobil
+$routes->get('/dashboard/mobil', 'Dashboard::daftar_mobil');
+//menampilkan dashboard dan daftar motor
 $routes->get('/dashboard/motor', 'Dashboard::daftar_motor');
+//menampilkan dashboard dan daftar mobil dipinjam
 $routes->get('/dashboard/mobil_keluar', 'Dashboard::mobil_keluar');
+//menampilkan dashboard dan daftar motor dipinjam
 $routes->get('/dashboard/motor_keluar', 'Dashboard::motor_keluar');
+//menampilkan QR Code
 $routes->get('/dashboard/generateQR/(:any)', 'Dashboard::generateQR/$1');
+//mencetak QR Code
 $routes->get('/dashboard/printQR/(:any)', 'Dashboard::printQR/$1');
 
 //Peminjaman
+//Untuk menampilkan semua history peminjaman
 $routes->get('/peminjaman/history_peminjaman', 'Peminjaman::history_peminjaman');
+//Untuk menampilkan history peminjaman mobil
 $routes->get('/peminjaman/history_peminjaman_mobil', 'Peminjaman::history_peminjaman_mobil');
+//Untuk menampilkan history peminjaman motor
 $routes->get('/peminjaman/history_peminjaman_motor', 'Peminjaman::history_peminjaman_motor');
+//Untuk menampilkan form peminjaman kendaraan
 $routes->get('/peminjaman/pinjam_kendaraan/(:num)', 'Peminjaman::pinjam_kendaraan/$1');
+//Untuk menambahkan data peminjaman kendaraan
 $routes->post('/peminjaman/add_pinjam/(:num)', 'Peminjaman::add_pinjam/$1');
+//Untuk menampilkan form pengembalian kendaraan
 $routes->get('/peminjaman/kembalikan_kendaraan/(:num)', 'Peminjaman::kembalikan_kendaraan/$1');
+//Untuk menambahkan data pengembalian kendaraan
 $routes->post('/peminjaman/add_pengembalian/(:num)', 'Peminjaman::add_pengembalian/$1');
+//Untuk menghapus data peminjaman kendaraan
 $routes->delete('/peminjaman/delete_peminjaman/(:num)', 'Peminjaman::delete_peminjaman/$1');
+//Untuk menghapus data peminjaman kendaraan
 $routes->delete('/peminjaman/delete_peminjamanMobil/(:num)', 'Peminjaman::delete_peminjamanMobil/$1');
+//Untuk menghapus data peminjaman kendaraan
 $routes->delete('/peminjaman/delete_peminjamanMotor/(:num)', 'Peminjaman::delete_peminjamanMotor/$1');
 
 //Eksport ke Excel dan PDF
+//Untuk eksport semua data peminjaman ke Excel
 $routes->get('/peminjaman/eksport_all_exc', 'Peminjaman::eksport_all_exc');
+//Untuk eksport data peminjaman mobil ke Excel
 $routes->get('/peminjaman/eksport_mobil_exc', 'Peminjaman::eksport_mobil_exc');
+//Untuk eksport data peminjaman motor ke Excel
 $routes->get('/peminjaman/eksport_motor_exc', 'Peminjaman::eksport_motor_exc');
+//Untuk eksport semua data peminjaman ke PDF
 $routes->get('/peminjaman/eksport_all_pdf', 'Peminjaman::eksport_all_pdf');
+//Untuk eksport data peminjaman mobil ke PDF
 $routes->get('/peminjaman/eksport_mobil_pdf', 'Peminjaman::eksport_mobil_pdf');
+//Untuk eksport data peminjaman motor ke PDF
 $routes->get('/peminjaman/eksport_motor_pdf', 'Peminjaman::eksport_motor_pdf');
 
 
@@ -123,7 +149,9 @@ $routes->post('/kendaraan/update_kendaraan', 'Kendaraan::update_kendaraan');
 $routes->delete('/kendaraan/delete_kendaraan/(:num)', 'Kendaraan::delete_kendaraan/$1');
 
 //Laporan
+//Untuk menampilkan laporan
 $routes->get('/laporan/laporan_penggunaan', 'Laporan::laporan_penggunaan');
+//Untuk mencari laporan
 $routes->get('/laporan/cari_laporan', 'Laporan::cari_laporan');
 
 /*

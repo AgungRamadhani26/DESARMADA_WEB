@@ -520,7 +520,7 @@ function previewImg_e() {
     }
 }
 
-//Fungsi ini digunakan untuk menampilkan gambar pada form modal add kendaraan
+//Fungsi ini digunakan untuk menampilkan gambar pada form pengembalian kendaraan
 function previewImg_tol() {
     const gambar = document.querySelector('#lampiran_isi_tol');
     const imgPreview = document.querySelector('.img-preview-tol');
@@ -531,7 +531,7 @@ function previewImg_tol() {
     }
 }
 
-//Fungsi ini digunakan untuk menampilkan gambar pada form modal add kendaraan
+//Fungsi ini digunakan untuk menampilkan gambar pada form pengembalian kendaraan
 function previewImg_bbm() {
     const gambar = document.querySelector('#lampiran_isi_bbm');
     const imgPreview = document.querySelector('.img-preview-bbm');

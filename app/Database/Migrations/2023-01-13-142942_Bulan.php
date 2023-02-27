@@ -11,14 +11,12 @@ class Bulan extends Migration
     {
         $this->forge->addField([
             'id_bulan' => [
-                'type'           => 'INT',
+                'type'           => 'VARCHAR',
                 'constraint'     => 2,
-                'unsigned'       => true,
             ],
             'nama_bulan' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '50',
-                'null'  => true,
             ],
         ]);
         $this->forge->addKey('id_bulan', true);

@@ -30,7 +30,7 @@
 
    <div class="card">
       <div class="card-header History_bg">
-         <h4>Hiatory Peminjaman Motor</h4>
+         <h4>History Peminjaman Motor</h4>
       </div>
       <div class="card-body">
          <table class="table table-hover" id="table1">

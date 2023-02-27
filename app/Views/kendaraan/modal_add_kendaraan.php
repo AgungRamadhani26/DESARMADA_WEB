@@ -69,8 +69,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary tombol-tutup-kendaraan" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="tombol-simpan-add-kendaraan">Save</button>
+                    <button type="button" class="btn btn-secondary tombol-tutup-kendaraan" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" id="tombol-simpan-add-kendaraan">Simpan</button>
                 </div>
             </form>
         </div>

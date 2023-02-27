@@ -50,8 +50,8 @@ class Lokasi extends BaseController
             'namalokasi' => [
                 'rules' => 'required|alpha_space',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'alpha_space' => '{field} harus berupa huruf'
+                    'required' => 'Nama lokasi harus diisi',
+                    'alpha_space' => 'Nama lokasi harus berupa huruf'
                 ]
             ]
         ];
@@ -94,8 +94,8 @@ class Lokasi extends BaseController
             'namalokasi' => [
                 'rules' => 'required|alpha_space',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'alpha_space' => '{field} harus berupa huruf'
+                    'required' => 'Nama lokasi harus diisi',
+                    'alpha_space' => 'Nama lokasi harus berupa huruf'
                 ]
             ]
         ];

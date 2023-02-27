@@ -37,8 +37,8 @@ class Driver extends BaseController
             'nama' => [
                 'rules' => 'required|alpha_space',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'alpha_space' => '{field} harus berupa huruf'
+                    'required' => 'Nama harus diisi',
+                    'alpha_space' => 'Nama harus berupa huruf'
                 ]
             ]
         ];
@@ -85,8 +85,8 @@ class Driver extends BaseController
             'nama' => [
                 'rules' => 'required|alpha_space',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'alpha_space' => '{field} harus berupa huruf'
+                    'required' => 'Nama harus diisi',
+                    'alpha_space' => 'Nama harus berupa huruf'
                 ]
             ]
         ];

@@ -45,34 +45,35 @@ class Kendaraan extends BaseController
             'jeniskendaraan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus dipilih'
+                    'required' => 'Jenis kendaraan harus dipilih'
                 ]
             ],
             'tipekendaraan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => 'Tipe kendaraan harus diisi'
                 ]
             ],
             'nopol' => [
                 'rules' => 'required|is_unique[kendaraan.nomor_polisi]|alpha_numeric',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'is_unique' => 'nomor polisi tidak boleh sama',
-                    'alpha_numeric' => 'Nomor Polisi tidak boleh mengandung spasi'
+                    'required' => 'Nomor polisi harus diisi',
+                    'is_unique' => 'Nomor polisi tidak boleh sama',
+                    'alpha_numeric' => 'Nomor polisi tidak boleh mengandung spasi'
                 ]
             ],
             'lokasi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus dipilih'
+                    'required' => 'Lokasi harus dipilih'
                 ]
             ],
             'kmawal' => [
-                'rules' => 'required|integer',
+                'rules' => 'required|integer|greater_than_equal_to[0]',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'integer' => '{field} harus berupa angka'
+                    'required' => 'Km awal harus diisi',
+                    'integer' => 'Km awal harus berupa angka',
+                    'greater_than_equal_to' => 'Km awal tidak boleh kurang dari 0'
                 ]
             ],
             'gambar' => [
@@ -146,34 +147,35 @@ class Kendaraan extends BaseController
             'jeniskendaraan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus dipilih'
+                    'required' => 'Jenis Kendaraan harus dipilih'
                 ]
             ],
             'tipekendaraan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => 'Tipe Kendaraan harus diisi'
                 ]
             ],
             'nopol' => [
                 'rules' => $rule_nopol,
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'is_unique' => 'nomor polisi tidak boleh sama',
-                    'alpha_numeric' => 'Nomor Polisi tidak boleh mengandung spasi'
+                    'required' => 'Nomor polisi harus diisi',
+                    'is_unique' => 'Nomor polisi tidak boleh sama',
+                    'alpha_numeric' => 'Nomor polisi tidak boleh mengandung spasi'
                 ]
             ],
             'lokasi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus dipilih'
+                    'required' => 'Lokasi harus dipilih'
                 ]
             ],
             'kmawal' => [
-                'rules' => 'required|integer',
+                'rules' => 'required|integer|greater_than_equal_to[0]',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'integer' => '{field} harus berupa angka'
+                    'required' => 'Km awal harus diisi',
+                    'integer' => 'Km awal harus berupa angka',
+                    'greater_than_equal_to[0]' => 'Km awal tidak boleh kurang dari 0'
                 ]
             ],
             'gambar' => [
@@ -190,34 +192,35 @@ class Kendaraan extends BaseController
             'jeniskendaraan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus dipilih'
+                    'required' => 'Jenis Kendaraan harus dipilih'
                 ]
             ],
             'tipekendaraan' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => 'Tipe Kendaraan harus diisi'
                 ]
             ],
             'nopol' => [
                 'rules' => $rule_nopol,
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'is_unique' => 'nomor polisi tidak boleh sama',
-                    'alpha_numeric' => 'Nomor Polisi tidak boleh mengandung spasi'
+                    'required' => 'Nomor polisi harus diisi',
+                    'is_unique' => 'Nomor polisi tidak boleh sama',
+                    'alpha_numeric' => 'Nomor polisi tidak boleh mengandung spasi'
                 ]
             ],
             'lokasi' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus dipilih'
+                    'required' => 'Lokasi harus dipilih'
                 ]
             ],
             'kmawal' => [
-                'rules' => 'required|integer',
+                'rules' => 'required|integer|greater_than_equal_to[0]',
                 'errors' => [
                     'required' => '{field} harus diisi',
-                    'integer' => '{field} harus berupa angka'
+                    'integer' => '{field} harus berupa angka',
+                    'greater_than_equal_to[0]' => 'Km awal tidak boleh kurang dari 0'
                 ]
             ]
         ];

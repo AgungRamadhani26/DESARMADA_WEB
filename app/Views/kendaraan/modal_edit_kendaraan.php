@@ -9,10 +9,10 @@
                 </div>
                 <div class="modal-body">
                     <!--Kalau ada error-->
-                    <div class="alert alert-danger error-kendaraan" role="alert" style="display: none"> <!--display none agar tidak ditampilkan saat pertama kali dan ditampilkan jika dipicu oleh hide() dan show() dari script jquery-->
+                    <div class="alert alert-danger error-kendaraan_e" role="alert" style="display: none"> <!--display none agar tidak ditampilkan saat pertama kali dan ditampilkan jika dipicu oleh hide() dan show() dari script jquery-->
                     </div>
                     <!--Kalau sukses-->
-                    <div class="alert alert-success sukses-kendaraan" role="alert" style="display: none">
+                    <div class="alert alert-success sukses-kendaraan_e" role="alert" style="display: none">
                     </div>
                     <?= csrf_field(); ?>
                     <input type="hidden" id="id_kendaraan_e">
@@ -71,8 +71,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary tombol-tutup-kendaraan" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="tombol-simpan-edit-kendaraan">Save</button>
+                    <button type="button" class="btn btn-secondary tombol-tutup-kendaraan" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary" id="tombol-simpan-edit-kendaraan">Simpan</button>
                 </div>
             </form>
         </div>

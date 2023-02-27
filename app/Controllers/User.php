@@ -43,42 +43,42 @@ class User extends BaseController
             'username' => [
                 'rules' => 'required|valid_email|is_unique[user.username]',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'valid_email' => 'format {field} adalah email',
-                    'is_unique' => '{field} sudah terdaftar coba pakai yang lain'
+                    'required' => 'Username harus diisi',
+                    'valid_email' => 'Format Username adalah email',
+                    'is_unique' => 'Username sudah terdaftar coba pakai yang lain'
                 ]
             ],
             'nama' => [
                 'rules' => 'required|alpha_space',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'alpha_space' => '{field} harus berupa huruf'
+                    'required' => 'Nama harus diisi',
+                    'alpha_space' => 'Nama harus berupa huruf'
                 ]
             ],
             'level' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus dipilih'
+                    'required' => 'Level harus dipilih'
                 ]
             ],
             'driver' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => 'Driver harus diisi'
                 ]
             ],
             'password' => [
                 'rules' => 'required|min_length[6]',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'min_length' => '{field} tidak boleh kurang dari 6 karakter'
+                    'required' => 'Password harus diisi',
+                    'min_length' => 'Password tidak boleh kurang dari 6 karakter'
                 ]
             ],
             'konfirpass' => [
                 'rules' => 'required|min_length[6]',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'min_length' => '{field} tidak boleh kurang dari 6 karakter'
+                    'required' => 'Konfirmasi password harus diisi',
+                    'min_length' => 'Konfirmasi password tidak boleh kurang dari 6 karakter'
                 ]
             ]
         ];
@@ -148,28 +148,28 @@ class User extends BaseController
             'username' => [
                 'rules' => $rule_username,
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'valid_email' => 'format {field} adalah email',
-                    'is_unique' => '{field} sudah terdaftar coba pakai yang lain'
+                    'required' => 'Username harus diisi',
+                    'valid_email' => 'Format Username adalah email',
+                    'is_unique' => 'Username sudah terdaftar coba pakai yang lain'
                 ]
             ],
             'nama' => [
                 'rules' => 'required|alpha_space',
                 'errors' => [
-                    'required' => '{field} harus diisi',
-                    'alpha_space' => '{field} harus berupa huruf'
+                    'required' => 'Nama harus diisi',
+                    'alpha_space' => 'Nama harus berupa huruf'
                 ]
             ],
             'level' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus dipilih'
+                    'required' => 'Level harus dipilih'
                 ]
             ],
             'driver' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => '{field} harus diisi'
+                    'required' => 'Driver harus diisi'
                 ]
             ],
         ];

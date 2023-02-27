@@ -189,7 +189,7 @@ class Peminjaman extends BaseController
             'isi_tol' => [
                 'rules' => 'greater_than_equal_to[0]',
                 'errors' => [
-                    'greater_than_equal_to' => 'Tidak mungkin berisi nilai negatif',
+                    'greater_than_equal_to' => 'Minimal pengisian tol adalah 0',
                 ]
             ],
             'lampiran_isi_tol' => [
@@ -204,7 +204,7 @@ class Peminjaman extends BaseController
             'isi_bbm' => [
                 'rules' => 'greater_than_equal_to[0]',
                 'errors' => [
-                    'greater_than_equal_to' => 'Tidak mungkin berisi nilai negatif',
+                    'greater_than_equal_to' => 'Minimal pengisian bmm adalah 0',
                 ]
             ],
             'lampiran_isi_bbm' => [

@@ -84,13 +84,13 @@ $('#tombol-simpan-edit-driver').on('click', function() {
         success: function(hasil) { //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
             if ($obj.sukses == false) { //Jika penambahan data gagal
-                $('.sukses').hide(); //menghide alert dengan kelas sukses
-                $('.error').show(); //menampilkan alert dengan kelas error
-                $('.error').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
+                $('.sukses_e').hide(); //menghide alert dengan kelas sukses
+                $('.error_e').show(); //menampilkan alert dengan kelas error
+                $('.error_e').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
             } else { //Jika penambahan data berhasil
-                $('.error').hide(); //menghide alert dengan kelas error
-                $('.sukses').show(); //menampilkan alert dengan kelas sukses
-                $('.sukses').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
+                $('.error_e').hide(); //menghide alert dengan kelas error
+                $('.sukses_e').show(); //menampilkan alert dengan kelas sukses
+                $('.sukses_e').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanDriver(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
             }
         }
@@ -190,13 +190,13 @@ $('#tombol-simpan-edit-lokasi').on('click', function(){
         success: function(hasil){ //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
             if ($obj.sukses == false) { //Jika penambahan data gagal
-                $('.sukses-lokasi').hide(); //menghide alert dengan kelas sukses
-                $('.error-lokasi').show(); //menampilkan alert dengan kelas error
-                $('.error-lokasi').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
+                $('.sukses-lokasi_e').hide(); //menghide alert dengan kelas sukses
+                $('.error-lokasi_e').show(); //menampilkan alert dengan kelas error
+                $('.error-lokasi_e').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
             } else { //Jika penambahan data berhasil
-                $('.error-lokasi').hide(); //menghide alert dengan kelas error
-                $('.sukses-lokasi').show(); //menampilkan alert dengan kelas sukses
-                $('.sukses-lokasi').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
+                $('.error-lokasi_e').hide(); //menghide alert dengan kelas error
+                $('.sukses-lokasi_e').show(); //menampilkan alert dengan kelas sukses
+                $('.sukses-lokasi_e').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanLokasi(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
             }
         }
@@ -323,13 +323,13 @@ $('#tombol-simpan-edit-user').on('click', function(){
         success: function(hasil){ //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
             if ($obj.sukses == false) { //Jika penambahan data gagal
-                $('.sukses-user').hide(); //menghide alert dengan kelas sukses
-                $('.error-user').show(); //menampilkan alert dengan kelas error
-                $('.error-user').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
+                $('.sukses-user_e').hide(); //menghide alert dengan kelas sukses
+                $('.error-user_e').show(); //menampilkan alert dengan kelas error
+                $('.error-user_e').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
             } else { //Jika penambahan data berhasil
-                $('.error-user').hide(); //menghide alert dengan kelas error
-                $('.sukses-user').show(); //menampilkan alert dengan kelas sukses
-                $('.sukses-user').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
+                $('.error-user_e').hide(); //menghide alert dengan kelas error
+                $('.sukses-user_e').show(); //menampilkan alert dengan kelas sukses
+                $('.sukses-user_e').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanUser(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
             }
         }
@@ -476,13 +476,13 @@ $('#tombol-simpan-edit-kendaraan').on('click', function(){
         success: function(hasil){ //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
             if ($obj.sukses == false) { //Jika penambahan data gagal
-                $('.sukses-kendaraan').hide(); //menghide alert dengan kelas sukses
-                $('.error-kendaraan').show(); //menampilkan alert dengan kelas error
-                $('.error-kendaraan').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
+                $('.sukses-kendaraa_e').hide(); //menghide alert dengan kelas sukses
+                $('.error-kendaraan_e').show(); //menampilkan alert dengan kelas error
+                $('.error-kendaraan_e').html($obj.error); //menambahkan elemen html dari data dengan key error dari controller
             } else { //Jika penambahan data berhasil
-                $('.error-kendaraan').hide(); //menghide alert dengan kelas error
-                $('.sukses-kendaraan').show(); //menampilkan alert dengan kelas sukses
-                $('.sukses-kendaraan').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
+                $('.error-kendaraan_e').hide(); //menghide alert dengan kelas error
+                $('.sukses-kendaraan_e').show(); //menampilkan alert dengan kelas sukses
+                $('.sukses-kendaraan_e').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanKendaraan(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
             }
         }

@@ -113,8 +113,10 @@ $routes->resource('api/departemen');
 $routes->resource('api/bulan');
 $routes->resource('api/mainkendaraan');
 $routes->resource('api/historylog');
-$routes->post('autentikasiapi', 'autentikasiapi::index');
-// $routes->resource('api/autentikasiapi');
+$routes->post('api/changepass', 'Changepass::index');
+$routes->post('api/uploadImage', 'api\uploadImage::index');
+$routes->post('api/UserAuthentication', 'UserAuthentication::index');
+
 
 
 /*

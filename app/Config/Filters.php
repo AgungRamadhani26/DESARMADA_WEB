@@ -70,9 +70,9 @@ class Filters extends BaseConfig
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
     public array $filters = [
-        'autentikasi' => ['before' => [
-            'api/driver',
-            'api'
-        ]],
+        // 'autentikasi' => ['before' => [
+        //     'api/*',
+        //     'api'
+        // ]],
     ];
 }

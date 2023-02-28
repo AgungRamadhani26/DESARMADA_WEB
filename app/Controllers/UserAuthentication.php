@@ -36,7 +36,7 @@ class AutentikasiAPI extends BaseController
     $password = $this->request->getPost('password');
 
     $data = $model->get_username($username);
-    if ($data['password'] != md5($password)) {
+    if ($data['password'] != $password) {
       return $this->fail('Password salah!');
     }
 
@@ -44,6 +44,11 @@ class AutentikasiAPI extends BaseController
     $response = [
       'status' => 200,
       'error' => null,
+      'data' => [
+        'id_user' => $data['id_user'],
+        'username' => $username,
+        'nama' => $data['nama'],
+      ],
       'access_token' => createJWT(['username' => $username])
     ];
     return $this->respond($response);

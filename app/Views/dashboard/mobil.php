@@ -93,14 +93,14 @@
                                         <div class="card mb-3 cardDashboard">
                                             <img src="/assets/img_kendaraan/<?= $m['gambar']; ?>" alt="" height="190px">
                                             <div class="card-body">
-                                                <h5 class="card-title"><?= $m["tipe_kendaraan"]; ?></h5>
+                                                <h5 class="card-title"><?= $m['nomor_polisi'] ?></h5>
                                                 <?php
                                                 $db = \Config\Database::connect();
                                                 $query = $db->query("SELECT nama_departemen AS lokasi FROM departemen WHERE departemen.id_departemen =" . $m['id_departemen'] . "");
                                                 $results = $query->getRowArray();
                                                 ?>
                                                 <p>Lokasi : <?= $results['lokasi'] ?></p>
-                                                <p>No Polisi : <?= $m['nomor_polisi'] ?></p>
+                                                <p>Tipe : <?= $m["tipe_kendaraan"]; ?></p>
                                                 <p class="fw-bold <?= ($m['pinjam'] == 0 ? 'text-success' : ($m['pinjam'] == 1 ? 'text-danger' : 'text-primary')); ?>">
                                                     Status : <?= ($m['pinjam'] == 0 ? 'Tersedia' : ($m['pinjam'] == 1 ? 'Tidak tersedia' : 'Servis'));  ?>
                                                 </p>

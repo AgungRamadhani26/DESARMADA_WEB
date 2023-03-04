@@ -9,7 +9,7 @@
                     <hr />
                     <div class="updateProfile">
                         <div>
-                            <h3 class="my-3 profile">Update Profile</h3>
+                            <h3 class="my-3" style="color:white">Update Profile</h3>
                         </div>
                     </div>
                     <hr />

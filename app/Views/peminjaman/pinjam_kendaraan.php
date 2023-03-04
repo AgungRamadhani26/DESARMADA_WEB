@@ -11,6 +11,9 @@
                         <h3 class="my-3">Form Peminjaman Kendaraan</h3>
                     </div>
                     <hr />
+                    <div>
+                        <img src="/assets/img_kendaraan/<?= $kendaraan['gambar'] ?>" alt="" width="200">
+                    </div>
                     <br>
                     <div class="col-7">
                         <form action="/peminjaman/add_pinjam/<?= $kendaraan['id_kendaraan'] ?>" method="POST" enctype="multipart/form-data">
@@ -51,7 +54,7 @@
                             <div class="row mb-3">
                                 <label for="tgl_pinjam" class="col-sm-3 col-form-label">Tanggal Pinjam</label>
                                 <div class="col-sm-9">
-                                    <input type="date" class="form-control <?= (session()->getFlashdata('tgl_pinjam_kosong')) ? 'is-invalid' : ''; ?>" name="tgl_pinjam" value="<?= old('tgl_pinjam'); ?>">
+                                    <input type="text" class="form-control <?= (session()->getFlashdata('tgl_pinjam_kosong')) ? 'is-invalid' : ''; ?>" name="tgl_pinjam" id="tgl_pinjam" value="<?= old('tgl_pinjam'); ?>" placeholder="dd-mm-yyyy">
                                     <div class="invalid-feedback">
                                         <?= session()->getFlashdata('tgl_pinjam_kosong') ?>
                                     </div>

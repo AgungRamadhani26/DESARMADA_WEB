@@ -11,6 +11,10 @@
                         <h3 class="my-3">Form Pengembalian Kendaraan</h3>
                     </div>
                     <hr />
+                    <div>
+                        <img src="/assets/img_kendaraan/<?= $kendaraan['gambar'] ?>" alt="" width="200">
+                    </div>
+                    <br>
                     <br>
                     <div class="col-9">
                         <form action="/peminjaman/add_pengembalian/<?= $peminjaman['id_peminjaman'] ?>" method="POST" enctype="multipart/form-data">
@@ -34,7 +38,7 @@
                             <div class="row mb-3">
                                 <label for="tgl_kembali" class="col-sm-4 col-form-label">Tanggal Kembali</label>
                                 <div class="col-sm-8">
-                                    <input type="date" class="form-control <?= (session()->getFlashdata('err_tgl_kembali')) ? 'is-invalid' : ''; ?>" name="tgl_kembali" value="<?= old('tgl_kembali'); ?>">
+                                    <input type="date" class="form-control <?= (session()->getFlashdata('err_tgl_kembali')) ? 'is-invalid' : ''; ?>" name="tgl_kembali" id="tgl_kembali" value="<?= old('tgl_kembali'); ?>" placeholder="dd-mm-yyyy">
                                     <div class="invalid-feedback">
                                         <?= session()->getFlashdata('err_tgl_kembali') ?>
                                     </div>

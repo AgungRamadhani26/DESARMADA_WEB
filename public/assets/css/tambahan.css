@@ -56,17 +56,10 @@ header{
     background-image: linear-gradient(to right, rgb(81, 109, 236) , #91a6cf);
 }
 
-.profile{
-    padding: 3px;
-    border-radius: 5px;
-    color: white;
-    background-image: linear-gradient(to right, rgb(72,92,188) , #edf0b3);
-}
-
 .updateProfile{
     padding: 1px;
     border-radius: 5px;
-    background-image: linear-gradient(to right, #edf0b3 , rgb(72,92,188));
+    background-image: url('/assets/images/img_tampilan/form.png');
 }
 
 .pinjam-kembali{
@@ -102,7 +95,7 @@ header{
 }
 
 .History_bg{
-    background-color: #abb7cf;
+    background-image: url('/assets/images/img_tampilan/form.png');
 }
 
 .password-container {

@@ -43,6 +43,7 @@ $('#tombol-simpan-add-driver').on('click', function() {
                 $('.sukses').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanDriver(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+                location.reload();
             }
         }
     });
@@ -92,6 +93,7 @@ $('#tombol-simpan-edit-driver').on('click', function() {
                 $('.sukses_e').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses_e').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanDriver(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
+                location.reload();
             }
         }
     });
@@ -149,6 +151,7 @@ $('#tombol-simpan-add-lokasi').on('click', function(){
                 $('.sukses-lokasi').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-lokasi').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanLokasi(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+                location.reload();
             }
         }
     })
@@ -198,6 +201,7 @@ $('#tombol-simpan-edit-lokasi').on('click', function(){
                 $('.sukses-lokasi_e').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-lokasi_e').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanLokasi(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
+                location.reload();
             }
         }
     })
@@ -273,6 +277,7 @@ $('#tombol-simpan-add-user').on('click', function(){
                 $('.sukses-user').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-user').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanUser(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+                location.reload();
             }
         }
     })
@@ -331,6 +336,7 @@ $('#tombol-simpan-edit-user').on('click', function(){
                 $('.sukses-user_e').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-user_e').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanUser(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
+                location.reload();
             }
         }
     })
@@ -414,6 +420,7 @@ $('#tombol-simpan-add-kendaraan').on('click', function(){
                 $('.sukses-kendaraan').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-kendaraan').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanKendaraan(); //memanggilkan fungsi bersihkan agar setelah data berhasil ditambah tulisan di form input pada modal juga hilang
+                location.reload();
             }
         }
     })
@@ -484,6 +491,7 @@ $('#tombol-simpan-edit-kendaraan').on('click', function(){
                 $('.sukses-kendaraan_e').show(); //menampilkan alert dengan kelas sukses
                 $('.sukses-kendaraan_e').html($obj.sukses); //menambahkan elemen html dari data dengan key sukses dari controller
                 bersihkanKendaraan(); //memanggilkan fungsi bersihkan agar setelah data berhasil diedit tulisan di form input pada modal juga hilang
+                location.reload();
             }
         }
     })

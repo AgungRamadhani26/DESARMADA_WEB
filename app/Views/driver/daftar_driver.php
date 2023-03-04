@@ -55,7 +55,7 @@
                                 <form action="/driver/delete_driver/<?= $d['id_driver'] ?>" method="POST" class="d-inline">
                                     <?= csrf_field(); ?>
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin ?');"><span class="material-icons">clear</span></button>
+                                    <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin menghapus data driver ?');"><span class="material-icons">clear</span></button>
                                 </form>
                             </td>
                         </tr>

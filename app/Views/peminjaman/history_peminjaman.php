@@ -30,7 +30,7 @@
 
     <div class="card">
         <div class="card-header History_bg">
-            <h4>History Peminjaman (Semua)</h4>
+            <h4 style="color: white;">History Peminjaman (Semua)</h4>
         </div>
         <div class="card-body">
             <table class="table table-hover" id="table1">
@@ -122,7 +122,7 @@
                                     <form action="/peminjaman/delete_peminjaman/<?= $h['id_peminjaman'] ?>" method="POST" class="d-inline">
                                         <?= csrf_field(); ?>
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin ?');"><span class="material-icons">clear</span></button>
+                                        <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin menghapus data history ?');"><span class="material-icons">clear</span></button>
                                     </form>
                                 </td>
                             <?php

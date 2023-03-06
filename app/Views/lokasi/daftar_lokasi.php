@@ -83,7 +83,9 @@
 
         <article class="card">
             <div class="card-header">
-                <h5>Jumlah kendaraan di Setiap Lokasi</h5>
+                <center>
+                    <h5>Jumlah kendaraan di Setiap Lokasi</h5>
+                </center>
                 <hr>
             </div>
             <div class="card-body">

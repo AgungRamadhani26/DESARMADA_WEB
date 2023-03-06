@@ -158,7 +158,7 @@
                                             <?php foreach ($laporan as $lp) : ?>
                                                 <?php if ($lp['month'] == $bt['id_bulan']) {
                                                     echo '<input id="bulan_' . $lp['nopol'] . '_' . $bt['nama_bulan'] . '" type="hidden" value="' . $lp['total'] . '">';
-                                                    echo '<td><b>' . $lp['total'] . ' KM' . '</b></td>';
+                                                    echo '<td style="color:#f2f7ff;background-color:#32cac0"><b>' . $lp['total'] . ' KM' . '</b></td>';
                                                 } else {
                                                     echo '<input id="bulan_' . $lp['nopol'] . '_' . $bt['nama_bulan'] . '" type="hidden" value="0">';
                                                     echo '<td>' . '0 KM' . '</td>';

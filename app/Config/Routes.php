@@ -105,17 +105,17 @@ $routes->delete('/kendaraan/delete_kendaraan/(:num)', 'Kendaraan::delete_kendara
 $routes->get('/laporan/laporan_penggunaan', 'Laporan::laporan_penggunaan');
 
 //API
-$routes->resource('api/driver');
+$routes->resource("api/driver");
+$routes->post('api/UserAuthentication', 'UserAuthentication::index');
+$routes->resource('bulan');
+$routes->resource('api/departemen');
 $routes->resource('api/kendaraan');
 $routes->resource('api/peminjaman');
 $routes->resource('api/user');
-$routes->resource('api/departemen');
-$routes->resource('api/bulan');
 $routes->resource('api/mainkendaraan');
 $routes->resource('api/historylog');
 $routes->post('api/changepass', 'Changepass::index');
 $routes->post('api/uploadImage', 'api\uploadImage::index');
-$routes->post('api/UserAuthentication', 'UserAuthentication::index');
 
 
 

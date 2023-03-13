@@ -3,7 +3,7 @@
 namespace App\Controllers\API;
 
 use CodeIgniter\API\ResponseTrait;
-use App\Models\DriverModel;
+use App\Models\API\DriverModel;
 use App\Controllers\BaseController;
 
 class Driver extends BaseController

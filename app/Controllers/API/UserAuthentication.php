@@ -2,7 +2,7 @@
 
 namespace App\Controllers\API;
 
-use App\Models\UserAuthenticationModel;
+use App\Models\API\UserAuthenticationModel;
 use CodeIgniter\API\ResponseTrait;
 use App\Controllers\BaseController;
 

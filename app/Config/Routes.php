@@ -160,7 +160,7 @@ $routes->resource("api/driver");
 //Untuk login
 $routes->post('api/UserAuthentication', 'UserAuthentication::index');
 //Untuk mengambil data bulan
-$routes->resource('bulan');
+$routes->resource('api/bulan');
 //Untuk mengambil departemen
 $routes->resource('api/departemen');
 //Untuk mengambil kendaraan

@@ -3,7 +3,7 @@
 namespace App\Controllers\API;
 
 use CodeIgniter\API\ResponseTrait;
-use App\Models\DepartemenModel;
+use App\Models\API\DepartemenModel;
 use App\Controllers\BaseController;
 
 class Departemen extends BaseController

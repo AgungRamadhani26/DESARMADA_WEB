@@ -3,7 +3,7 @@
 namespace App\Controllers\API;
 
 use CodeIgniter\API\ResponseTrait;
-use App\Models\HistoryLogModel;
+use App\Models\API\HistoryLogModel;
 use App\Controllers\BaseController;
 
 class HistoryLog extends BaseController

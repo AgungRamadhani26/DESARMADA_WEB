@@ -3,7 +3,7 @@
 namespace App\Controllers\API;
 
 use CodeIgniter\API\ResponseTrait;
-use App\Models\PeminjamanModel;
+use App\Models\API\PeminjamanModel;
 use App\Controllers\BaseController;
 
 class Peminjaman extends BaseController

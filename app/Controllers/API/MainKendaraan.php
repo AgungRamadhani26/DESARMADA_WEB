@@ -3,7 +3,7 @@
 namespace App\Controllers\API;
 
 use CodeIgniter\API\ResponseTrait;
-use App\Models\MainKendaraanModel;
+use App\Models\API\MainKendaraanModel;
 use App\Controllers\BaseController;
 
 class MainKendaraan extends BaseController

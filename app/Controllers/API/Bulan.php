@@ -5,7 +5,7 @@ namespace App\Controllers;
 namespace App\Controllers\API;
 
 use CodeIgniter\API\ResponseTrait;
-use App\Models\BulanModel;
+use App\Models\API\BulanModel;
 use App\Controllers\BaseController;
 
 class Bulan extends BaseController

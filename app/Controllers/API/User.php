@@ -3,7 +3,7 @@
 namespace App\Controllers\API;
 
 use CodeIgniter\API\ResponseTrait;
-use App\Models\UserModel;
+use App\Models\API\UserModel;
 use App\Controllers\BaseController;
 
 class User extends BaseController

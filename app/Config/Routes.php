@@ -154,6 +154,29 @@ $routes->get('/laporan/laporan_penggunaan', 'Laporan::laporan_penggunaan');
 //Untuk mencari laporan
 $routes->get('/laporan/cari_laporan', 'Laporan::cari_laporan');
 
+//API
+//Untuk mengambil data driver
+$routes->resource("api/driver");
+//Untuk login
+$routes->post('api/UserAuthentication', 'UserAuthentication::index');
+//Untuk mengambil data bulan
+$routes->resource('bulan');
+//Untuk mengambil departemen
+$routes->resource('api/departemen');
+//Untuk mengambil kendaraan
+$routes->resource('api/kendaraan');
+//Untuk mengambil data peminjaman
+$routes->resource('api/peminjaman');
+//Untuk mengambil data user
+$routes->resource('api/user');
+//Untuk mengambil data dashboard / main kendaraan
+$routes->resource('api/mainkendaraan');
+//Untuk mengambil data history log
+$routes->resource('api/historylog');
+//Untuk mengganti password
+$routes->post('api/changepass', 'Changepass::index');
+//Untuk mengunggah gambar
+$routes->post('api/uploadImage', 'api\uploadImage::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

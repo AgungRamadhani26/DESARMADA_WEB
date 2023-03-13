@@ -34,7 +34,7 @@ class Filters extends BaseConfig
     public array $globals = [
         'before' => [
             'khususMember' => ['except' => [
-                '/', '/login', '/lupa_password', '/lupa_password/cek_email', '/lupa_password/reset_password/*', '/lupa_password/save_reset_password/*'
+                '/', '/login', '/lupa_password', '/lupa_password/cek_email', '/lupa_password/reset_password/*', '/lupa_password/save_reset_password/*', 'api/*'
             ]]
             // 'honeypot',
             // 'csrf',

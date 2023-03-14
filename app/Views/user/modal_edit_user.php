@@ -44,7 +44,7 @@
                             <select class="form-control" id="driver_e">
                                 <option value="">-- Pilih Driver --</option>
                                 <?php foreach ($driver as $d) : ?>
-                                    <option value="<?= $d['id_driver'] ?>"><?= $d['nama'] ?></option>
+                                    <option value="<?= $d['id_driver'] ?>"><?= $d['nama'] . ' - ' . $d['nohp'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

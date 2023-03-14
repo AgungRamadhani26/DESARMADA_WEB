@@ -66,20 +66,6 @@ class User extends BaseController
                 'errors' => [
                     'required' => 'Driver harus diisi'
                 ]
-            ],
-            'password' => [
-                'rules' => 'required|min_length[6]',
-                'errors' => [
-                    'required' => 'Password harus diisi',
-                    'min_length' => 'Password tidak boleh kurang dari 6 karakter'
-                ]
-            ],
-            'konfirpass' => [
-                'rules' => 'required|min_length[6]',
-                'errors' => [
-                    'required' => 'Konfirmasi password harus diisi',
-                    'min_length' => 'Konfirmasi password tidak boleh kurang dari 6 karakter'
-                ]
             ]
         ];
         $validasi->setRules($aturan);
@@ -92,31 +78,20 @@ class User extends BaseController
             $nama = trim($nama1);
             $level = $this->request->getPost('level');
             $driver = $this->request->getPost('driver');
-            $password1 = $this->request->getPost('password');
-            $password = trim($password1);
-            $konfirpass1 = $this->request->getPost('konfirpass');
-            $konfirpass = trim($konfirpass1);
             //proses memasukkan data ke database
-            if ($password == $konfirpass) {
-                //menambah user
-                $datauser = [
-                    'username' => $username,
-                    'nama' => $nama,
-                    'level' => $level,
-                    'id_driver' => $driver,
-                    'password' => md5($password) //melakukan enskripsi password dengan md5
-                ];
-                $this->userModel->save($datauser);
-                $hasil = [
-                    'sukses' => "Berhasil menambah data",
-                    'error' => false
-                ];
-            } else { //jika password tidak sama dengan konfirpass
-                $hasil = [
-                    'sukses' => false,
-                    'error' => "Password harus sama dengan konfirmasi password"
-                ];
-            }
+            //menambah user
+            $datauser = [
+                'username' => $username,
+                'nama' => $nama,
+                'level' => $level,
+                'id_driver' => $driver,
+                'password' => md5($username) //melakukan enskripsi password dengan md5, dimana password secara default sama dengan username
+            ];
+            $this->userModel->save($datauser);
+            $hasil = [
+                'sukses' => "Berhasil menambah data",
+                'error' => false
+            ];
         } else { //jika tidak valid
             $hasil = [
                 'sukses' => false,

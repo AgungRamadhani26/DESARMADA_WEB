@@ -234,8 +234,6 @@ function bersihkanUser() {
     $('#nama').val('');
     $('#level').val('');
     $('#driver').val('');
-    $('#password').val('');
-    $('#konfirpass').val('');
     $('#id_user_e').val('');
     $('#username_e').val('');
     $('#nama_e').val('');
@@ -260,8 +258,6 @@ $('#tombol-simpan-add-user').on('click', function(){
     let $nama = $('#nama').val(); //mengambil inputan berdasarkan id=namalokasi pada form modal
     let $level = $('#level').val();
     let $driver = $('#driver').val();
-    let $password = $('#password').val();
-    let $konfirpass = $('#konfirpass').val();
     $.ajax({ //menggunakan request ajax
         url: "/user/tambah_user", //url ke controller user menjalankan fungsi tambah_user melalui routes
         type: "POST", //menggunakan method post
@@ -270,8 +266,6 @@ $('#tombol-simpan-add-user').on('click', function(){
             username: $username,
             nama: $nama,
             level: $level,
-            password: $password,
-            konfirpass: $konfirpass
         },
         success: function(hasil){ //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
@@ -556,30 +550,5 @@ function previewImg_bbm() {
         imgPreview.src = e.target.result;
     }
 }
-
-
-
-//Untuk show hide password pada modal
-var togglePassword = document.querySelector('#togglePassword');
-var password = document.querySelector('#password');
-togglePassword.addEventListener('click', function(e) {
-// toggle the type attribute
-   var type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-   password.setAttribute('type', type);
-   // toggle the icon
-   this.querySelector('i').classList.toggle('bi-eye-fill');
-   this.querySelector('i').classList.toggle('bi-eye-slash-fill');
-});
-
-var toggleKonfir = document.querySelector('#togglekonfirpass');
-var passwordKonfir = document.querySelector('#konfirpass');
-toggleKonfir.addEventListener('click', function(e) {
-// toggle the type attribute
-   var type = passwordKonfir.getAttribute('type') === 'password' ? 'text' : 'password';
-   passwordKonfir.setAttribute('type', type);
-   // toggle the icon
-   this.querySelector('i').classList.toggle('bi-eye-fill');
-   this.querySelector('i').classList.toggle('bi-eye-slash-fill');
-});
 
 

@@ -20,6 +20,10 @@ class Driver extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => '50',
             ],
+            'nohp' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '15',
+            ],
             'created_at' => [
                 'type'  => 'DATETIME',
                 'null'  => true,

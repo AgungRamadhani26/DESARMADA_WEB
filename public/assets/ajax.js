@@ -9,6 +9,8 @@ function bersihkanDriver() {
     $('#nama').val('');
     $('#id_driver_e').val('');
     $('#nama_e').val('');
+    $('#nohp').val('');
+    $('#nohp_e').val('');
 }
 
 
@@ -26,11 +28,13 @@ $('.tombol-tutup').on('click', function() {
 //Untuk melakukan proses TAMBAH DRIVER
 $('#tombol-simpan-add-driver').on('click', function() {
     let $nama = $('#nama').val(); //mengambil inputan berdasarkan id=nama pada form modal
+    let $nohp = $('#nohp').val();
     $.ajax({ //menggunakan request ajax
         url: "/driver/tambah_driver", //url ke controller driver menjalankan fungsi tambah_driver melalui routes
         type: "POST", //menggunakan method post
         data: { //digunakan untuk mengirimkan data ke controller
-            nama: $nama
+            nama: $nama,
+            nohp: $nohp
         },
         success: function(hasil) { //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller
@@ -67,6 +71,7 @@ function edit_driver($id) {
             if ($obj.id_driver != '') { //Jika id_drivernya tidak kosong (ada)
                 $('#id_driver_e').val($obj.id_driver); //menampilkan value yang akan diedit pada modal
                 $('#nama_e').val($obj.nama); //menampilkan value yang akan diedit pada modal
+                $('#nohp_e').val($obj.nohp); //menampilkan value yang akan diedit pada modal
             }
         }
     });
@@ -75,12 +80,14 @@ function edit_driver($id) {
 $('#tombol-simpan-edit-driver').on('click', function() {
     let $id_driver = $('#id_driver_e').val(); //mengambil id_driver dari modal kalau id_drivernya kosong maka artinya akan menambah data baru kalau id_drivernya ada artinya edit data
     let $nama = $('#nama_e').val(); //mengambil inputan berdasarkan id=nama pada form modal
+    let $nohp = $('#nohp_e').val();
     $.ajax({ //menggunakan request ajax
         url: "/driver/update_driver", //url ke controller driver menjalankan fungsi update_driver melalui routes
         type: "POST", //menggunakan method post
         data: { //digunakan untuk mengirimkan data ke controller
             id_driver: $id_driver,
-            nama: $nama
+            nama: $nama,
+            nohp: $nohp
         },
         success: function(hasil) { //hasil ajaxnya
             var $obj = $.parseJSON(hasil); //memparsing data hasil ajax dari controller

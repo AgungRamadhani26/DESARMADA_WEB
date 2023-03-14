@@ -21,6 +21,12 @@
                             <input type="text" class="form-control" name="nama" id="nama">
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <label for="nohp">No Handphone</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" name="nohp" id="nohp">
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary tombol-tutup" data-bs-dismiss="modal">Tutup</button>

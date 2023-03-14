@@ -14,36 +14,43 @@ class DriverSeeder extends Seeder
         $data = [
             [
                 'nama'       => 'Agung Ramadhani',
+                'nohp'       => '082370708349',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],
             [
                 'nama'       => 'Bima Satria',
+                'nohp'       => '082168351407',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],
             [
                 'nama'       => 'Dafa Sinaga',
+                'nohp'       => '081265163577',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],
             [
                 'nama'       => 'farhan Sormin',
+                'nohp'       => '082295301704',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],
             [
                 'nama'       => 'Nico Siahaan',
+                'nohp'       => '081264475512',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],
             [
                 'nama'       => 'Bobby Pratama',
+                'nohp'       => '081261102194',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],
             [
                 'nama'       => 'Randika Sagala',
+                'nohp'       => '082273476690',
                 'created_at' => Time::now(),
                 'updated_at' => Time::now()
             ],

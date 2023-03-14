@@ -40,6 +40,16 @@ class Driver extends BaseController
                     'required' => 'Nama harus diisi',
                     'alpha_space' => 'Nama harus berupa huruf'
                 ]
+            ],
+            'nohp' => [
+                'rules' => 'required|numeric|is_unique[driver.nohp]|max_length[13]|min_length[10]',
+                'errors' => [
+                    'required' => 'No Handphone harus diisi',
+                    'numeric' => 'No Handphone harus berupa angka dan tidak boleh mengandung spasi',
+                    'is_unique' => 'No Handphone sudah terdaftar, coba pakai yang lain',
+                    'max_length' => 'No Handphone maksimal 13 digit',
+                    'min_length' => 'No Handphone minimal 10 digit'
+                ]
             ]
         ];
         $validasi->setRules($aturan);
@@ -48,9 +58,12 @@ class Driver extends BaseController
             //mengambil dari data ajax
             $nama1 = $this->request->getPost('nama');
             $nama = trim($nama1);
+            $nohp1 = $this->request->getPost('nohp');
+            $nohp = trim($nohp1);
             //proses memasukkan data ke database
             $data = [
-                'nama' => $nama
+                'nama' => $nama,
+                'nohp' => $nohp
             ];
             $this->driverModel->save($data);
             //output ke layar
@@ -81,12 +94,29 @@ class Driver extends BaseController
     public function update_driver()
     {
         $validasi = \Config\Services::validation();
+        // cek no handphone, karena no handphone harus unik
+        $driverLama = $this->driverModel->getDriver($this->request->getPost('id_driver')); //dari input yang bertipe hidden
+        if ($driverLama['nohp'] == $this->request->getPost('nohp')) {
+            $rule_nohp = 'required|numeric|max_length[13]|min_length[10]';
+        } else {
+            $rule_nohp = 'required|numeric|is_unique[driver.nohp]|max_length[13]|min_length[10]';
+        }
         $aturan = [
             'nama' => [
                 'rules' => 'required|alpha_space',
                 'errors' => [
                     'required' => 'Nama harus diisi',
                     'alpha_space' => 'Nama harus berupa huruf'
+                ]
+            ],
+            'nohp' => [
+                'rules' => $rule_nohp,
+                'errors' => [
+                    'required' => 'No Handphone harus diisi',
+                    'numeric' => 'No Handphone harus berupa angka dan tidak boleh mengandung spasi',
+                    'is_unique' => 'No Handphone sudah terdaftar, coba pakai yang lain',
+                    'max_length' => 'No Handphone maksimal 13 digit',
+                    'min_length' => 'No Handphone minimal 10 digit'
                 ]
             ]
         ];
@@ -97,10 +127,13 @@ class Driver extends BaseController
             $id_driver = $this->request->getPost('id_driver');
             $nama1 = $this->request->getPost('nama');
             $nama = trim($nama1);
+            $nohp1 = $this->request->getPost('nohp');
+            $nohp = trim($nohp1);
             //proses memasukkan data ke database
             $data = [
                 'id_driver' => $id_driver,
-                'nama' => $nama
+                'nama' => $nama,
+                'nohp' => $nohp
             ];
             $this->driverModel->save($data);
             //output ke layar

@@ -10,7 +10,7 @@ class DriverModel extends Model
     protected $primaryKey = 'id_driver'; //primary keynya
     protected $useTimestamps = true; //menggunakan timestaps agar ketika input masuk ke database waktu yang tercatat adalah waltu saat itu, dan ketika melakukan edit waktu yang tercatat adalah waktu edit
     protected $useSoftDeletes = true; //menggunakan soft deletes milik CI4, caranya dengan menambahkan kolom pada tabel yang bernama deleted_at
-    protected $allowedFields = ['nama']; //berguna untuk mengijinkan kolom mana saja yg dapat kita isi secara manual melalui aplikasi yang kita buat
+    protected $allowedFields = ['nama', 'nohp']; //berguna untuk mengijinkan kolom mana saja yg dapat kita isi secara manual melalui aplikasi yang kita buat
 
     //Fungsi buatan yang berguna untuk mendapatkan data driver
     public function getDriver($id_driver = false)

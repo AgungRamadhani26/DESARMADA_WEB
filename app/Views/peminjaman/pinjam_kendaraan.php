@@ -79,14 +79,14 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="" class="col-sm-3 col-form-label">Driver</label>
+                                <label for="driver" class="col-sm-3 col-form-label">Driver</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" name="driver">
                                         <?php foreach ($driverr as $d) : ?>
                                             <?php
                                             $selected = ($d['id_driver'] == session()->get('id_driver')) ? 'selected' : '';
                                             ?>
-                                            <option value="<?= $d['nama'] ?>" <?php echo $selected ?>><?= $d['nama'] ?></option>
+                                            <option value="<?= $d['nama'] ?>" <?php echo $selected ?>><?= $d['nama'] . ' - ' . $d['nohp'] ?></option>
                                         <?php endforeach; ?>
                                     </select>
                                     <div class="invalid-feedback">
@@ -108,10 +108,9 @@
                         </form>
                     </div>
                 </center>
-                <div class="mb-3 mt-3 row col-2">
+                <div class="mb-4 mt-3 row col-2">
                     <a class="ms-3 btn btn-info btn-sm" style="font-weight:bold; color:white" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] ?>"><span class="material-icons">arrow_back</span>Kembali</a>
                 </div>
-
             </div>
         </div>
     </div>

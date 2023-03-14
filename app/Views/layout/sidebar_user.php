@@ -38,6 +38,13 @@
                             <span>History Peminjaman</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-item <?= $url == '/driver/daftar_driver' ? 'active' : '' ?>">
+                        <a href="/driver/daftar_driver" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Driver</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

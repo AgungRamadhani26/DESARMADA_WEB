@@ -7,9 +7,15 @@
     <article class="card">
         <div class="card-header">
             <!-- Modal trigger button untuk menambah driver baru -->
-            <button type="button" class="btn badge tambah" data-bs-toggle="modal" data-bs-target="#modaltambah_driver">
-                <span class="material-icons">add</span>
-            </button>
+            <?php
+            if (session()->get('level') == 1) {
+            ?>
+                <button type="button" class="btn badge tambah" data-bs-toggle="modal" data-bs-target="#modaltambah_driver">
+                    <span class="material-icons">add</span>
+                </button>
+            <?php
+            }
+            ?>
             <center>
                 <hr>
                 <h5>Jumlah Driver</h5>
@@ -41,6 +47,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama</th>
+                        <th>No Handphone</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -48,15 +55,29 @@
                     <?php $i = 1 ?>
                     <?php foreach ($driver as $d) : ?>
                         <tr>
+                            <?php
+                            $nomor_telepon1 = $d['nohp'];; // nomor telepon dengan awalan 0
+                            if (substr($nomor_telepon1, 0, 1) == '0') {
+                                $nomor_telepon = '+62' . substr($nomor_telepon1, 1);
+                            }
+                            ?>
                             <td><?= $i++ ?></td>
                             <td><?= $d['nama'] ?></td>
+                            <td><?= $d['nohp'] ?></td>
                             <td>
-                                <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_driver" onclick="edit_driver(<?php echo $d['id_driver'] ?>)"><span class="material-icons">edit</span></button>
-                                <form action="/driver/delete_driver/<?= $d['id_driver'] ?>" method="POST" class="d-inline">
-                                    <?= csrf_field(); ?>
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin menghapus data driver ?');"><span class="material-icons">clear</span></button>
-                                </form>
+                                <a class="btn badge kirimpesan" style="font-weight:bold; color:white" href="https://wa.me/<?= $nomor_telepon ?>" target="_blank"><span class="material-icons">perm_phone_msg</span></a>
+                                <?php
+                                if (session()->get('level') == 1) {
+                                ?>
+                                    <button type="button" class="btn badge edit" data-bs-toggle="modal" data-bs-target="#modaledit_driver" onclick="edit_driver(<?php echo $d['id_driver'] ?>)"><span class="material-icons">edit</span></button>
+                                    <form action="/driver/delete_driver/<?= $d['id_driver'] ?>" method="POST" class="d-inline">
+                                        <?= csrf_field(); ?>
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button type="submit" class="btn badge delete" onclick="return confirm('Apakah anda yakin menghapus data driver ?');"><span class="material-icons">clear</span></button>
+                                    </form>
+                                <?php
+                                }
+                                ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

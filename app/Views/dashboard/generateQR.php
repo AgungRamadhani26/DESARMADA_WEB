@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="qr-codeHeader">
-                <a class="ms-3" style="font-weight:bold; color:white" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] ?>">Kembali ke daftar <?= $kendaraan['jenis_kendaraan'] ?></a>
+                <a class="ms-3" style="font-weight:bold; color:white" href="/dashboard/<?= $kendaraan['jenis_kendaraan'] ?>">&laquo Kembali ke daftar <?= $kendaraan['jenis_kendaraan'] ?></a>
             </div>
         </div>
     </div>

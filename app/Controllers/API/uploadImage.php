@@ -31,7 +31,7 @@ class uploadImage extends BaseController
     if ($imageBBM != null && $imageBBM->getError() == 0) {
       $ext = $imageBBM->getClientExtension();
       $file_name = "img-" . mt_rand(111111111, 999999999) . "." . $ext;
-      $imageBBM->move('assets/lampiran_bbm', $file_name);
+      $imageBBM->move('assets/img_lampiran_bbm', $file_name);
       $image = $file_name;
     }
 
@@ -39,7 +39,7 @@ class uploadImage extends BaseController
     if ($imageTol != null && $imageTol->getError() == 0) {
       $ext = $imageTol->getClientExtension();
       $file_name = "img-" . mt_rand(111111111, 999999999) . "." . $ext;
-      $imageTol->move('assets/lampiran_tol', $file_name);
+      $imageTol->move('assets/img_lampiran_tol', $file_name);
       $image = $file_name;
     }
 

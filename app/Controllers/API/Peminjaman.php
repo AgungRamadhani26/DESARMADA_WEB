@@ -67,7 +67,7 @@ class Peminjaman extends BaseController
     //if request has file
     if ($this->request->getFile('lampiran_bbm')) {
       $lampiran_bbm = $this->request->getFile('lampiran_bbm');
-      $lampiran_bbm->move(WRITEPATH . '../public/assets/lampiran_bbm');
+      $lampiran_bbm->move('assets/img_lampiran_bbm');
       $lampiran_bbm_name = $lampiran_bbm->getName();
       $data['lampiran_bbm'] = $lampiran_bbm_name;
     }

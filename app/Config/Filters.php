@@ -10,6 +10,7 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 use App\Filters\KhususTamu;
 use App\Filters\KhususMember;
+use App\Filters\KhususAdmin;
 
 class Filters extends BaseConfig
 {
@@ -24,7 +25,8 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'khususMember'  => KhususMember::class, //mendaftarkan filter/middleware yang udah kita buat agar dapat digunakan
-        'khususTamu'    => KhususTamu::class
+        'khususTamu'    => KhususTamu::class,
+        'khususAdmin'   => KhususAdmin::class
     ];
 
     /**
@@ -35,7 +37,11 @@ class Filters extends BaseConfig
         'before' => [
             'khususMember' => ['except' => [
                 '/', '/login', '/lupa_password', '/lupa_password/cek_email', '/lupa_password/reset_password/*', '/lupa_password/save_reset_password/*', 'api/*'
-            ]]
+            ]],
+            'khususAdmin' => ['except' => [
+                '/', '/login', '/logout', '/lupa_password', '/lupa_password/cek_email', '/lupa_password/reset_password/*', '/lupa_password/save_reset_password/*', 'api/*',
+                '/dashboard/*', '/profile/*', '/peminjaman/*', '/driver/daftar_driver',
+            ]],
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

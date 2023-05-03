@@ -151,6 +151,14 @@
             xAxis: {
                 categories: <?= json_encode($lokasiGR) ?>
             },
+            yAxis: {
+                title: {
+                    text: 'Jumlah'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
             credits: {
                 enabled: false
             },

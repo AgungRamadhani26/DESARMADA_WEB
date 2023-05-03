@@ -28,6 +28,7 @@ class Peminjaman extends BaseController
       return $this->failNotFound('Data tidak ditemukan');
     }
   }
+
   public function create()
   {
 

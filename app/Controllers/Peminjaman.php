@@ -30,10 +30,15 @@ class Peminjaman extends BaseController
     {
         $data = [
             'url' => '/dashboard/mobil',
-            'kendaraan' => $this->kendaraanModel->getKendaraan($id_kendaraan),
+            'kendaraan' => $this->kendaraanModel->getKendaraanPeminjaman($id_kendaraan),
             'driverr' => $this->driverModel->getDriver()
         ];
-        return view('peminjaman/pinjam_kendaraan', $data);
+        //cek apakah kendaraan ada
+        if (empty($data['kendaraan'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Kendaraan ini sedang servis atau sedang dipinjam, penjam kendaraan lain!!.');
+        } else {
+            return view('peminjaman/pinjam_kendaraan', $data);
+        }
     }
 
     public function add_pinjam($id_kendaraan)

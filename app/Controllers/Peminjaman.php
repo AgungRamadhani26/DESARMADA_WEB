@@ -147,14 +147,18 @@ class Peminjaman extends BaseController
 
     public function kembalikan_kendaraan($id_peminjaman)
     {
-        $peminjaman = $this->peminjamanModel->find($id_peminjaman);
-        $kendaraan = $this->kendaraanModel->find($peminjaman['id_kendaraan']);
-        $data = [
-            'url' => '/dashboard/mobil',
-            'kendaraan' => $kendaraan,
-            'peminjaman' => $peminjaman
-        ];
-        return view('peminjaman/kembalikan_kendaraan', $data);
+        $peminjaman = $this->peminjamanModel->where(['id_peminjaman' => $id_peminjaman, 'tgl_kembali' => null])->first();
+        if (empty($peminjaman)) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException('Kendaraan ini sudah dikembalikan, data tidak dapat diubah !!!.');
+        } else {
+            $kendaraan = $this->kendaraanModel->find($peminjaman['id_kendaraan']);
+            $data = [
+                'url' => '/dashboard/mobil',
+                'kendaraan' => $kendaraan,
+                'peminjaman' => $peminjaman
+            ];
+            return view('peminjaman/kembalikan_kendaraan', $data);
+        }
     }
 
     public function add_pengembalian($id_peminjaman)

@@ -221,7 +221,7 @@
         var chart = Highcharts.chart('container', {
 
             title: {
-                text: 'Data Peminjaman Mobil',
+                text: 'Data Peminjaman Kendaraan',
                 align: 'center'
             },
 

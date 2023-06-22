@@ -40,7 +40,7 @@ class Filters extends BaseConfig
             ]],
             'khususAdmin' => ['except' => [
                 '/', '/login', '/logout', '/lupa_password', '/lupa_password/cek_email', '/lupa_password/reset_password/*', '/lupa_password/save_reset_password/*', 'api/*',
-                '/dashboard/*', '/profile/*', '/peminjaman/*', '/driver/daftar_driver',
+                '/dashboard/mobil', '/dashboard/motor', '/dashboard/mobil_keluar', '/dashboard/motor_keluar', '/profile/*', '/peminjaman/*', '/driver/daftar_driver',
             ]],
             // 'honeypot',
             // 'csrf',

@@ -56,7 +56,7 @@
                     <?php foreach ($driver as $d) : ?>
                         <tr>
                             <?php
-                            $nomor_telepon1 = $d['nohp'];; // nomor telepon dengan awalan 0
+                            $nomor_telepon1 = $d['nohp']; // nomor telepon dengan awalan 0
                             if (substr($nomor_telepon1, 0, 1) == '0') {
                                 $nomor_telepon = '+62' . substr($nomor_telepon1, 1);
                             }
